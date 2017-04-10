@@ -1,0 +1,260 @@
+<div class="modal ng-scope top am-fade-and-slide-top center col-md-12" tabindex="-1" role="dialog" style="display: block;" id="produkt-dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<h4 class="modal-title"> {{ __produktModal.title }}</h4>
+			</div>
+
+			<div class="modal-body">
+				<div bs-tabs>
+					<div bs-pane data-title="Produkt oplysninger">
+<!--- -->
+						<div class="row" style="margin-top:20px;">
+							<form role="form" class="form-horizontal">
+
+								<div class="col-md-6">
+
+									<div class="form-group">
+							      <label class="col-md-2 control-label"></label>
+										<div class="col-md-10">
+											<label class="checkbox-inline no-select" for="aktiv">
+												<input type="checkbox" 
+													ng-model="edit.aktiv" 
+													ng-checked="edit.aktiv" 
+													ng-true-value="'1'" 
+													ng-false-value="'0'"
+													id="aktiv">
+												Synlig / aktiv
+											</label>
+
+											<label class="checkbox-inline no-select" for="forside">
+												<input type="checkbox" 
+													ng-model="edit.forside" 
+													ng-checked="edit.forside" 
+													ng-true-value="'1'" 
+													ng-false-value="'0'"
+													id="forside">
+												Eksponer på forside
+											</label>
+										</div>
+									</div>
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label required" for="navn">Navn</label>
+										<div class="col-md-10">
+									    <input class="form-control" ng-model="edit.navn" placeholder="Ex. Kernerøget eg Weitzer">
+										</div>
+									</div>
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label" for="vare_nr">VareNr.</label>
+										<div class="col-md-4">
+									    <input class="form-control" ng-model="edit.vare_nr" id="vare_nr">
+										</div>
+									</div>
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label required" for="enhed_id">Enhed</label>
+										<div class="col-md-5">
+											<button type="button" 
+												class="btn btn-default" 
+												ng-model="edit.enhed_id" 
+												data-toggle="true"
+												placeholder="Vælg"
+												id="enhed_id"
+												bs-select
+												bs-options="enhed.id as enhed.ental for enhed in enhedItems">
+											  <span class="caret"></span>
+											</button>
+										</div>
+									</div>
+
+								  <div class="form-group">
+										<label class="col-md-2 control-label required" for="paa_lager">Lager</label>
+										<div class="col-md-3" style="white-space: nowrap;">
+									    <input only-digits 
+												class="form-control" 
+												style="display:inline;" 
+												ng-model="edit.paa_lager" 
+												id="paa_lager" 
+												placeholder="Antal på lager">
+											{{ enhedFlertal }}
+										</div>
+									</div>
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label required" for="pris_enhed">Pris</label>
+										<div class="col-md-3" style="white-space: nowrap;">
+									    <input only-digits 
+												class="form-control" 
+												style="display:inline;" 
+												ng-model="edit.pris_enhed" 
+												placeholder="DKK Pris">
+											per {{ enhedEntal }}
+										</div>
+									</div>
+
+								</div>
+			<!--- #2 ---->
+								<div class="col-md-6">
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label required" for="kategori">Kategori</label>
+										<div class="col-md-5">
+											<button type="button" 
+												id="kategori"
+												class="btn btn-default" 
+												ng-model="edit.kategori_id" 
+												data-toggle="true"
+												placeholder="Vælg en kategori"
+												data-placement="top-left"
+												bs-select
+												bs-options="kategori.id as kategori.navn for kategori in kategoriItems">
+											  <span class="caret"></span>
+											</button>
+										</div>
+									</div>
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label" for="sort_id">Træsort</label>
+										<div class="col-md-5">
+											<button type="button" 
+												id="sort_id"
+												class="btn btn-default" 
+												ng-model="edit.sort_id" 
+												data-toggle="true"
+												placeholder="Vælg"
+												bs-select
+												bs-options="sort.id as sort.navn for sort in sortItems">
+											  <span class="caret"></span>
+											</button>
+										</div>
+									</div>
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label" for="overflade_id">Overflade</label>
+										<div class="col-md-6">
+											<button type="button" 
+												id="overflade_id"
+												class="btn btn-default" 
+												ng-model="edit.overflade_id" 
+												data-toggle="true"
+												placeholder="Vælg"
+												bs-select
+												bs-options="overflade.id as overflade.navn for overflade in overfladeItems">
+											  <span class="caret"></span>
+											</button>
+										</div>
+									</div>
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label" for="kvalitet">Kvalitet</label>
+										<div class="col-md-4">
+											<button type="button" 
+												id="kvalitet"
+												class="btn btn-default" 
+												ng-model="edit.kvalitet_id" 
+												data-toggle="true"
+												placeholder="Vælg"
+												bs-select
+												bs-options="kvalitet.id as kvalitet.navn for kvalitet in kvalitetItems">
+											  <span class="caret"></span>
+											</button>
+										</div>
+									</div>
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label">Dim (mm)</label>
+										<div class="col-md-3" style="white-space: nowrap;padding-right:0px;">
+											<input class="form-control pull-left" 
+												style="display:inline;clear:none;"
+												ng-model="edit.dim_h" 
+												id="dim_h" placeholder="Tyk.">
+										</div>
+										<div class="col-md-3 no-padding" style="white-space: nowrap;">
+									    <input class="form-control" 
+												style="display:inline;"
+												ng-model="edit.dim_b" 
+												id="dim_b" 
+												placeholder="Bredde">
+										</div>
+										<div class="col-md-3 no-padding" style="white-space: nowrap;">
+									    <input class="form-control" 
+												ng-model="edit.dim_l" 
+												style="display:inline;"
+												id="dim_l" 
+												placeholder="Længde(r)">
+										</div>
+									</div>
+
+
+								</div>
+							</form>
+						</div>
+
+<!--- -->
+					</div>
+
+					<div bs-pane data-title="Tekst">
+				    <div class="row">
+							<text-angular ng-model="edit.beskrivelse" 
+								ta-text-editor-class="form-control produkt-beskrivelse col-md-12"
+								ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['undo', 'redo', 'html']]">
+							</text-angular>
+						</div>
+					</div>
+
+					<div bs-pane data-title="Billeder">
+						<div class="row">
+
+						<div ng-repeat="i in billeder" class="image">
+							<img class="thumbnail" ng-src="/media-uploads/{{ i.path }}">
+							<span class="remove-image" 
+								title="Fjern billede og slet fra server" 
+								ng-click="removeImage(i.id)">
+								<i class="fa fa-times text-danger bg-warning"></i>
+							</span>
+						</div>
+			
+						<div class="alert alert-danger" 
+							style="margin-top:20px;"
+							role="alert" 
+							ng-show="edit.id == undefined">
+							Du kan først oploade billeder efter produktet er oprettet
+						</div>
+					</div>
+
+					<div class="clear-fix">
+						<button class="btn btn-primary btn-xs no-padding" 
+							style="margin-top: 2px;"
+							ng-click="addBillede()"
+							ng-show="edit.id != undefined">
+							<i class="fa fa-plus"></i>&nbsp;Upload billede
+						</button>
+					</div>
+
+					</div>
+
+				</div>
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" 
+					class="btn" 
+					ng-click="produktModalClose(true)" 
+					ng-class="{ 'btn-success' : canSave() }"
+					ng-enabled="canSave()">
+						{{ __produktModal.btnOk }}
+				</button> 
+				<button type="button" 
+					class="btn btn-default" 
+					ng-click="produktModalClose(false)" 
+					ng-show="!alertParams.okOnly" >
+						Fortryd
+				</button> 
+			</div>
+
+		</div>
+	</div>
+</div>

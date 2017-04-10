@@ -1,0 +1,17 @@
+<div class="container-fluid">
+	<h1>Produkt oversigt</h1>
+	<p>Komplet liste over produkter og produktgrupper på gulve.online</p>
+	<br>
+	<div ng-repeat="k in kategorier">
+		<h4>{{ k.navn }} <h4>
+		<div ng-repeat="p in k.produkter">
+			<a ng-href="#/produkt/{{ p.navn}}/{{p.id}}" style="margin-left:20px;">{{p.navn}}</a><br>
+		</div>
+		<br>
+	</div>
+
+	<br><br><br><br>
+
+</div>
+
+

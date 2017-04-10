@@ -1,0 +1,63 @@
+
+table tbody tr {
+	cursor: pointer;
+}
+
+table tbody tr td {
+	white-space: nowrap
+}
+
+.td-produkter-navn {
+	max-width: 350px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}	
+
+div.dataTables_filter {
+	float: right;
+}
+
+/* required red star */
+label.required:before {
+  content: "* ";
+  color: red;
+}
+
+.td-beskrivelse {
+	max-width: 400px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}	
+
+/* colvis */
+div.dt-button-collection {
+	padding: 0px;
+	margin-top: 0px;
+}
+div.dt-button-collection a.dt-button {
+	border-radius: 0px;
+	margin-bottom: 0px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	border: 0;
+}
+div.dt-button-collection a.dt-button:hover:not(.disabled) {
+	border: 0;
+}
+div.dt-button-collection a.dt-button {
+	color: green;
+}
+div.dt-button-collection a.dt-button:not(.active) {
+	color: red;
+}
+
+/* prevent selection */
+*.no-select {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+

@@ -1,0 +1,49 @@
+
+<div class="container">
+
+	<h1>{{ produkt.navn }}</h1>
+
+	<div class="md-col-12">
+		<p ng-bind-html="produkt.beskrivelse"></p>
+
+		<table class="table">
+	    <thead>
+				<tr>
+	        <th colspan="2">Specifikationer</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Type</td><td>{{ produkt.kategori }}</td>
+				</tr>
+				<tr>
+					<td>Træsort</td><td>{{ produkt.traesort }}</td>
+				</tr>
+				<tr>
+					<td>Sortering</td><td>{{ produkt.kvalitet }}</td>
+				</tr>
+				<tr>
+					<td>Overflade</td><td>{{ produkt.overflade }}</td>
+				</tr>
+				<tr>
+					<td>Dim. mm</td><td>{{ produkt.dim_h }} &times; {{ produkt.dim_b }} &times; {{ produkt.dim_l }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="alert alert-success">
+			<h3 style="margin-top:10px;">Pris per {{ produkt.enhed }} DKK {{ produkt.pris_enhed | currency:"":2 }} </h3>
+		</div>
+
+	</div>
+
+	<div ng-repeat="i in billeder" class="image image-md">
+		<img class="thumbnail" ng-src="/media-uploads/{{ i.path }}" style="cursor:pointer;" fancyboxable>
+	</div>
+
+</div>
+
+
+<br><br><br><br>
+
+

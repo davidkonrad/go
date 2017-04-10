@@ -1,0 +1,20 @@
+
+.well.produkt ul li{ 
+	list-style-type:none;
+}
+
+.well.produkt ul li:before{ 
+	font-family: 'Glyphicons Halflings';
+	content: "\e013";
+	position: relative;
+	left: -10px;
+	top: 2px;
+	color: green;
+}
+
+.thumbnail .thumbnail-lg {
+	height: 200px !important !important;
+	width: 200px !important !important;
+}
+
+

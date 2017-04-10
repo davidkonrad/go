@@ -1,0 +1,57 @@
+<div class="modal ng-scope top am-fade-and-slide-top center col-md-12" tabindex="-1" role="dialog" style="display: block;" id="admin-data-dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<h4 class="modal-title"> {{ __dataModal.title }}</h4>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="row">
+					<form role="form" class="form-horizontal col-md-12">
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label required" for="ental">Ental</label>
+							<div class="col-md-8">
+						    <input class="form-control" ng-model="edit.ental" id="ental">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label required" for="flertal">Flertal</label>
+							<div class="col-md-8">
+						    <input class="form-control" ng-model="edit.flertal" id="flertal">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label" for="ental">Beskrivelse</label>
+							<div class="col-md-8">
+								<textarea class="form-control" rows="5" cols="50" ng-model="edit.beskrivelse"></textarea>
+							</div>
+						</div>
+	
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" 
+					class="btn" 
+					ng-click="modalClose(true)" 
+					ng-class="{ 'btn-success' : canSave() }"
+					ng-enabled="canSave()">
+						{{ __dataModal.btnOk }}
+				</button> 
+				<button type="button" 
+					class="btn btn-default" 
+					ng-click="modalClose(false)" 
+					ng-show="!alertParams.okOnly" >
+						Fortryd
+				</button> 
+			</div>
+
+		</div>
+	</div>
+</div>

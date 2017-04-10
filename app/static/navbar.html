@@ -1,0 +1,97 @@
+
+<div ng-controller="NavbarCtrl"
+	ng-hide="isLoggedIn" 
+	class="container-fluid" 
+	style="color:#fff;height:200px;background-image: url('images/back.jpg');background-repeat: repeat-x;">
+<!-- e74c3c c0392b F44336 #d35400 -->
+  <h1><strong><code style="padding-left:10px;padding-right:10px;"><a href="/" class="unstyled">gulve.online</a></code></strong></h1>
+  <h2><em>Stav, plank og mosaik</em></h2>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-top" bs-affix data-offset-top="197" ng-controller="NavbarCtrl">
+	<div class="no-margin no-padding">
+	<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="navbar-brand pull-left" style="width:240px;">
+				<div class="input-group stylish-input-group" style="width:230px;">
+					<input type="text" class="form-control" placeholder="Søg på gulve.online" >
+					<span class="input-group-addon">
+						<button type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>  
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+
+			<ul class="nav navbar-nav navbar-right">
+
+				<li ng-if="isLoggedIn" class="dropdown">
+					<a class="dropdown-toggle text-primary" data-toggle="dropdown" href="" style="color: #337ab7;">
+						<strong>Administration</strong>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#/admin-produkter">Produkter</a></li>
+						<li class="divider"></li>
+						<li><a href="#/admin-kategori">Kategorier</a></li>
+						<li><a href="#/admin-enhed">Enheder</a></li>
+						<li><a href="#/admin-sort">Træsorter</a></li>
+						<li><a href="#/admin-kvalitet">Kvaliteter</a></li>
+						<li><a href="#/admin-overflade">Overflader</a></li>
+						<li class="divider"></li>
+						<li><a href="#" ng-click="logout()">Log af</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown" id="produkt-kategorier">
+					<a class="dropdown-toggle" 
+						data-toggle="dropdown" 
+						href="" 
+						style="color: #a94442;">
+							Produkt kategorier
+						<span class="caret"></span>
+					</a>
+					<div class="dropdown-menu row col-lg-12 three-column-navbar" role="menu">
+						<div class="col-md-4">
+							<h3>Plank</h3>
+							<h4><a href="#/kategori/Terrasseplank/4">Terrassebrædder</a></h4>
+							<h4><a href="#/kategori/Massiv plank/8">Massive planker</a></h4>
+							<h4>Lamel planker</h4>
+						</div>
+						<div class="col-md-4">
+							<h3>Stavparket</h3>
+							<h4>Lamelparket</h4>
+							<h4><a href="#/kategori/sildeben/6">Sildeben</a></h4>
+							<h4>Mønsterparket</h4>
+							<h4>Mosaik</h4>
+						</div>
+						<div class="col-md-4">
+							<h3>Diverse</h3>
+							<h4>Lim</h4>
+							<br>
+							<small style="position:relative;top:50px;right:-70px;"><a href="#/produkt-oversigt">Alle produkter »</a></small>
+						</div>
+					</div>
+				</li>
+
+				<li><a href="#">Forside</a></li>
+				<li><a href="#">Tilbud</a></li>
+				<li><a href="#">Levering</a></li>
+				<li><a href="#">Kontakt</a></li>
+				<li><a href="#/om-gulve-online">Om <strong>gulve.online</strong></a></li>
+			</ul>
+
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container -->
+</nav><!-- /.navbar -->
+

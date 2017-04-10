@@ -1,0 +1,64 @@
+<div class="modal ng-scope top am-fade-and-slide-top center col-md-12" tabindex="-1" role="dialog" style="display: block;" id="admin-data-dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<h4 class="modal-title"> {{ __dataModal.title }}</h4>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="row">
+					<form role="form" class="form-horizontal col-md-12">
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label"></label>
+							<div class="checkbox col-md-6">
+						    <label for="aktiv">
+						      <input type="checkbox" 
+										ng-model="edit.aktiv" 
+										ng-checked="edit.aktiv" 
+										ng-true-value="'1'" 
+										ng-false-value="'0'"
+										id="aktiv"> Aktiv (synlig og søgbar)
+						    </label>
+							</div>
+					  </div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label required" for="navn">Navn</label>
+							<div class="col-md-10">
+						    <input class="form-control" ng-model="edit.navn" id="navn">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label" for="beskrivelse">Beskrivelse</label>
+							<div class="col-md-10">
+								<textarea class="form-control" rows="5" cols="50" ng-model="edit.beskrivelse" id="beskrivelse"></textarea>
+							</div>
+						</div>
+	
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" 
+					class="btn" 
+					ng-click="modalClose(true)" 
+					ng-class="{ 'btn-success' : canSave() }"
+					ng-enabled="canSave()">
+						{{ __dataModal.btnOk }}
+				</button> 
+				<button type="button" 
+					class="btn btn-default" 
+					ng-click="modalClose(false)" 
+					ng-show="!alertParams.okOnly" >
+						Fortryd
+				</button> 
+			</div>
+
+		</div>
+	</div>
+</div>

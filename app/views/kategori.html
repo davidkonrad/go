@@ -1,0 +1,71 @@
+
+<div class="container-fluid">
+
+	<div class="row">
+
+	<h1>{{ kategori.navn }}</h1>
+	<p ng-bind-html="kategori.beskrivelse"></p>
+
+	<div class="md-col-12 clearfix">
+		<h5 class="pull-left" style="margin-bottom: 0px; margin-top:20px;"> 
+			Viser {{ produkter.length }} produkter 
+		</h5>
+		<h5 class="pull-right"> 
+			Sorter efter
+			<button type="button" 
+				class="btn btn-sm btn-default" 
+				ng-model="sortering" 
+				data-toggle="true"
+				placeholder="Vælg"
+				data-container='body'
+				bs-select
+				bs-options="sort.id as sort.navn for sort in sorteringItems">
+			  <span class="caret"></span>
+			</button>
+		</h5>
+	</div>
+
+	<div class="md-col-12 ">
+		<hr class="clearfix" style="margin-top:0px;">
+	</div>
+
+
+	<div class="row md-col-12 clearfix" 
+			ng-repeat="p in produkter | orderBy:sortering" 
+			ng-class-even="'element-even'"
+			style="margin-bottom: 10px !important; padding:10px;">
+		<div class="md-col-12">
+			<h3 class="text-nowrap" style="margin-top: 10px !important;">
+				<a ng-href="#/produkt/{{p.navn}}/{{p.id}}">
+					{{ p.navn }} 
+				</a>
+			</h3>
+		</div>
+		<div class="col-md-3 text-center" style="max-height:120px;overflow:hidden;">
+			<img class="img-thumbnail" ng-src="/media-uploads/{{ p.billede.path }}">
+		</div>
+		<div class="col-md-9">
+			<h2 class="text-success" style="margin-top:0px;">
+				DKK {{ p.pris_enhed | currency:"":2 }} {{ p.enhed }}
+			</h2>
+			<h4 style="line-height:140%;"> 
+				Træsort {{ p.sort }}. 
+				{{ p.dim_h }}&times;{{ p.dim_b }}&times;{{ p.dim_l }} mm.
+				{{ p.overflade }}. 
+				<br>
+				<span ng-if="p.kvalitet != '' ">{{ p.kvalitet }} kvalitet / sortering.</span>  
+				<span ng-if="p.paa_lager>0">{{ p.paa_lager }} m&sup2; på lager. Kan leveres straks.</span>
+				<span ng-if="p.paa_lager<=0">1-2 ugers leveringstid</span>
+				<!--
+				<br>
+				<span ng-if="p.lager_nummer > '' "><small>LagerNr. <code>{{ p.lager_nummer }}</code></small>.</span>  				
+				-->
+			</h4>
+		</div>
+	</div>
+</div>
+
+
+<br><br><br><br>
+
+

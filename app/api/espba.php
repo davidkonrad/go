@@ -1,16 +1,19 @@
 <?
+/**
+ * espda.php		Database driver for the ESPBA angular 1.x service
+ * @copyright   Copyright (C) 2017 david konrad, davidkonrad at gmail com
+ * @license     Licensed under the MIT License; see LICENSE.md
+ */
+
 
 include('Db.php');
-
-//Extremely Simple PHP+mySQL Backend for Angular
-//espmb
 
 /*
 error_reporting(E_ALL & ~E_NOTICE); 
 ini_set('display_errors', '1');
 */
 
-class Espb extends Db {
+class Espb extends DbPDO {
 	private $table;
 
 	public function __construct($table, $array) {
@@ -109,9 +112,11 @@ class Espb extends Db {
 		echo $result;
 	}
 
-	public function getAll($table) {
-	}
-
+/**
+  * @desc executes an UPDATE based on params in $array
+  * @param array $array
+  * @return JSON string. The inserted record, if any. 
+*/
 	public function update($array) {
 		$id = isset($array['id']) ? $array['id'] : false;
 		if (!$id) {
@@ -126,7 +131,6 @@ class Espb extends Db {
 			$update.=$key.'='.$this->s($value);
 		}
 		$SQL.=$update.' where id='.$id;
-		echo $SQL;
 		$this->exec($SQL);
 
 		//return updated object, if any
@@ -170,11 +174,15 @@ class Espb extends Db {
   * @return JSON string, OK or error message
 */
 	public function delete($array) {
-
 	}
 }
 
-header('Access-Control-Allow-Origin: *');
+/**
+  * @desc Allow the script being executed from foreign locations. 
+	* @desc Note: This is optional. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+  * 
+*/
+header('Access-Control-Allow-Origin	: *');
 
 $params = $_GET;
 $table = isset($params['__table']) ? $params['__table'] : false;

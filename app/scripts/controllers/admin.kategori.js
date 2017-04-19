@@ -19,11 +19,11 @@ angular.module('gulveonlineApp')
       DTColumnBuilder.newColumn('aktiv')
 				.withOption('width', '40px')
 				.withTitle('Aktiv')
-				.withClass('no-click')
+				.withClass('text-center no-click')
 				.renderWith(function(data, type, full, meta) {
 				if (type == 'display') {
 					return data == 1
-						? '<i class="fa fa-check text-success"></i>'
+						? '<i class="glyphicon glyphicon-ok text-success"></i>'
 						: '';
 				} else {
 					return data

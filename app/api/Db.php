@@ -5,20 +5,38 @@
  * @license     Licensed under the MIT License; see LICENSE.md
  */
 
-/*
+
 ini_set('display_errors', '1');
 error_reporting(E_ALL);
-*/
 
+
+/**
+ * Fill out your credentuils
+ **/	 
 include('pw.php');
 
-class Db {
-	private $database;
-	private $hostname;
-	private $username;
-	private $password;
-	private $host;
-	private $charset = 'utf8';
+/**
+ * If you want to use an alternative "driver" for ESPBA, extend this abstract class and fill out the blanks
+ **/	 
+abstract class DbProvider {
+	protected $database;
+	protected $hostname;
+	protected $username;
+	protected $password;
+	protected $host;
+	protected $charset = 'utf8';
+	abstract protected function query($SQL);			//perform a query on a fully qualified SQL statement and return the result
+	abstract protected function exec($SQL);				//perform a query on a fully qualified SQL statement and do not return the result
+	abstract protected function s($s);						//escape a string
+	abstract protected function error($s);				//return errorinfo
+	abstract protected function lastInsertId();		//return last insert Id
+	abstract protected function queryJSON($SQL);	//return the result of a query() as JSON
+}
+
+/**
+ * default Db provider using PDO
+ **/ 
+class DbPDO extends DbProvider {
 	private $pdo;
   
 	public function __construct() { 
@@ -46,12 +64,12 @@ class Db {
 
 		try {
 			$this->pdo = new PDO($dsn, $this->username, $this->password, $opt);
-		} catch(PDOException $e){
-			echo "Error connecting to mysql: ". $e->getMessage();
+		} catch(PDOException $e) {
+			echo "Error connecting to database: ". $e->getMessage();
 		}
 	}
 
-	private function query($SQL) {
+	protected function query($SQL) {
 		$result = $this->pdo->query($SQL);
 		return $result;
 	}
@@ -60,6 +78,12 @@ class Db {
 		$this->pdo->query($SQL);
 	}
 
+	/**
+	 * Any string value is quoted, and inside quotes is escaped. 
+	 * Along with ATTR_EMULATE_PREPARES == false will this prevent SQL injection
+	 * ;drop table user;-- as an evil attempt will insert ';drop table user;--' as field value
+	 * Please report any mistakes with this approach
+	*/
 	protected function s($s) {
 		return $this->pdo->quote($s);
 	}
@@ -73,20 +97,14 @@ class Db {
 		return $this->pdo->lastInsertId();
 	}
 
-	public function queryJSON($SQL) {
+	protected function queryJSON($SQL) {
 		$result = $this->query($SQL);
 		$return = array();
 		while ($row = $result->fetch()) {
-			$return[]=$row;
+			$return[] = $row;
 		}
 		return json_encode($return);
 	}
 }
-
-/*
-$test = new Db();
-$a = $test->queryJSON('select * from overflade');
-echo $a;
-*/
 
 ?>

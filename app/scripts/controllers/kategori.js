@@ -8,8 +8,8 @@
  * Controller of the gulveonlineApp
  */
 angular.module('gulveonlineApp')
-  .controller('KategoriCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 
-	function($scope, $routeParams, $timeout, ESPBA, Lookup) {
+  .controller('KategoriCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta',
+	function($scope, $routeParams, $timeout, ESPBA, Lookup, Meta) {
 
 		var id = $routeParams.id;
 
@@ -22,7 +22,8 @@ angular.module('gulveonlineApp')
 
 		ESPBA.get('kategori', { id: id }).then(function(r) {
 			$scope.kategori = r.data[0];
-			document.title = $scope.kategori.navn +' :: gulve.online';
+			Meta.setTitle($scope.kategori.navn);
+			Meta.setDescription($scope.kategori.beskrivelse || $scope.kategori.navn);
 		})
 
 		ESPBA.get('produkter', { kategori_id: id, aktiv: 1 }).then(function(r) {

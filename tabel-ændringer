@@ -1,0 +1,24 @@
+
+db ændringer
+--------------------
+
+lager_nummer = vare_nr
+paa_lager decimal 5,2
+pris_enhed 5,2
+dimension varchar
+pakker 5,2
+pakke_str 5,2
+nyhed  bool
+forside bool
+
+pris_samlet slettes
+dim_h, dim_l, dim_b slettes
+
+type_id
+
+ny table produkt_type
+
+
+' or 1=1; -- drop table user;
+
+

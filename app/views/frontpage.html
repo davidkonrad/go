@@ -1,0 +1,25 @@
+<div class="alert alert-danger text-center">
+  <strong>Bemærk</strong> Siden er under udarbejdelse. Alle produkter, tilbud og restpartier er udelukkende demonstration.
+	<h3>gulve.online går i luften omkring fredag 21.04.2017</h3>
+</div>
+
+<section>
+
+	<div ng-repeat="p in produkter" class="col-md-4 well well-lg boxed-produkt">
+		<article>
+			<a ng-href="#/produkt/{{ p.navn }}/{{ p.id }}" class="unstyled">
+				<img src="images/default-picture.jpg">
+
+				<h4 style="padding-left:10px;max-width: 101%; white-space: nowrap; text-overflow:ellipsis; overflow: hidden;">
+					{{ p.navn }}
+				</h4>
+
+				<div class="boxed-title" ng-class="{ 'restlager': p.produkt_type_id == 3, 'tilbud': p.produkt_type_id == 2, 'nyhed': p.nyhed == 1 }">
+					<span ng-if="p.produkt_type_id == 3">Restlager</span>
+					<span ng-if="p.produkt_type_id == 2">Tilbud</span>
+					<span ng-if="p.nyhed == 1">Nyhed</span>
+				</div>
+			</a>
+		</article>
+	</div>
+</section>

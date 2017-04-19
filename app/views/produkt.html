@@ -13,21 +13,39 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Type</td><td>{{ produkt.kategori }}</td>
+				<tr ng-if="produkt.vare_nr != '' ">
+					<td class="col-md-4">Varenr.</td>
+					<td>{{ produkt.vare_nr }}</td>
 				</tr>
 				<tr>
-					<td>Træsort</td><td>{{ produkt.traesort }}</td>
+					<td>Kategori</td><td>{{ produkt.kategori }}</td>
+				</tr>
+				<tr ng-if="produkt.traesort != '' ">
+					<td>Træsort</td>
+					<td>{{ produkt.traesort }}</td>
+				</tr>
+				<tr ng-if="produkt.kvalitet != '' ">
+					<td>Sortering</td>
+					<td>{{ produkt.kvalitet }}</td>
+				</tr>
+				<tr ng-if="produkt.overflade != '' ">
+					<td>Overfladebehandling</td>
+					<td>{{ produkt.overflade }}</td>
+				</tr>
+				<tr ng-if="produkt.dimension != '' ">
+					<td>{{ produkt.enhed_spec }}</td>
+					<td>{{ produkt.dimension }}</td>
 				</tr>
 				<tr>
-					<td>Sortering</td><td>{{ produkt.kvalitet }}</td>
+					<td>Lagerkapacitet</td>
+					<td ng-if="produkt.paa_lager > 0 ">{{ produkt.paa_lager }} {{ produkt.enhed }} kan leveres straks</td>
+					<td ng-if="produkt.paa_lager == 0 ">Leveringstid 1-2 uger</td>
 				</tr>
-				<tr>
-					<td>Overflade</td><td>{{ produkt.overflade }}</td>
+				<tr ng-if="produkt.pakker > 0 ">
+					<td>Leveres i uåbnede pakker</td>
+					<td>{{ produkt.pakke_str }} {{ produkt.enhed }} per pakke</td>
 				</tr>
-				<tr>
-					<td>Dim. mm</td><td>{{ produkt.dim_h }} &times; {{ produkt.dim_b }} &times; {{ produkt.dim_l }}</td>
-				</tr>
+
 			</tbody>
 		</table>
 

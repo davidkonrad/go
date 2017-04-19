@@ -8,7 +8,7 @@ table tbody tr td {
 }
 
 .td-produkter-navn {
-	max-width: 350px;
+	max-width: 200px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }	
@@ -24,7 +24,7 @@ label.required:before {
 }
 
 .td-beskrivelse {
-	max-width: 400px;
+	max-width: 300px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }	

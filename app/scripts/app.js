@@ -26,7 +26,9 @@ angular.module('gulveonlineApp', [
 	'textAngular',
 	'textAngularSetup',
 	'ngFileUpload',
-	'fancyboxplus'
+	'fancyboxplus',
+	'ESPBA',
+	'Meta'
   ])
   .config(function ($locationProvider, $routeProvider) {
 
@@ -38,9 +40,9 @@ angular.module('gulveonlineApp', [
 
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'views/frontpage.html',
+        controller: 'FrontpageCtrl',
+        controllerAs: 'frontpage'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -85,6 +87,11 @@ angular.module('gulveonlineApp', [
         controller: 'AdminProdukterCtrl',
         controllerAs: 'admin'
       })
+	   .when('/admin-tilbud', {
+        templateUrl: 'views/admin.tilbud.html',
+        controller: 'AdminTilbudCtrl',
+        controllerAs: 'admin'
+      })
 	   .when('/admin-enhed', {
         templateUrl: 'views/admin.enhed.html',
         controller: 'AdminEnhedCtrl',
@@ -116,8 +123,17 @@ angular.module('gulveonlineApp', [
       });
 
   })
-	.run(function (Lookup) {
-		Lookup.init()
+	.run(function($location, Lookup, ESPBA, Meta) {
+		if ($location.host() == 'localhost') {
+			ESPBA.setHost('http://localhost/html/gulveonline/app/')
+		} else {
+			ESPBA.setHost('http://gulve.online/')
+		}
+		ESPBA.setApiPath('api/espba.php');	
+
+		Lookup.init();
+		Meta.setTitleSuffix(' :: gulve-online');		
+
 	});
 
 

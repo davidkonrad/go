@@ -30,22 +30,38 @@ angular.module('gulveonlineApp')
 		$scope.dtColumns = [
       DTColumnBuilder.newColumn('vare_nr').withTitle('VareNr.'),
 
-      DTColumnBuilder.newColumn('type_id')
+      DTColumnBuilder.newColumn('produkt_type_id')
 				.withTitle('Type')
 				.renderWith(function(data, type, full, meta) {
 					return Lookup.produktTypeNavn(data)
 				}),
 
-      DTColumnBuilder.newColumn('navn').withTitle('Navn').withClass('td-produkter-navn'),
+      DTColumnBuilder.newColumn('navn')
+				.withTitle('Navn')
+				.withClass('td-produkter-navn'),
+
+      DTColumnBuilder.newColumn('dimension')
+				.withTitle('Dimension'),
+
+      DTColumnBuilder.newColumn('sort_id').withTitle('Træsort')
+				.renderWith(function(data, type, full, meta) {
+					return Lookup.sortNavn(data)
+				}),
 
       DTColumnBuilder.newColumn('kategori_id').withTitle('Kategori')
 				.renderWith(function(data, type, full, meta) {
 					return Lookup.kategoriNavn(data)
 				}),
 
-      DTColumnBuilder.newColumn('paa_lager')
-				.withTitle('Lager')
-				.withClass('text-right'),
+      DTColumnBuilder.newColumn('kvalitet_id').withTitle('Kvalitet')
+				.renderWith(function(data, type, full, meta) {
+					return Lookup.kvalitetNavn(data)
+				}),
+
+      DTColumnBuilder.newColumn('overflade_id').withTitle('Overflade')
+				.renderWith(function(data, type, full, meta) {
+					return Lookup.overfladeNavn(data)
+				}),
 
       DTColumnBuilder.newColumn('enhed_id')
 				.withTitle('Enhed')
@@ -53,18 +69,58 @@ angular.module('gulveonlineApp')
 					return Lookup.enhedNavn(data)
 				}),
 
+      DTColumnBuilder.newColumn('paa_lager')
+				.withTitle('Lager')
+				.withClass('text-right'),
+
       DTColumnBuilder.newColumn('pris_enhed')
 				.withTitle('Pris/enhed')
+				.withClass('text-right'),
+
+      DTColumnBuilder.newColumn('pakker')
+				.withTitle('Pakker')
+				.withClass('text-right'),
+
+      DTColumnBuilder.newColumn('pakke_str')
+				.withTitle('Pk.str.')
 				.withClass('text-right'),
 
       DTColumnBuilder.newColumn('aktiv')
 				.withOption('width', '40px')
 				.withTitle('Aktiv')
-				.withClass('no-click')
+				.withClass('no-click text-center')
 				.renderWith(function(data, type, full, meta) {
 				if (type == 'display') {
 					return data == 1
-						? '<i class="fa fa-check text-success"></i>'
+						? '<i class="glyphicon glyphicon-ok text-success"></i>'
+						: '';
+				} else {
+					return data
+				}
+			}),
+
+      DTColumnBuilder.newColumn('forside')
+				.withOption('width', '40px')
+				.withTitle('Forside')
+				.withClass('text-center')
+				.renderWith(function(data, type, full, meta) {
+				if (type == 'display') {
+					return data == 1
+						? '<i class="glyphicon glyphicon-ok text-success"></i>'
+						: '';
+				} else {
+					return data
+				}
+			}),
+
+      DTColumnBuilder.newColumn('nyhed')
+				.withOption('width', '40px')
+				.withTitle('Nyhed')
+				.withClass('text-center')
+				.renderWith(function(data, type, full, meta) {
+				if (type == 'display') {
+					return data == 1
+						? '<i class="glyphicon glyphicon-ok text-success"></i>'
 						: '';
 				} else {
 					return data
@@ -129,13 +185,16 @@ angular.module('gulveonlineApp')
 			$scope.dtInstance = instance;
     };
 
-		$(document).on('click', '#table-produkter tbody td:not(.no-click)', function(e) {
+		angular.element('#table-produkter').on('click', 'tbody td:not(.no-click)', function(e) {
 			var id=$(this).parent().attr('produkt-id');
+
+			//should never happen with new delegated event structure
 			if (!id || ProduktModal.isShown()) {
 				e.preventDefault();
 				e.stopPropagation();
 				return
 			}
+
 			ProduktModal.show($scope, id).then(function(updated) {
 				$scope.dtInstance.reloadData();
 			})					

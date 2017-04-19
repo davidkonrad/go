@@ -37,7 +37,6 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 			});
 
 			$scope.canSave = function() {
-				//console.log($scope.edit);
 				return $scope.edit.pris_enhed != undefined &&
 					$scope.edit.enhed_id != undefined &&
 					$scope.edit.paa_lager != undefined &&
@@ -45,37 +44,14 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 					$scope.edit.kategori_id != undefined
 			}
 
-			ESPBA.get('sort', {}).then(function(r) {
-				r.data.sort(function(a, b) {
-					return a.navn.localeCompare(b.navn)
-				});
-				$scope.sortItems = r.data;
-			});
+			//$scope.sortItems = Lookup.sortItems();
+			$scope.sortItems = [{ id: 0, navn: '--'}].concat(Lookup.sortItems());
 
-			ESPBA.get('kategori', {}).then(function(r) {
-				r.data.sort(function(a, b) {
-					return a.navn.localeCompare(b.navn)
-				});
-				$scope.kategoriItems = r.data;
-			});
-
-			ESPBA.get('enhed', {}).then(function(r) {
-				$scope.enhedItems = r.data;
-			});
-
-			ESPBA.get('kvalitet', {}).then(function(r) {
-				r.data.sort(function(a, b) {
-					return a.navn.localeCompare(b.navn)
-				});
-				$scope.kvalitetItems = r.data;
-			});
-
-			ESPBA.get('overflade', {}).then(function(r) {
-				r.data.sort(function(a, b) {
-					return a.navn.localeCompare(b.navn)
-				});
-				$scope.overfladeItems = r.data;
-			});
+			$scope.kategoriItems = Lookup.kategoriItems();
+			$scope.enhedItems = Lookup.enhedItems();
+			$scope.kvalitetItems = Lookup.kvalitetItems();
+			$scope.overfladeItems = Lookup.overfladeItems();
+			$scope.produktTypeItems = Lookup.produktTypeItems();
 
 			modal = $modal({
 				scope: $scope,
@@ -139,7 +115,7 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 				}
 			}
 
-			angular.element('body').on('keydown keypress', function(e) {
+			angular.element('body').on('keydown', function(e) {
 				if (e.charCode == 27) $scope.produktModalClose(false)
 			})
 

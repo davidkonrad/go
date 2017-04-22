@@ -5,13 +5,10 @@
  * @license     Licensed under the MIT License; see LICENSE.md
  */
 
-
-include('Db.php');
-
-/*
 error_reporting(E_ALL & ~E_NOTICE); 
 ini_set('display_errors', '1');
-*/
+
+include('Db.php');
 
 class Espb extends DbPDO {
 	private $table;
@@ -25,7 +22,7 @@ class Espb extends DbPDO {
 /**
   * @desc process a CRUD request, i.e insert, get, update and delete
   * @param array $array, essentially the $_GET 
-*/
+	*/
 	public function process($array) {
 		$action = $array['__action'];
 		unset($array['__action']);
@@ -58,11 +55,11 @@ class Espb extends DbPDO {
   * @param string $action
   * @param string $message
   * @return JSON string
-*/
+	*/
 	public static function err($action, $message = '') {
 		$err = array(
 			'failed' => $action,
-			'message' => $message != '' ? $message : $this->error()
+			'message' => $message != '' ? $message : 'error' //Espb::error()
 		);
 		return json_encode($err);
 	}
@@ -72,7 +69,7 @@ class Espb extends DbPDO {
   * @desc return params (i.e part of $_GET) as content of a WHERE clause
   * @param array $array
   * @return string
-*/
+	*/
 	private function getParams($array) {
 		$r = '';
 		foreach ($array as $key => $value) {
@@ -88,7 +85,7 @@ class Espb extends DbPDO {
   * If no params is set, the entire dataset is retrieved
   * @param array $array
   * @return JSON string
-*/
+	*/
 	public function get($array) {
 		$limit = '';
 		$orderBy = '';
@@ -116,7 +113,7 @@ class Espb extends DbPDO {
   * @desc executes an UPDATE based on params in $array
   * @param array $array
   * @return JSON string. The inserted record, if any. 
-*/
+	*/
 	public function update($array) {
 		$id = isset($array['id']) ? $array['id'] : false;
 		if (!$id) {
@@ -142,7 +139,7 @@ class Espb extends DbPDO {
   * @desc executes a INSERT based on params in $array
   * @param array $array
   * @return JSON string
-*/
+	*/
 	public function insert($array) {
 		$keys = array_keys($array);
 		$keys = ' (' . implode(',', $keys).')';
@@ -154,6 +151,7 @@ class Espb extends DbPDO {
 			$insertValues .= $this->s($value);
 		}
 		$insertValues = ' values ('. $insertValues. ')';
+
 		$SQL = 'insert into '.$this->table.$keys.$insertValues;
 
 		$this->exec($SQL);
@@ -172,8 +170,22 @@ class Espb extends DbPDO {
   * @desc executes a DELETE based on params in $array
   * @param array $array
   * @return JSON string, OK or error message
-*/
+	*/
 	public function delete($array) {
+		$params = $this->getParams($array);
+		if ($params != '') $params = ' where '.$params;
+
+		$SQL = 'delete from '.$this->table.$params;
+		
+		print_r($this->error());
+
+		$this->exec($SQL);
+		if ($this->error()) {
+			echo $this->err('delete', $SQL);
+		} else {
+			//echo json_encode(array('delete' => $this->affected(). 'rows deleted'));
+			echo json_encode(array('recordsDeleted' => 'true'));
+		}
 	}
 }
 
@@ -181,14 +193,14 @@ class Espb extends DbPDO {
   * @desc Allow the script being executed from foreign locations. 
 	* @desc Note: This is optional. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
   * 
-*/
-header('Access-Control-Allow-Origin	: *');
+	*/
+//header('Access-Control-Allow-Origin	: *');
 
 $params = $_GET;
 $table = isset($params['__table']) ? $params['__table'] : false;
 
 if (!$table) {
-	Espba::err('Table not set');
+	Espb::err('Table not set');
 	return;
 }
 

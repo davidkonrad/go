@@ -4,7 +4,7 @@
 			
 			<div class="modal-header">
 				<h4 class="modal-title pull-left">Tilføj billede</h4>
-				  <div class="btn btn-primary btn-sm pull-right" ngf-select="registerFile($file, $invalidFiles)" ng-model="file" name="file" ngf-pattern="'image/*'"
+				  <div id="selectBtn" class="btn btn-primary btn-sm pull-right" ngf-select="registerFile($file, $invalidFiles)" ng-model="file" name="file" ngf-pattern="'image/*'"
 				    ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100">Vælg billede fra computer
 					</div>
 
@@ -18,8 +18,10 @@
 
 						<div style="border:2px dotted gray; clear:both; float: left; padding:10px; display: block; min-width: 99%; min-height: 300px; text-align: center; vertical-align: middle;">
 
-						<span style="z-index:20000;position:relative; vertical-align: middle;">
-							Intet billede valgt
+						<span style="z-index:20000;position:relative; vertical-align: middle; cursor:pointer;" 
+							ng-show="file == null"
+							ng-click="triggerSelect()">
+							Intet billede valgt<br>Klik for at tilføje billede
 						</span>
 					
 						<img id="upload-image-modal"
@@ -36,7 +38,11 @@
 			</div>
 
 			<div class="modal-footer clear-fix">
-			  <button type="submit" class="btn btn-success" ng-click="uploadFile()">
+			  <button type="submit" 
+					class="btn" 
+					ng-class="{ 'btn-success': file != null }" 
+					ng-enabled="file != null" 
+					ng-click="uploadFile()">
 					Upload billede
 				</button>
 				<button type="button" class="btn btn-default" ng-click="modalClose(false)" >Fortryd</button> 

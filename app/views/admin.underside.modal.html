@@ -1,0 +1,74 @@
+<div class="modal ng-scope top am-fade-and-slide-top center col-md-12" tabindex="-1" role="dialog" style="display: block;" id="admin-underside-dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<h4 class="modal-title"> {{ __dataModal.title }}</h4>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="row">
+					<form role="form" class="form-horizontal col-md-12">
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label required" for="link_navn">Link navn</label>
+							<div class="col-md-10">
+						    <input class="form-control" ng-model="edit.link_navn" id="link_navn">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label required" for="link">Link</label>
+							<div class="col-md-10">
+						    <input class="form-control" ng-model="edit.link" id="link">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label required" for="meta_title">Meta title</label>
+							<div class="col-md-10">
+						    <input class="form-control" ng-model="edit.meta_title" id="meta_title">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label" for="meta_desc">Meta desc.</label>
+							<div class="col-md-8">
+						    <input class="form-control" ng-model="edit.meta_desc" id="meta_desc">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label required" for="indhold">Indhold</label>
+							<div class="col-md-10">
+								<text-angular ng-model="edit.indhold" 
+									ta-text-editor-class="form-control produkt-beskrivelse col-md-12"
+									ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['undo', 'redo', 'html']]">
+								</text-angular>
+							</div>
+						</div>
+	
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" 
+					class="btn" 
+					ng-click="modalClose(true)" 
+					ng-class="{ 'btn-success' : canSave() }"
+					ng-enabled="canSave()">
+						{{ __dataModal.btnOk }}
+				</button> 
+				<button type="button" 
+					class="btn btn-default" 
+					ng-click="modalClose(false)" 
+					ng-show="!alertParams.okOnly" >
+						Fortryd
+				</button> 
+			</div>
+
+		</div>
+	</div>
+</div>

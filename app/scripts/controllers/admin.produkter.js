@@ -30,6 +30,34 @@ angular.module('gulveonlineApp')
 		$scope.dtColumns = [
       DTColumnBuilder.newColumn('vare_nr').withTitle('VareNr.'),
 
+      DTColumnBuilder.newColumn('aktiv')
+				.withOption('width', '40px')
+				.withTitle('Aktiv')
+				.withClass('no-click text-center')
+				.renderWith(function(data, type, full, meta) {
+				if (type == 'display') {
+					return data == 1
+						? '<i class="glyphicon glyphicon-ok text-success"></i>'
+						: '';
+				} else {
+					return data
+				}
+			}),
+
+      DTColumnBuilder.newColumn('forside')
+				.withOption('width', '40px')
+				.withTitle('Forside')
+				.withClass('text-center')
+				.renderWith(function(data, type, full, meta) {
+				if (type == 'display') {
+					return data == 1
+						? '<i class="glyphicon glyphicon-ok text-success"></i>'
+						: '';
+				} else {
+					return data
+				}
+			}),
+
       DTColumnBuilder.newColumn('produkt_type_id')
 				.withTitle('Type')
 				.renderWith(function(data, type, full, meta) {
@@ -84,34 +112,6 @@ angular.module('gulveonlineApp')
       DTColumnBuilder.newColumn('pakke_str')
 				.withTitle('Pk.str.')
 				.withClass('text-right'),
-
-      DTColumnBuilder.newColumn('aktiv')
-				.withOption('width', '40px')
-				.withTitle('Aktiv')
-				.withClass('no-click text-center')
-				.renderWith(function(data, type, full, meta) {
-				if (type == 'display') {
-					return data == 1
-						? '<i class="glyphicon glyphicon-ok text-success"></i>'
-						: '';
-				} else {
-					return data
-				}
-			}),
-
-      DTColumnBuilder.newColumn('forside')
-				.withOption('width', '40px')
-				.withTitle('Forside')
-				.withClass('text-center')
-				.renderWith(function(data, type, full, meta) {
-				if (type == 'display') {
-					return data == 1
-						? '<i class="glyphicon glyphicon-ok text-success"></i>'
-						: '';
-				} else {
-					return data
-				}
-			}),
 
       DTColumnBuilder.newColumn('nyhed')
 				.withOption('width', '40px')

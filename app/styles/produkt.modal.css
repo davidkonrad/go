@@ -1,6 +1,11 @@
 
 #produkt-dialog .modal-dialog {
 	min-width: 980px !important;
+
+}
+#produkt-dialog .modal-body {
+	height: 500px !important;
+	min-height: 500px !important;
 }
 
 .ta-editor.form-control.produkt-beskrivelse, 
@@ -23,17 +28,20 @@
 }
 
 div.image {
-	height: 100px !important;
-	width: 100px !important;
-	max-height: 100px !important;
-	max-width: 100px !important;
+	height: 200px !important;
+	width: 200px !important;
+	max-height: 200px !important;
+	max-width: 200px !important;
 	clear: none;
 	float: left;
 	margin-top: 5px;
 	margin-right: 5px;
-	display:inline-block;
-	position:relative;
+	display: inline-block;
+	position: relative;
+	margin-left: 20px;
+	margin-top: 20px;
 }
+
 div.image-md {
 	height: 200px !important;
 	width: 200px !important;
@@ -54,9 +62,11 @@ div.image-lgmd {
 
 .image .remove-image {
 	position: absolute;
-	right: 10px;
+	font-size: 150%;
+	right: 15px;
 	top: 4px;
 	cursor: pointer;
+	border-radius: 10px;
 }
 
 img.grayscale {
@@ -68,6 +78,11 @@ img.grayscale {
 	margin-left: 6px;
 }
 
-
+a[role=tab] {
+	font-weight: bold;
+}
+.tab-pane {
+	margin-top: 5px;
+}
 
 

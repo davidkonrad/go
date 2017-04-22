@@ -34,11 +34,12 @@ angular.module('gulveonlineApp')
 				p.overflade = Lookup.overfladeNavn(p.overflade_id);
 				p.kvalitet = Lookup.kvalitetNavn(p.kvalitet_id);
 
-				ESPBA.get('billeder', { produkt_id: p.id }).then(function(b) {
+				ESPBA.get('billeder', { produkt_id: p.id }, { limit: 1, orderBy : 'rand()' } ).then(function(b) {
 					if (b.data.length) {
-						p.billede = b.data[0]
+						console.log('OK', b.data[0].path);
+						p.billede = 'media-uploads/'+b.data[0].path;
 					} else {
-						p.billede = { path: 'default-picture.jpg' }
+						p.billede = 'images/default-picture.jpg';
 					}
 				})
 			})

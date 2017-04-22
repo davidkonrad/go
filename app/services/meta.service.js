@@ -1,4 +1,4 @@
-;'use strict';
+'use strict';
 
 /**
  * Meta service
@@ -9,7 +9,7 @@
  * @license MIT (https://opensource.org/licenses/MIT)
 **/
 
-angular.module('Meta', []).factory('Meta', function() {
+angular.module('Meta', []).factory('Meta', ['$route', function($route) {
 
 		var titlePrefix = '';
 		var titleSuffix = '';
@@ -29,8 +29,11 @@ angular.module('Meta', []).factory('Meta', function() {
 				if (!attrName && !name) return t;
 
 				if (t.hasAttribute(attrName)) {
+					//if name not is set it is a match, return the tag
+					if (!name) return t;
+
 					if (t.getAttribute(attrName) == name) {
-						return t
+						return t;
 					}
 				}
 			}				
@@ -49,7 +52,7 @@ angular.module('Meta', []).factory('Meta', function() {
 			},
 
 			setTitleSuffix: function(t) {
-				titleSuffux = t
+				titleSuffix = t
 			},
 
 			setTitle: function(t) {
@@ -60,8 +63,9 @@ angular.module('Meta', []).factory('Meta', function() {
 			setDescription: function(d) {
 				d = d.toString().substring(0, 165);
 				getTag('meta', 'name', 'description').setAttribute('content', d);
-			}
+			},
+
 		}
 
-});
+}]);
 

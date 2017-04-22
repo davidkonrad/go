@@ -42,24 +42,20 @@
 			</h3>
 		</div>
 		<div class="col-md-3 text-center" style="max-height:120px;overflow:hidden;">
-			<img class="img-thumbnail" ng-src="/media-uploads/{{ p.billede.path }}">
+			<img class="img-thumbnail" ng-src="{{ p.billede }}" alt="{{ p.navn }}">
 		</div>
 		<div class="col-md-9">
 			<h2 class="text-success" style="margin-top:0px;">
 				DKK {{ p.pris_enhed | currency:"":2 }} {{ p.enhed }}
 			</h2>
-			<h4 style="line-height:140%;"> 
-				Træsort {{ p.sort }}. 
-				{{ p.dim_h }}&times;{{ p.dim_b }}&times;{{ p.dim_l }} mm.
-				{{ p.overflade }}. 
-				<br>
+			<h4 style="line-height:140%;">
+				<span ng-if="p.sort != '' ">Træsort {{ p.sort }}.</span>
+				<span ng-if="p.overflade != '' ">{{ p.overflade }} </span>  
 				<span ng-if="p.kvalitet != '' ">{{ p.kvalitet }} kvalitet / sortering.</span>  
+				<br>
 				<span ng-if="p.paa_lager>0">{{ p.paa_lager }} m&sup2; på lager. Kan leveres straks.</span>
 				<span ng-if="p.paa_lager<=0">1-2 ugers leveringstid</span>
-				<!--
-				<br>
-				<span ng-if="p.lager_nummer > '' "><small>LagerNr. <code>{{ p.lager_nummer }}</code></small>.</span>  				
-				-->
+
 			</h4>
 		</div>
 	</div>

@@ -28,7 +28,8 @@ abstract class DbProvider {
 	abstract protected function query($SQL);			//perform a query on a fully qualified SQL statement and return the result
 	abstract protected function exec($SQL);				//perform a query on a fully qualified SQL statement and do not return the result
 	abstract protected function s($s);						//escape a string
-	abstract protected function error($s);				//return errorinfo
+	abstract protected function error();					//return errorinfo
+	abstract protected function affected();				//return affected rows
 	abstract protected function lastInsertId();		//return last insert Id
 	abstract protected function queryJSON($SQL);	//return the result of a query() as JSON
 }
@@ -78,19 +79,29 @@ class DbPDO extends DbProvider {
 		$this->pdo->query($SQL);
 	}
 
-	/**
-	 * Any string value is quoted, and inside quotes is escaped. 
-	 * Along with ATTR_EMULATE_PREPARES == false will this prevent SQL injection
-	 * ;drop table user;-- as an evil attempt will insert ';drop table user;--' as field value
-	 * Please report any mistakes with this approach
+/**
+	* Any string value is quoted, and inside quotes is escaped. 
+	* Along with ATTR_EMULATE_PREPARES == false will this prevent SQL injection
+	* ;drop table user;-- as an evil attempt will insert ';drop table user;--' as field value
+	* Please report any mistakes with this approach
 	*/
 	protected function s($s) {
 		return $this->pdo->quote($s);
 	}
 
-	protected function error($s) {
+	protected function error() {
 		$err = $this->pdo->errorInfo();
-		return implode(';', $err);
+		$err = ($err && is_array($err) && $err[0] != '00000') ? implode(';', $err) : false;
+		return $err;
+	}
+
+
+/**
+	* Does not work with MySQL
+	*/
+	protected function affected() {
+		//return $this->pdo->rowCount();
+		return 1;
 	}
 
 	protected function lastInsertId() {

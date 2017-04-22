@@ -1,16 +1,13 @@
 'use strict';
 
 /**
- * @ngdoc function
- * @name gulveonlineApp.service:ProduktModal
- * @description
- * #ProduktModal
- * Controller of the gulveonlineApp
+ *
+ *
  */
 angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ESPBA, UploadModal, Lookup) {
 
-	var deferred = null,
-			modal = null;
+	var deferred = null;
+	var modal = null;
 
 	return {
 
@@ -28,7 +25,7 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 			if (produkt_id) {
 				ESPBA.get('produkter', { id: produkt_id }).then(function(r) {
 					$scope.edit = r.data[0];
-					$scope.reloadBilleder();
+					$scope.reloadImages();
 				})
 			};
 			$scope.$watch('edit.enhed_id', function() {
@@ -59,9 +56,9 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 				backdrop: 'static',
 				show: false,
 				keyboard: false
-			})
+			});
 
-			$scope.reloadBilleder = function() {
+			$scope.reloadImages = function() {
 				$scope.billeder = [];
 				if (!$scope.edit.id) {
 					$scope.$apply();
@@ -72,24 +69,35 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 				})
 			};
 
-			$scope.addBillede = function() {
+			$scope.addImage = function() {
 				UploadModal.show($scope).then(function(r) {	
 					var data = {
 						path: r.filename,
 						produkt_id: $scope.edit.id
 					};
 					ESPBA.insert('billeder', data).then(function(r) {
-						$scope.reloadBilleder();
+						$scope.reloadImages();
 					})
 				})
-			}
+			};
 				
+			$scope.removeImage = function(image) {
+				if (confirm('Er du sikker på du vil slette billedet?')) {
+					ESPBA.delete('billeder', { id: image.id }).then(function(r) {
+						UploadModal.delete(image.path).then(function(r) {
+							console.log(r);
+						});
+						$scope.reloadImages();
+					})
+				}
+			};			
+			
 			modal.$promise.then(function() {
-			})
+			});
 
 			modal.$promise.then(modal.show).then(function() {
 				//
-			})
+			});
 
 			$scope.produktModalClose = function(value) {
 
@@ -113,11 +121,11 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 				} else {
 					close()
 				}
-			}
+			};
 
 			angular.element('body').on('keydown', function(e) {
 				if (e.charCode == 27) $scope.produktModalClose(false)
-			})
+			});
 
       return deferred.promise;
 		}

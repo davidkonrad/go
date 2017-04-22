@@ -31,6 +31,7 @@ angular.module('gulveonlineApp').factory('AdminDataModal', function($modal, $q, 
 			};
 
 			$scope.canSave = function() {
+				//console.log($scope.edit, required);
 				for (var i=0, l=required.length; i<l; i++) {
 					if (!$scope.edit[required[i]]) return false
 				}

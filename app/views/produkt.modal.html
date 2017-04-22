@@ -246,14 +246,13 @@
 					</div>
 
 					<div bs-pane data-title="Billeder">
-						<div class="row">
-
+			
 						<div ng-repeat="i in billeder" class="image">
 							<img class="thumbnail" ng-src="/media-uploads/{{ i.path }}">
 							<span class="remove-image" 
 								title="Fjern billede og slet fra server" 
-								ng-click="removeImage(i.id)">
-								<i class="fa fa-times text-danger bg-warning"></i>
+								ng-click="removeImage(i)">
+								<i class="glyphicon glyphicon-remove text-danger bg-warning"></i>
 							</span>
 						</div>
 			
@@ -263,16 +262,15 @@
 							ng-show="edit.id == undefined">
 							Du kan først oploade billeder efter produktet er oprettet
 						</div>
-					</div>
-
-					<div class="clear-fix">
-						<button class="btn btn-primary btn-xs no-padding" 
-							style="margin-top: 2px;"
-							ng-click="addBillede()"
-							ng-show="edit.id != undefined">
-							<i class="fa fa-plus"></i>&nbsp;Upload billede
-						</button>
-					</div>
+	
+						<div style="clear:both; float:left; margin-top: 10px;">
+							<button class="btn btn-primary btn-xs" 
+								style="margin-top: 2px;"
+								ng-click="addImage()"
+								ng-show="edit.id != undefined">
+								<i class="fa fa-plus"></i>&nbsp;Upload billede
+							</button>
+						</div>
 
 					</div>
 

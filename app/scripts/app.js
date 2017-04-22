@@ -44,6 +44,7 @@ angular.module('gulveonlineApp', [
         controller: 'FrontpageCtrl',
         controllerAs: 'frontpage'
       })
+			/*
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -54,6 +55,7 @@ angular.module('gulveonlineApp', [
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+			*/
       .when('/kontakt', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -76,6 +78,29 @@ angular.module('gulveonlineApp', [
         controllerAs: 'kategori'
       })
 
+			//undersider
+      .when('/vilkaar-og-betingelser', {
+        templateUrl: 'views/underside.html',
+        controller: 'UndersideCtrl',
+        controllerAs: 'underside'
+      })
+      .when('/referencer', {
+        templateUrl: 'views/underside.html',
+        controller: 'UndersideCtrl',
+        controllerAs: 'underside'
+      })
+      .when('/om-gulve-online', {
+        templateUrl: 'views/underside.html',
+        controller: 'UndersideCtrl',
+        controllerAs: 'underside'
+      })
+      .when('/levering', {
+        templateUrl: 'views/underside.html',
+        controller: 'UndersideCtrl',
+        controllerAs: 'underside'
+      })
+
+
 			//administration
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -90,6 +115,11 @@ angular.module('gulveonlineApp', [
 	   .when('/admin-tilbud', {
         templateUrl: 'views/admin.tilbud.html',
         controller: 'AdminTilbudCtrl',
+        controllerAs: 'admin'
+      })
+	   .when('/admin-undersider', {
+        templateUrl: 'views/admin.underside.html',
+        controller: 'AdminUndersideCtrl',
         controllerAs: 'admin'
       })
 	   .when('/admin-enhed', {

@@ -82,11 +82,10 @@ angular.module('ESPBA', [])
 				var deferred = $q.defer();
 				data.__action = 'delete';
 				data.__table = table;
-				data = parse(data, selectParams);
 
 				$http({
 					url: host + api_path,
-					method: 'GET',
+					method: 'POST',
 					params: data
 				}).then(function(r) {
 		      deferred.resolve( process(r) )
@@ -103,7 +102,6 @@ angular.module('ESPBA', [])
 					method: 'POST',
 					params: data
 				}).then(function(r) {
-					console.log(r);
 		      deferred.resolve( process(r) )
 				})
 	      return deferred.promise;

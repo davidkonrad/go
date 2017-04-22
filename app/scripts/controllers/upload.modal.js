@@ -1,27 +1,39 @@
 'use strict';
 
 angular.module('gulveonlineApp')
-  .factory('UploadModal', ['$modal', '$location', '$compile', '$q', '$timeout', 'Upload', 
-		function($modal, $location, $compile, $q, $timeout, Upload) {
+  .factory('UploadModal', ['$modal', '$location', '$compile', '$http', '$q', '$timeout', 'Upload', 
+		function($modal, $location, $compile, $http, $q, $timeout, Upload) {
 
 		var deferred = null;
 		var modal = null;
 		var	name = 'uploadModal';
 
-		return {
-			
-			show: function($scope) {
+		if ($location.host() == 'localhost') {
+			var path = 'http://localhost/html/gulveonline/app/api/';
+		} else {
+			var path = 'http://gulve.online/api/'
+		};
 
-				if ($location.host() == 'localhost') {
-					var url = 'http://localhost/html/gulveonline/app/api/upload-image.php'
-				} else {
-					var url = 'http://gulve.online/api/upload-image.php'
-				}				
+		return {
+
+			delete: function(filename) {
+				deferred = $q.defer();
+				$http({
+					url: path + 'delete-image.php', 
+					method: 'GET',
+					params: { filename: filename }
+				}).then(function(r) {
+		      deferred.resolve(r)			 								
+				});
+	      return deferred.promise;
+			},				
+				
+			show: function($scope) {
 
 				$scope.uploadFile = function() {
 					var file = $scope.selectedFile;
 					Upload.upload({
-						url: url, 
+						url: path + 'upload-image.php', 
 						method: 'POST',
 						file: file,
 						data: {
@@ -31,6 +43,10 @@ angular.module('gulveonlineApp')
 						modal.hide()
 			      deferred.resolve(r.data)
 					}) 
+				};
+
+				$scope.triggerSelect = function() {
+					angular.element('#selectBtn').click()
 				};
 
 				$scope.registerFile = function(file, errFiles) {

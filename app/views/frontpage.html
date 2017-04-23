@@ -9,7 +9,7 @@
 		<article>
 			<a ng-href="#/produkt/{{ p.navn }}/{{ p.id }}" class="unstyled">
 
-				<h4 title="{{ p.navn }}">{{ p.navn }}</h4>
+				<h4 title="{{ p.navn }}">{{ p.navn || '&nbsp;' }}</h4> <!-- ensure correct height even on empty produkt names -->
 
 				<div class="boxed-produkt-image" ng-style="getBackgroundStyle(p)">
 					<div class="boxed-title" ng-class="{ 'restlager': p.produkt_type_id == 3, 'tilbud': p.produkt_type_id == 2, 'nyhed': p.nyhed == 1 }">

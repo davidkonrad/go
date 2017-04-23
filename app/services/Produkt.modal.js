@@ -39,11 +39,15 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 					$scope.edit.paa_lager != undefined &&
 					$scope.edit.navn != undefined &&
 					$scope.edit.kategori_id != undefined
-			}
+			};
 
-			//$scope.sortItems = Lookup.sortItems();
+			$scope.$watch('edit.nyhed', function(newVal, oldVal) {
+				//if produkt is marked as nyhed, set produkt_type as produkt
+				console.log(newVal);
+				if (newVal == true) $scope.edit.produkt_type_id = '1';
+			});
+
 			$scope.sortItems = [{ id: 0, navn: '--'}].concat(Lookup.sortItems());
-
 			$scope.kategoriItems = Lookup.kategoriItems();
 			$scope.enhedItems = Lookup.enhedItems();
 			$scope.kvalitetItems = Lookup.kvalitetItems();

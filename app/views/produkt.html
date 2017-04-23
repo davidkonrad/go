@@ -38,7 +38,7 @@
 				</tr>
 				<tr>
 					<td>Lagerkapacitet</td>
-					<td ng-if="produkt.paa_lager > 0 ">{{ produkt.paa_lager }} {{ produkt.enhed }} kan leveres straks</td>
+					<td ng-if="produkt.paa_lager > 0 ">{{ produkt.paa_lager | number }} {{ produkt.enhed_flertal }} kan leveres straks</td>
 					<td ng-if="produkt.paa_lager == 0 ">Leveringstid 1-2 uger</td>
 				</tr>
 				<tr ng-if="produkt.pakker > 0 ">

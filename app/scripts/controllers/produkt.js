@@ -1,11 +1,8 @@
 'use strict';
 
 /**
- * @ngdoc function
- * @name gulveonlineApp.controller:ProduktCtrl
- * @description
- * #Produkt
- * Controller of the gulveonlineApp
+ *
+ *
  */
 angular.module('gulveonlineApp')
   .controller('ProduktCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta',
@@ -24,9 +21,8 @@ angular.module('gulveonlineApp')
 			$scope.produkt.kvalitet = Lookup.kvalitetNavn($scope.produkt.kvalitet_id); 
 			$scope.produkt.overflade = Lookup.overfladeNavn($scope.produkt.overflade_id); 
 			$scope.produkt.enhed = Lookup.enhedNavn($scope.produkt.enhed_id)
+			$scope.produkt.enhed_flertal = Lookup.enhedNavnFlertal($scope.produkt.enhed_id)
 			$scope.produkt.enhed_spec = Lookup.enhedSpecifikation($scope.produkt.enhed_id)
-
-			//console.log($scope.produkt)
 
 			var meta = $scope.produkt.navn + '.';
 			if ($scope.produkt.kategori) meta += $scope.produkt.kategori + '. ';

@@ -21,25 +21,27 @@
     <link rel="stylesheet" href="bower_components/fancybox-plus/css/jquery.fancybox-plus.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <link rel="stylesheet" href="static/static.css">
-    <link rel="stylesheet" href="styles/default.css">
-    <link rel="stylesheet" href="styles/produkt.modal.css">
-    <link rel="stylesheet" href="styles/admin.produkter.css">
-    <link rel="stylesheet" href="styles/produkt.css">
-    <link rel="stylesheet" href="styles/frontpage.css">
 
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+		<link rel="stylesheet" href="styles/static.css">
+		<link rel="stylesheet" href="styles/default.css">
+		<link rel="stylesheet" href="styles/produkt.modal.css">
+		<link rel="stylesheet" href="styles/admin.produkter.css">
+		<link rel="stylesheet" href="styles/produkt.css">
+		<link rel="stylesheet" href="styles/frontpage.css">
+		<link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
   </head>
   <body ng-app="gulveonlineApp">
+
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
     <div class="header">
-			<div ng-include="'static/navbar.html'"></div>
+			<div ng-include="'views/navbar.html'"></div>
     </div>
 
     <div class="container-fluid max-width">
@@ -47,7 +49,7 @@
     </div>
 
     <div class="footer navbar-fixed-bottom">
-			<div ng-include="'static/footer.html'"></div>
+			<div ng-include="'views/footer.html'"></div>
     </div>
 
 
@@ -117,7 +119,8 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-     <script src="scripts/app.js"></script>
+		<!-- build:js({.tmp,app}) scripts/scripts.js -->
+		<script src="scripts/app.js"></script>
 
 		<script src="directives/onlyDigits.directive.js"></script>
 		<script src="directives/selectOnClick.directive.js"></script>
@@ -144,10 +147,6 @@
 		<script src="scripts/controllers/admin.underside.js"></script>
 		<script src="scripts/controllers/upload.modal.js"></script>
 
-
-		<!-- build:js({.tmp,app}) scripts/scripts.js -->
-		<!-- endbuild -->
-
 		<script src="services/Login.service.js"></script>
 		<script src="services/ESPBA.service.js"></script>
 		<script src="services/RememberMe.service.js"></script>
@@ -155,6 +154,7 @@
 		<script src="services/Produkt.modal.js"></script>
 		<script src="services/Lookup.service.js"></script>
 		<script src="services/meta.service.js"></script>
+		<!-- endbuild -->
 
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans|PT+Sans+Caption" rel="stylesheet">
 

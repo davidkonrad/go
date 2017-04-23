@@ -24,7 +24,7 @@
 											<label class="checkbox-inline no-select" for="aktiv">
 												<input type="checkbox" 
 													ng-model="edit.aktiv" 
-													ng-checked="edit.aktiv" 
+													xxng-checked="edit.aktiv" 
 													ng-true-value="'1'" 
 													ng-false-value="'0'"
 													id="aktiv">
@@ -38,7 +38,7 @@
 											<label class="checkbox-inline no-select" for="forside">
 												<input type="checkbox" 
 													ng-model="edit.forside" 
-													ng-checked="edit.forside" 
+													XXng-checked="edit.forside" 
 													ng-true-value="'1'" 
 													ng-false-value="'0'"
 													id="forside">
@@ -52,7 +52,7 @@
 											<label class="checkbox-inline no-select" for="nyhed">
 												<input type="checkbox" 
 													ng-model="edit.nyhed" 
-													ng-checked="edit.nyhed" 
+													XXng-checked="edit.nyhed" 
 													ng-true-value="'1'" 
 													ng-false-value="'0'"
 													id="nyhed">
@@ -237,12 +237,10 @@
 					</div>
 
 					<div bs-pane data-title="Tekst">
-				    <div class="row">
-							<text-angular ng-model="edit.beskrivelse" 
-								ta-text-editor-class="form-control produkt-beskrivelse col-md-12"
-								ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['undo', 'redo', 'html']]">
-							</text-angular>
-						</div>
+						<text-angular ng-model="edit.beskrivelse" 
+							ta-text-editor-class="form-control produkt-beskrivelse col-md-12"
+							ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['undo', 'redo', 'html']]">
+						</text-angular>
 					</div>
 
 					<div bs-pane data-title="Billeder">
@@ -268,7 +266,7 @@
 								style="margin-top: 2px;"
 								ng-click="addImage()"
 								ng-show="edit.id != undefined">
-								<i class="fa fa-plus"></i>&nbsp;Upload billede
+								<i class="glyphicon glyphicon-plus"></i>&nbsp;Upload billede
 							</button>
 						</div>
 

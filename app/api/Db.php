@@ -23,8 +23,8 @@ abstract class DbProvider {
 	protected $hostname;
 	protected $username;
 	protected $password;
-	protected $host;
 	protected $charset = 'utf8';
+	abstract protected function isLocalhost();		//localhost or production
 	abstract protected function query($SQL);			//perform a query on a fully qualified SQL statement and return the result
 	abstract protected function exec($SQL);				//perform a query on a fully qualified SQL statement and do not return the result
 	abstract protected function s($s);						//escape a string
@@ -43,8 +43,7 @@ class DbPDO extends DbProvider {
 	public function __construct() { 
 		global $pw_local, $pw_server;
 
-		$this->host = $_SERVER["SERVER_ADDR"]; 
-		if (($this->host=='127.0.0.1') || ($this->host=='::1')) {
+		if ($this->isLocalhost()) {
 			$this->database = $pw_local['database']; 
 			$this->hostname = $pw_local['hostname'];
 			$this->username = $pw_local['username'];
@@ -70,6 +69,15 @@ class DbPDO extends DbProvider {
 		}
 	}
 
+	protected function isLocalhost() {
+		$host = $_SERVER["SERVER_ADDR"]; 
+		if (($host=='127.0.0.1') || ($host=='::1')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+			
 	protected function query($SQL) {
 		$result = $this->pdo->query($SQL);
 		return $result;

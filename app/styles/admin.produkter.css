@@ -7,6 +7,10 @@ table tbody tr td {
 	white-space: nowrap
 }
 
+table thead th {
+	white-space: nowrap
+}
+
 .td-produkter-navn {
 	max-width: 200px;
 	overflow: hidden;

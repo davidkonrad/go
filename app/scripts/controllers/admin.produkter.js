@@ -12,28 +12,13 @@ angular.module('gulveonlineApp')
 			$window.location.href = '/';
 		}
 
-		$scope.kategorier = [];
-		$scope.idToKategori = function(kategori_id) {
-			for (var i=0, l=$scope.kategorier.length; i<l; i++) {
-				if ($scope.kategorier[i].id == kategori_id) return $scope.kategorier[i].navn
-			}
-			return ''
-		}
-
-		ESPBA.get('kategori', {}).then(function(r) {
-			r.data.sort(function(a, b) {
-				return a.navn.localeCompare(b.navn)
-			});
-			$scope.kategorier = r.data;
-		});
-
 		$scope.dtColumns = [
       DTColumnBuilder.newColumn('vare_nr').withTitle('VareNr.'),
 
       DTColumnBuilder.newColumn('aktiv')
 				.withOption('width', '40px')
 				.withTitle('Aktiv')
-				.withClass('no-click text-center')
+				.withClass('text-center')
 				.renderWith(function(data, type, full, meta) {
 				if (type == 'display') {
 					return data == 1
@@ -155,16 +140,16 @@ angular.module('gulveonlineApp')
 			.withOption('language', Utils.dataTables_daDk)
 			.withButtons([ 
 				{ extend : 'colvis',
-					text: 'Vis kolonner &nbsp;<i class="fa fa-sort-down" style="position:relative;top:-3px;"></i>',
+					text: 'Vis kolonner &nbsp;<i class="caret" style="position:relative;top:-3px;"></i>',
 					className: 'btn btn-default btn-xs colvis-btn'
 				},
 				{ extend : 'excelHtml5',
-					text: '<span title="Download filtrerede produkter som Excel-regneark"><i class="fa fa-download"></i>&nbsp;Excel</span>',
+					text: '<span title="Download filtrerede produkter som Excel-regneark"><i class="glyphicon glyphicon-download-alt"></i>&nbsp;Excel</span>',
 					filename: 'gulveonline_'+Utils.todayStr(),
 					className: 'btn btn-default btn-xs'
 				},
 				{ extend : 'pdfHtml5',
-					text: '<span title="Download filtrerede produkter som PDF-regneark"><i class="fa fa-download"></i>&nbsp;PDF</span>',
+					text: '<span title="Download filtrerede produkter som PDF-regneark"><i class="glyphicon glyphicon-download-alt"></i>&nbsp;PDF</span>',
 					filename: 'gulveonline_'+Utils.todayStr(),
 					className: 'btn btn-default btn-xs'
 				},

@@ -5,16 +5,30 @@
  * @license     Licensed under the MIT License; see LICENSE.md
  */
 
+/*
 error_reporting(E_ALL & ~E_NOTICE); 
 ini_set('display_errors', '1');
+*/
 
 include('Db.php');
 
 class Espb extends DbPDO {
 	private $table;
 
+/**
+	* constructor
+	* @param $table	string, the table name
+	* @param $array array, $_GET or $_POST
+  * @desc Allow the script being executed from foreign locations. 
+	* @desc Note: This is optional. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+	*/
 	public function __construct($table, $array) {
 		parent::__construct();
+		
+		if ($this->isLocalhost()) {
+			header('Access-Control-Allow-Origin	: *');
+		}
+
 		$this->table = $table;
 		$this->process($array);
 	}
@@ -189,12 +203,10 @@ class Espb extends DbPDO {
 	}
 }
 
+
 /**
-  * @desc Allow the script being executed from foreign locations. 
-	* @desc Note: This is optional. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
-  * 
+	*
 	*/
-//header('Access-Control-Allow-Origin	: *');
 
 $params = $_GET;
 $table = isset($params['__table']) ? $params['__table'] : false;

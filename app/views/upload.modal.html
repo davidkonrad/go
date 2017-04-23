@@ -16,36 +16,34 @@
 
 					<div class="form-group">
 
-						<div style="border:2px dotted gray; clear:both; float: left; padding:10px; display: block; min-width: 99%; min-height: 300px; text-align: center; vertical-align: middle;">
+						<div class="form-control col-md-12" style="border:2px dotted gray; clear:both; float: left; padding:10px; display: block; min-width: 99%; min-height: 300px; text-align: center; vertical-align: middle;">
 
-						<span style="z-index:20000;position:relative; vertical-align: middle; cursor:pointer;" 
-							ng-show="file == null"
-							ng-click="triggerSelect()">
-							Intet billede valgt<br>Klik for at tilføje billede
-						</span>
+							<span style="z-index:20000;position:relative; vertical-align: middle; cursor:pointer;" 
+								ng-show="file == null"
+								ng-click="triggerSelect()">
+								Intet billede valgt<br>Klik for at tilføje billede
+							</span>
 					
-						<img id="upload-image-modal"
-								width="450"
+							<img id="upload-image-modal"
+								width="98%"
 								style="display:inline-block !important; max-height:250px !important;"
 							  ngf-src="selectedFile || '{{ currentImage }}' "
 							  ngf-background="selectedFile" 
 							  ngf-resize="{width: 400, height: 250, quality: 0.9}" 
-							  ngf-no-object-url="false" 
-							>
+							  ngf-no-object-url="false">
 						</div>
 					</div>
 				</form>			
 			</div>
 
-			<div class="modal-footer clear-fix">
-			  <button type="submit" 
-					class="btn" 
-					ng-class="{ 'btn-success': file != null }" 
-					ng-enabled="file != null" 
+			<div class="modal-footer clearfix">
+			  <button	class="btn" 
+					ng-class="{ 'btn-success': canUpload() }" 
+					ng-disabled="!canUpload()" 
 					ng-click="uploadFile()">
 					Upload billede
 				</button>
-				<button type="button" class="btn btn-default" ng-click="modalClose(false)" >Fortryd</button> 
+				<button type="button" class="btn btn-default" ng-click="modalClose(false)">Fortryd</button> 
 			</div>
 
 		</div>

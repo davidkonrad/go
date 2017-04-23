@@ -71,13 +71,15 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 
 			$scope.addImage = function() {
 				UploadModal.show($scope).then(function(r) {	
-					var data = {
-						path: r.filename,
-						produkt_id: $scope.edit.id
-					};
-					ESPBA.insert('billeder', data).then(function(r) {
-						$scope.reloadImages();
-					})
+					if (r) {
+						var data = {
+							path: r.filename,
+							produkt_id: $scope.edit.id
+						};
+						ESPBA.insert('billeder', data).then(function(r) {
+							$scope.reloadImages();
+						})
+					}
 				})
 			};
 				
@@ -85,7 +87,7 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 				if (confirm('Er du sikker på du vil slette billedet?')) {
 					ESPBA.delete('billeder', { id: image.id }).then(function(r) {
 						UploadModal.delete(image.path).then(function(r) {
-							console.log(r);
+							//console.log(r);
 						});
 						$scope.reloadImages();
 					})

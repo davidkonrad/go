@@ -20,6 +20,7 @@ angular.module('gulveonlineApp')
 				produkt.kvalitet = Lookup.kvalitetNavn(produkt.kvalitet_id).trim();
 				produkt.overflade = Lookup.overfladeNavn(produkt.overflade_id).trim();
 				produkt.enhed = Lookup.enhedNavn(produkt.enhed_id).trim();
+				produkt.profil = Lookup.profilNavn(produkt.profil_id).trim();
 
 				ESPBA.get('billeder', { produkt_id: produkt.id }, { limit: 1, orderBy : 'rand()' }).then(function(img) {
 					if (img.data.length>0 && img.data[0].path != undefined) {

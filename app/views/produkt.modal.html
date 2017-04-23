@@ -128,6 +128,7 @@
 												style="display:inline;" 
 												id="pakke_str"
 												ng-model="edit.pakke_str">
+											{{ enhedEntal }}
 										</div>
 									</div>
 
@@ -201,6 +202,22 @@
 												placeholder="Vælg"
 												bs-select
 												bs-options="overflade.id as overflade.navn for overflade in overfladeItems">
+											  <span class="caret"></span>
+											</button>
+										</div>
+									</div>
+
+							    <div class="form-group">
+							      <label class="col-md-2 control-label" for="profil_id">Profil</label>
+										<div class="col-md-6">
+											<button type="button" 
+												id="profil_id"
+												class="btn btn-default" 
+												ng-model="edit.profil_id" 
+												data-toggle="true"
+												placeholder="Vælg"
+												bs-select
+												bs-options="profil.id as profil.navn for profil in profilItems">
 											  <span class="caret"></span>
 											</button>
 										</div>

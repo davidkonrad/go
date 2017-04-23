@@ -44,18 +44,6 @@ angular.module('gulveonlineApp', [
         controller: 'FrontpageCtrl',
         controllerAs: 'frontpage'
       })
-			/*
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-	    .when('/om-gulve-online', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-			*/
       .when('/kontakt', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -145,6 +133,11 @@ angular.module('gulveonlineApp', [
 	   .when('/admin-overflade', {
         templateUrl: 'views/admin.overflade.html',
         controller: 'AdminOverfladeCtrl',
+        controllerAs: 'admin'
+      })
+	   .when('/admin-profil', {
+        templateUrl: 'views/admin.profil.html',
+        controller: 'AdminProfilCtrl',
         controllerAs: 'admin'
       })
 

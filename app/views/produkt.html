@@ -32,6 +32,10 @@
 					<td>Overfladebehandling</td>
 					<td>{{ produkt.overflade }}</td>
 				</tr>
+				<tr ng-if="produkt.profil != '' ">
+					<td>Profil</td>
+					<td>{{ produkt.profil }}</td>
+				</tr>
 				<tr ng-if="produkt.dimension != '' ">
 					<td>{{ produkt.enhed_spec }}</td>
 					<td>{{ produkt.dimension }}</td>

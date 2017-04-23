@@ -43,16 +43,16 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 
 			$scope.$watch('edit.nyhed', function(newVal, oldVal) {
 				//if produkt is marked as nyhed, set produkt_type as produkt
-				console.log(newVal);
 				if (newVal == true) $scope.edit.produkt_type_id = '1';
 			});
 
 			$scope.sortItems = [{ id: 0, navn: '--'}].concat(Lookup.sortItems());
 			$scope.kategoriItems = Lookup.kategoriItems();
 			$scope.enhedItems = Lookup.enhedItems();
-			$scope.kvalitetItems = Lookup.kvalitetItems();
-			$scope.overfladeItems = Lookup.overfladeItems();
-			$scope.produktTypeItems = Lookup.produktTypeItems();
+			$scope.kvalitetItems = [{ id: 0, navn: '--'}].concat(Lookup.kvalitetItems());
+			$scope.overfladeItems = [{ id: 0, navn: '--'}].concat(Lookup.overfladeItems());
+			$scope.produktTypeItems = [{ id: 0, navn: '--'}].concat(Lookup.produktTypeItems());
+			$scope.profilItems = [{ id: 0, navn: '--'}].concat(Lookup.profilItems());
 
 			modal = $modal({
 				scope: $scope,
@@ -91,7 +91,6 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 				if (confirm('Er du sikker på du vil slette billedet?')) {
 					ESPBA.delete('billeder', { id: image.id }).then(function(r) {
 						UploadModal.delete(image.path).then(function(r) {
-							//console.log(r);
 						});
 						$scope.reloadImages();
 					})
@@ -102,7 +101,6 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 			});
 
 			modal.$promise.then(modal.show).then(function() {
-				//
 			});
 
 			$scope.produktModalClose = function(value) {
@@ -139,5 +137,3 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 	}
 
 });
-
-

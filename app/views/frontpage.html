@@ -27,7 +27,7 @@
 					<span ng-if="p.dimension != '' ">{{ p.dimension }}</span>
 					<span ng-if="p.overflade != '' ">{{ p.overflade }}</span>
 				</div>
-				<div class="boxed-produkt-price">DKK {{ p.pris_enhed | currency:"":2 }} {{ p.enhed }}</div>
+				<div class="boxed-produkt-price">{{ p.pris_enhed | currency }} /{{ p.enhed }}</div>
 
 			</a>
 		</article>

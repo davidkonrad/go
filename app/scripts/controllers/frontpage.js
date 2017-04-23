@@ -5,11 +5,13 @@
  *
  */
 angular.module('gulveonlineApp')
-  .controller('FrontpageCtrl', ['$scope', '$q', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 
-	function($scope, $q, $routeParams, $timeout, ESPBA, Lookup) {
+  .controller('FrontpageCtrl', ['$scope', '$q', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta',
+	function($scope, $q, $routeParams, $timeout, ESPBA, Lookup, Meta) {
 
 		$scope.produkter = [];
 		
+		Meta.setTitle('Massive plankegulve, stavparket, sildeben, mosaik, terrasseplank');
+		Meta.setDescription('gulve.online er førende importør af massive plankegulve, parketstave, sildeben og mosaik. De fleste produkter er baseret på bæredygtig FSC-certificeret skovdrift');
 		function initProdukter() {
 			$scope.produkter.forEach(function(produkt) {
 

@@ -50,7 +50,10 @@
 		</table>
 
 		<div class="alert alert-success">
-			<h3 style="margin-top:10px;">Pris per {{ produkt.enhed }} DKK {{ produkt.pris_enhed | currency:"":2 }} </h3>
+<!--
+			<h3 style="margin-top:10px;">Pris per {{ produkt.enhed }} DKK {{ produkt.pris_enhed | currency:",":2 }} </h3>
+-->
+			<h3 style="margin-top:10px;"><span style="color:gray;">Pris per {{ produkt.enhed }} :</span> &nbsp;&nbsp;  {{ produkt.pris_enhed | currency }} </h3>
 		</div>
 
 	</div>

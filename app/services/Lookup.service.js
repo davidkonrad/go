@@ -2,6 +2,10 @@
 
 angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', function(ESPBA) {
 
+	//pass data between pages
+	var passData = undefined;
+
+	//lookup lists
 	var sortItems = [];
 	var overfladeItems = [];
 	var kvalitetItems = [];
@@ -9,6 +13,7 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', function(ESPBA) {
 	var enhedItems = [];
 	var produktTypeItems = [];
 	var profilItems = [];
+	var produktItems = [];
 
 	function idToNavn(table, id, field) {
 		if (!field) field = 'navn';
@@ -20,6 +25,17 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', function(ESPBA) {
 
 	return {
 
+		setPassData: function(data) {
+			passData = data;
+		},
+		getPassData: function(reset) {
+			var p = passData;
+			//reset by default
+			if (reset == undefined || reset == true) passData = undefined;
+			return p;
+		},
+
+		//lookup service
 		init: function() {
 			ESPBA.get('kategori', {}).then(function(r) {
 				r.data.sort(function(a, b) {
@@ -61,6 +77,10 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', function(ESPBA) {
 				profilItems = r.data;
 			});
 
+			ESPBA.get('produkter', {}).then(function(r) {
+				produktItems = r.data;
+			});
+
 		},
 
 		//get names for record
@@ -99,6 +119,9 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', function(ESPBA) {
 			}
 			return false
 		},
+		produktNavn: function(id) {
+			return idToNavn(produkter, id)
+		},
 
 		//return tables
 		sortItems: function() {
@@ -121,7 +144,11 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', function(ESPBA) {
 		},
 		profilItems: function() {
 			return profilItems
+		},
+		produktItems: function() {
+			return produktItems
 		}
+
 
 	}
 

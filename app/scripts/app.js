@@ -45,9 +45,9 @@ angular.module('gulveonlineApp', [
         controllerAs: 'frontpage'
       })
       .when('/kontakt', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        templateUrl: 'views/kontakt.html',
+        controller: 'KontaktCtrl',
+        controllerAs: 'kontakt'
       })
       .when('/produkt-oversigt', {
         templateUrl: 'views/indeks.html',
@@ -147,10 +147,10 @@ angular.module('gulveonlineApp', [
 
   })
 	.run(function($location, Lookup, ESPBA, Meta) {
-		if ($location.host() == 'localhost') {
-			ESPBA.setHost('http://localhost/html/gulveonline/app/')
+		if ($location.host() === 'localhost') {
+			ESPBA.setHost('http://localhost/html/gulveonline/app/');
 		} else {
-			ESPBA.setHost('http://gulve.online/')
+			ESPBA.setHost('http://gulve.online/');
 		}
 		ESPBA.setApiPath('api/espba.php');	
 

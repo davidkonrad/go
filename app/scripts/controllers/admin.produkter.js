@@ -19,13 +19,11 @@ angular.module('gulveonlineApp')
 				.withOption('width', '40px')
 				.withTitle('Aktiv')
 				.withClass('text-center')
-				.renderWith(function(data, type, full, meta) {
-				if (type == 'display') {
-					return data == 1
-						? '<i class="glyphicon glyphicon-ok text-success"></i>'
-						: '';
+				.renderWith(function(data, type /*, full, meta*/) {
+				if (type === 'display') {
+					return data === 1 ? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
 				} else {
-					return data
+					return data;
 				}
 			}),
 
@@ -33,20 +31,18 @@ angular.module('gulveonlineApp')
 				.withOption('width', '40px')
 				.withTitle('Forside')
 				.withClass('text-center')
-				.renderWith(function(data, type, full, meta) {
-				if (type == 'display') {
-					return data == 1
-						? '<i class="glyphicon glyphicon-ok text-success"></i>'
-						: '';
+				.renderWith(function(data, type /*, full, meta*/) {
+				if (type === 'display') {
+					return data === 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
 				} else {
-					return data
+					return data;
 				}
 			}),
 
       DTColumnBuilder.newColumn('produkt_type_id')
 				.withTitle('Type')
-				.renderWith(function(data, type, full, meta) {
-					return Lookup.produktTypeNavn(data)
+				.renderWith(function(data /* type. full, meta*/) {
+					return Lookup.produktTypeNavn(data);
 				}),
 
       DTColumnBuilder.newColumn('navn')
@@ -57,29 +53,29 @@ angular.module('gulveonlineApp')
 				.withTitle('Dimension'),
 
       DTColumnBuilder.newColumn('sort_id').withTitle('Træsort')
-				.renderWith(function(data, type, full, meta) {
-					return Lookup.sortNavn(data)
+				.renderWith(function(data /*, type, full, meta*/) {
+					return Lookup.sortNavn(data);
 				}),
 
       DTColumnBuilder.newColumn('kategori_id').withTitle('Kategori')
-				.renderWith(function(data, type, full, meta) {
-					return Lookup.kategoriNavn(data)
+				.renderWith(function(data /*, type, full, meta*/) {
+					return Lookup.kategoriNavn(data);
 				}),
 
       DTColumnBuilder.newColumn('kvalitet_id').withTitle('Kvalitet')
-				.renderWith(function(data, type, full, meta) {
-					return Lookup.kvalitetNavn(data)
+				.renderWith(function(data /*, type, full, meta*/) {
+					return Lookup.kvalitetNavn(data);
 				}),
 
       DTColumnBuilder.newColumn('overflade_id').withTitle('Overflade')
-				.renderWith(function(data, type, full, meta) {
-					return Lookup.overfladeNavn(data)
+				.renderWith(function(data /*, type, full, meta*/) {
+					return Lookup.overfladeNavn(data);
 				}),
 
       DTColumnBuilder.newColumn('enhed_id')
 				.withTitle('Enhed')
-				.renderWith(function(data, type, full, meta) {
-					return Lookup.enhedNavn(data)
+				.renderWith(function(data /*, type, full, meta*/) {
+					return Lookup.enhedNavn(data);
 				}),
 
       DTColumnBuilder.newColumn('paa_lager')
@@ -102,13 +98,11 @@ angular.module('gulveonlineApp')
 				.withOption('width', '40px')
 				.withTitle('Nyhed')
 				.withClass('text-center')
-				.renderWith(function(data, type, full, meta) {
-				if (type == 'display') {
-					return data == 1
-						? '<i class="glyphicon glyphicon-ok text-success"></i>'
-						: '';
+				.renderWith(function(data, type /*, full, meta*/) {
+				if (type === 'display') {
+					return data === 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
 				} else {
-					return data
+					return data;
 				}
 			}),
 
@@ -116,8 +110,8 @@ angular.module('gulveonlineApp')
 				.withOption('width', '20px')
 				.withTitle('')
 				.withClass('no-click')
-				.renderWith(function(data, type, full, meta) {
-						return '<a href="#/produkt/'+full.navn+'/'+full.id+'"><i class="glyphicon glyphicon-share-alt text-primary"></i></a>'
+				.renderWith(function(data, type, full /*, meta*/) {
+						return '<a href="#/produkt/'+full.navn+'/'+full.id+'"><i class="glyphicon glyphicon-share-alt text-primary"></i></a>';
 				})
 		];
 
@@ -126,13 +120,13 @@ angular.module('gulveonlineApp')
 				var defer = $q.defer();
 				ESPBA.get('produkter', {}).then(function(res) {
 					$scope.data = res.data;
-					defer.resolve(res.data)
-				})
+					defer.resolve(res.data);
+				});
 				return defer.promise;
 	    })
 			.withOption('drawCallback', function() {
 			})
-			.withOption('rowCallback', function(row, data, index) {
+			.withOption('rowCallback', function(row, data /*, index*/) {
 				$(row).attr('produkt-id', data.id);
 			})
 			.withOption('dom', 'Blfrtip')
@@ -155,16 +149,16 @@ angular.module('gulveonlineApp')
 				},
 				{ text: '<span><i class="glyphicon glyphicon-plus text-success"></i>&nbsp;Nyt Produkt</span>',
 					className: 'btn btn-xs',
-					action: function ( e, dt, node, config ) {
-						ProduktModal.show($scope).then(function(updated) {
+					action: function ( /* e, dt, node, config */) {
+						ProduktModal.show($scope).then(function() {
 							$scope.dtInstance.reloadData();
-						})					
+						});
  					}
 				}
 
 			]);
 
-		DTDefaultOptions.setLoadingTemplate('<img src="images/ajax-loader.gif">')
+		DTDefaultOptions.setLoadingTemplate('<img src="images/ajax-loader.gif">');
 
 		$scope.dtInstanceCallback = function(instance) {
 			$scope.dtInstance = instance;
@@ -177,12 +171,12 @@ angular.module('gulveonlineApp')
 			if (!id || ProduktModal.isShown()) {
 				e.preventDefault();
 				e.stopPropagation();
-				return
+				return;
 			}
 
-			ProduktModal.show($scope, id).then(function(updated) {
+			ProduktModal.show($scope, id).then(function() {
 				$scope.dtInstance.reloadData();
-			})					
+			});	
 		});
 
 

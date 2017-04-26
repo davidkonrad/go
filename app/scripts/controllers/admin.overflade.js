@@ -23,12 +23,12 @@ angular.module('gulveonlineApp')
 				var defer = $q.defer();
 				ESPBA.get('overflade', {}).then(function(res) {
 					$scope.data = res.data;
-					defer.resolve(res.data)
-				})
+					defer.resolve(res.data);
+				});
 				return defer.promise;
 	    })
 			.withOption('stateSave', true)
-			.withOption('rowCallback', function(row, data, index) {
+			.withOption('rowCallback', function(row, data /*, index*/) {
 				$(row).attr('overflade-id', data.id);
 			})
 			.withOption('dom', 'Blfrtip')
@@ -37,15 +37,15 @@ angular.module('gulveonlineApp')
 				{ 
 					text: '<span><i class="glyphicon glyphicon-plus text-success"></i>&nbsp;Ny overflade</span>',
 					className: 'btn btn-xs',
-					action: function ( e, dt, node, config ) {
-						AdminDataModal.show($scope, 'overflade', undefined, 'admin.overflade.modal.html', ['navn']).then(function(updated) {
+					action: function ( /* e, dt, node, config */ ) {
+						AdminDataModal.show($scope, 'overflade', undefined, 'admin.overflade.modal.html', ['navn']).then(function() {
 							$scope.dtInstance.reloadData();
-						})					
+						});
  					}
 				}
 			]);
 
-		DTDefaultOptions.setLoadingTemplate('<img src="images/ajax-loader.gif">')
+		DTDefaultOptions.setLoadingTemplate('<img src="images/ajax-loader.gif">');
 
 		$scope.dtInstanceCallback = function(instance) {
 			$scope.dtInstance = instance;
@@ -56,11 +56,13 @@ angular.module('gulveonlineApp')
 			if (!id) {
 				e.preventDefault();
 				e.stopPropagation();
-				return
+				return;
 			}
 			AdminDataModal.show($scope, 'overflade', id, 'admin.overflade.modal.html', ['navn']).then(function(updated) {
-				if (updated) $scope.dtInstance.reloadData();
-			})					
+				if (updated) {
+					$scope.dtInstance.reloadData();
+				}
+			});
 		});
 
 

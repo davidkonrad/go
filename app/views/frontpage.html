@@ -28,7 +28,15 @@
 					<span ng-if="p.overflade != '' ">{{ p.overflade }}</span>
 					<span ng-if="p.profil != '' ">{{ p.profil }} profil</span>
 				</div>
-				<div class="boxed-produkt-price">{{ p.pris_enhed | currency }} /{{ p.enhed }}</div>
+				<div class="boxed-produkt-price">
+					<span ng-if="p.tilbud_pris_enhed">
+						<strike class="text-muted">{{ p.pris_enhed | currency }}</strike>
+						{{ p.tilbud_pris_enhed | currency }} /{{ p.enhed }}
+					</span>
+					<span ng-if="!p.tilbud_pris_enhed">
+						{{ p.pris_enhed | currency }} /{{ p.enhed }}
+					</span>
+				</div>
 
 			</a>
 		</article>

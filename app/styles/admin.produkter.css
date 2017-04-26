@@ -1,5 +1,5 @@
 
-table tbody tr {
+table.table-striped tbody tr {
 	cursor: pointer;
 }
 

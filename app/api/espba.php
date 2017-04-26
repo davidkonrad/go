@@ -12,7 +12,7 @@ ini_set('display_errors', '1');
 
 include('Db.php');
 
-class Espb extends DbPDO {
+class ESPBA extends DbPDO {
 	private $table;
 
 /**
@@ -197,7 +197,6 @@ class Espb extends DbPDO {
 		if ($this->error()) {
 			echo $this->err('delete', $SQL);
 		} else {
-			//echo json_encode(array('delete' => $this->affected(). 'rows deleted'));
 			echo json_encode(array('recordsDeleted' => 'true'));
 		}
 	}
@@ -207,6 +206,10 @@ class Espb extends DbPDO {
 /**
 	*
 	*/
+if (!$_GET) {
+	Espb::err('Params expected');
+	return;
+}
 
 $params = $_GET;
 $table = isset($params['__table']) ? $params['__table'] : false;
@@ -218,6 +221,6 @@ if (!$table) {
 
 unset($params['__table']);
 
-$run = new Espb($table, $params);
+$run = new ESPBA($table, $params);
 
 ?>

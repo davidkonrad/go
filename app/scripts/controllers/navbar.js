@@ -33,12 +33,11 @@ angular.module('gulveonlineApp')
 			}
 		}
 		$timeout(function() {
-			checkMenu()
-		})
+			checkMenu();
+		});
 
 		angular.element($window).bind('resize', function () {
-			checkMenu()
-	    //console.log($window.innerWidth);
+			checkMenu();
 		});
 
 		$scope.popover = {

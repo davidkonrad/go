@@ -1,0 +1,74 @@
+<div class="modal ng-scope top am-fade-and-slide-top center col-md-12" tabindex="-1" role="dialog" style="display: block;" id="admin-data-dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<h4 class="modal-title"> {{ __dataModal.title }}</h4>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="row">
+					<form role="form" class="form-horizontal col-md-12" autocomplete="off">
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label required" for="produkt">Produkt</label>
+							<div class="col-md-8">
+						    <input class="form-control" 
+									type="text"
+									select-on-click
+									bs3-typeahead
+									bs3-source="produkter"
+									bs3-afterSelect="afterSelect"
+									bs3-displayText="displayText"
+									ng-model="edit.produkt_id" 
+									id="produkt">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label" for="old_price">Førpris</label>
+							<div class="col-md-4">
+								{{ ex.old_price | currency }} /{{ ex.enhed_navn }}
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label" for="tilbud_pris_enhed">Tilbudspris</label>
+							<div class="col-md-4">
+						    <input only-digits class="form-control" ng-model="edit.tilbud_pris_enhed" id="tilbud_pris_enhed">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label" for="forside">Forside</label>
+							<div class="col-md-4 ">
+								<div class="checkbox">
+									<input type="checkbox" id="forside" ng-model="ex.forside">
+								</div>
+							</div>
+						</div>
+	
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" 
+					class="btn" 
+					ng-click="modalClose(true)" 
+					ng-class="{ 'btn-success' : canSave() }"
+					ng-enabled="canSave()">
+						{{ __dataModal.btnOk }}
+				</button> 
+				<button type="button" 
+					class="btn btn-default" 
+					ng-click="modalClose(false)" 
+					ng-show="!alertParams.okOnly" >
+						Fortryd
+				</button> 
+			</div>
+
+		</div>
+	</div>
+</div>

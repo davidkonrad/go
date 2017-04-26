@@ -11,15 +11,12 @@ angular.module('gulveonlineApp')
 		var path = $location.path().replace('/', '');
 
 		ESPBA.get('undersider', { link : path }).then(function(r) {
-
 			if (r.data.length) {
 				$scope.underside = r.data[0];
 				Meta.setTitle( $scope.underside.meta_title );
 				Meta.setDescription( $scope.underside.meta_desc );
 			}
-
-		})
-
+		});
 
 }]);
 

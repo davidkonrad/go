@@ -6,13 +6,13 @@ angular.module('gulveonlineApp')
 
 		var deferred = null;
 		var modal = null;
-		var	name = 'uploadModal';
 
-		if ($location.host() == 'localhost') {
-			var path = 'http://localhost/html/gulveonline/app/api/';
+		var path;
+		if ($location.host() === 'localhost') {
+			path = 'http://localhost/html/gulveonline/app/api/';
 		} else {
-			var path = 'http://gulve.online/api/'
-		};
+			path = 'http://gulve.online/api/';
+		}
 
 		return {
 
@@ -23,15 +23,13 @@ angular.module('gulveonlineApp')
 					method: 'GET',
 					params: { filename: filename }
 				}).then(function(r) {
-		      deferred.resolve(r)			 								
+		      deferred.resolve(r);
 				});
 	      return deferred.promise;
 			},				
 				
 			show: function($scope) {
-
 				$scope.selectedFile = null;
-
 				$scope.uploadFile = function() {
 					if ($scope.selectedFile) {
 						Upload.upload({
@@ -42,35 +40,34 @@ angular.module('gulveonlineApp')
 				        'targetPath' : '../media-uploads/'
 							}
 						}).then(function(r) {
-							modal.hide()
-				      deferred.resolve(r.data)
-						}) 
+							modal.hide();
+				      deferred.resolve(r.data);
+						});
 					} else {
-			      deferred.resolve(false)
+			      deferred.resolve(false);
 					}
 				};
 
 				$scope.canUpload = function() {
-					console.log($scope.file, $scope.selectedFile);
-					return $scope.selectedFile != null
+					return $scope.selectedFile !== null;
 				};
 
 				$scope.triggerSelect = function() {
-					angular.element('#selectBtn').click()
+					angular.element('#selectBtn').click();
 				};
 
 				$scope.registerFile = function(file, errFiles) {
         	$scope.f = file;
 					$scope.errFile = errFiles && errFiles[0];
-					$scope.selectedFile = file
+					$scope.selectedFile = file;
 
 					$timeout(function() {
-						$(window).trigger('resize')
-						$scope.$apply()
-					})
+						$(window).trigger('resize');
+						$scope.$apply();
+					});
 		    };
  
-				deferred = $q.defer()
+				deferred = $q.defer();
 				modal = $modal({
 					scope: $scope,
 					templateUrl: 'views/upload.modal.html',
@@ -79,8 +76,8 @@ angular.module('gulveonlineApp')
 				});
 
 				modal.$promise.then(modal.show).then(function() {
-					delete $scope.selectedFile
-					$compile(angular.element('#upload-image-modal').contents())($scope)
+					delete $scope.selectedFile;
+					$compile(angular.element('#upload-image-modal').contents())($scope);
 					//
 				});
 
@@ -92,7 +89,7 @@ angular.module('gulveonlineApp')
 	      return deferred.promise;
 			}
 
-		}
+		};
 
 	}]);
 

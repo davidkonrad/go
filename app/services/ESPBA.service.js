@@ -48,11 +48,16 @@ angular.module('ESPBA', [])
 		return {
 
 			setHost: function(h) {
-				host = h
+				host = h;
 			},
-
+			getHost: function() {
+				return host;
+			},
 			setApiPath: function(p) {
-				api_path = p
+				api_path = p;
+			},
+			getApiPath: function() {
+				return api_path;
 			},
 
 			setReturnMode: function(m) {

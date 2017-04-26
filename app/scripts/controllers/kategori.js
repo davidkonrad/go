@@ -24,7 +24,7 @@ angular.module('gulveonlineApp')
 			$scope.kategori = r.data[0];
 			Meta.setTitle($scope.kategori.navn);
 			Meta.setDescription($scope.kategori.beskrivelse || $scope.kategori.navn);
-		})
+		});
 
 		ESPBA.get('produkter', { kategori_id: id, aktiv: 1 }).then(function(r) {
 			$scope.produkter = r.data;
@@ -41,8 +41,8 @@ angular.module('gulveonlineApp')
 					} else {
 						p.billede = 'images/default-picture.jpg';
 					}
-				})
-			})
+				});
+			});
 		});
 
 }]);

@@ -1,0 +1,105 @@
+
+<div class="container-fluid">
+
+	<div class="alert alert-success text-center">
+		<h2>
+			<i class="fa fa-phone"></i>
+			<span style="position:relative; top:-2px;">
+				Ring <strong>+45 2372 2282 </strong>
+				mandag-fredag mellem kl. 09-17.
+			</span>
+		</h2>
+	</div>
+
+	<img src="images/ajax-loader.gif" ng-show="progress == true">
+
+	<h3 ng-show="success == undefined" >Eller, udfyld kontaktformularen herunder. Vi vender tilbage indenfor 24 timer. </h3>
+
+	<br><br>
+
+	<form role="form" class="form-horizontal well" autocomplete="off" ng-show="success == undefined">
+
+    <div class="form-group form-group-lg">
+			<label class="col-md-4 control-label required" for="produkt">Vil gerne høre mere om :</label>
+			<div class="col-md-8">
+		    <input class="form-control input-lg" type="text" ng-model="formular.emne" id="emne">
+			</div>
+		</div>
+
+    <div class="form-group form-group-lg">
+			<label class="col-md-4 control-label required" for="produkt">Navn :</label>
+			<div class="col-md-8">
+		    <input class="form-control input-lg" type="text" ng-model="formular.navn">
+			</div>
+		</div>
+
+    <div class="form-group form-group-lg">
+			<label class="col-md-4 control-label" for="produkt">Evt. bemærkninger :</label>
+			<div class="col-md-8">
+				<textarea class="form-control" cols="50" rows="3" ng-model="formular.bemaerk"></textarea>
+			</div>
+		</div>
+
+    <div class="form-group form-group-lg">
+			<label class="col-md-4 control-label" for="produkt">Telefon :</label>
+			<div class="col-md-8">
+		    <input class="form-control input-lg" type="text" ng-model="formular.telefon">
+			</div>
+		</div>
+
+    <div class="form-group form-group-lg">
+			<label class="col-md-4 control-label required" for="produkt">Email-adresse :</label>
+			<div class="col-md-8">
+		    <input class="form-control input-lg" type="email" ng-model="formular.email">
+			</div>
+		</div>
+
+    <div class="form-group form-group-lg">
+			<label class="col-md-4 control-label required" for="produkt">Gentag email-adresse :</label>
+			<div class="col-md-8">
+		    <input class="form-control input-lg" type="email" ng-model="formular.email_repeat">
+			</div>
+		</div>
+
+    <div class="form-group form-group-lg">
+			<label class="col-md-4 control-label"></label>
+			<div class="col-md-8">
+				<button type="submit"
+					title="Send kontaktformular"
+					ng-click="sendFormular()"
+					ng-enabled="canSend()"
+					ng-class="{ 'btn-primary' : canSend() }"
+					class="btn btn-lg">
+					Send kontaktformular</button>
+				<button class="btn btn-default btn-lg" 
+					ng-click="resetFormular()"
+					title="Nulstil kontaktformular">Nulstil</button>
+			</div>
+		</div>		
+	</form>
+
+	<div ng-show="success == true" class="col-md-12">
+		<h1><i class="fa fa-check text-success"></i>&nbsp;kontaktformular afsendt!</h1>
+		<h3>Du hører fra os inden for kort tid, enten per mail eller telefon.</h3>
+		<br><br><br><br>
+	</div>
+
+	<p class="text-muted"><strong>Fortrolighed og personoplysninger</strong> : <code style="font-size:110%;">gulve.online</code> 
+		registrerer ikke dine oplysninger, lagrer eller behandler ikke dine oplysninger og videreformidler ikke dine oplysninger til tredjepart. 
+		<code style="font-size:110%;">gulve.online</code> udsender ikke "nyhedsbreve" (kendt som "spam"). 
+		Det eneste der sker med ovenstående kontaktformular er, at den sendes som en email der ryger i indbakken markeret som "kontaktformular", 
+		hvor den vil blive behandlet som en hvilken som helst anden email, blot med en høj prioritet. 
+	</p>
+
+	<div class="alert alert-success text-center">
+		<h3>
+			Du er også velkommen til at sende en email til <a href="mailto:info@gulve.online.dk" title="Send en email til gulve.online">info&commat;gulve.online.dk</a>
+		</h3>
+	</div>
+
+</div>
+
+
+<br><br><br><br>
+
+

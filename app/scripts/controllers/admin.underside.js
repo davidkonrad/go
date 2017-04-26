@@ -28,11 +28,11 @@ angular.module('gulveonlineApp')
 				var defer = $q.defer();
 				ESPBA.get('undersider', {}).then(function(res) {
 					$scope.data = res.data;
-					defer.resolve(res.data)
-				})
+					defer.resolve(res.data);
+				});
 				return defer.promise;
 	    })
-			.withOption('rowCallback', function(row, data, index) {
+			.withOption('rowCallback', function(row, data /*, index*/) {
 				$(row).attr('underside-id', data.id);
 			})
 			.withOption('stateSave', true)
@@ -42,15 +42,15 @@ angular.module('gulveonlineApp')
 				{ 
 					text: '<span><i class="glyphicon glyphicon-plus text-success"></i>&nbsp;Ny underside</span>',
 					className: 'btn btn-xs',
-					action: function ( e, dt, node, config ) {
-						AdminDataModal.show($scope, 'undersider', undefined, 'admin.underside.modal.html', ['link', 'link_navn', 'indhold']).then(function(updated) {
+					action: function ( /* e, dt, node, config */ ) {
+						AdminDataModal.show($scope, 'undersider', undefined, 'admin.underside.modal.html', ['link', 'link_navn', 'indhold']).then(function() {
 							$scope.dtInstance.reloadData();
-						})					
+						});
  					}
 				}
 			]);
 
-		DTDefaultOptions.setLoadingTemplate('<img src="images/ajax-loader.gif">')
+		DTDefaultOptions.setLoadingTemplate('<img src="images/ajax-loader.gif">');
 
 		$scope.dtInstanceCallback = function(instance) {
 			$scope.dtInstance = instance;
@@ -61,11 +61,13 @@ angular.module('gulveonlineApp')
 			if (!id) {
 				e.preventDefault();
 				e.stopPropagation();
-				return
+				return;
 			}
 			AdminDataModal.show($scope, 'undersider', id, 'admin.underside.modal.html', ['link', 'link_navn', 'indhold']).then(function(updated) {
-				if (updated) $scope.dtInstance.reloadData();
-			})					
+				if (updated) {
+					$scope.dtInstance.reloadData();
+				}
+			});
 		});
 
 

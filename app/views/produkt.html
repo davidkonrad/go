@@ -57,7 +57,14 @@
 <!--
 			<h3 style="margin-top:10px;">Pris per {{ produkt.enhed }} DKK {{ produkt.pris_enhed | currency:",":2 }} </h3>
 -->
-			<h3 style="margin-top:10px;"><span style="color:gray;">Pris per {{ produkt.enhed }} :</span> &nbsp;&nbsp;  {{ produkt.pris_enhed | currency }} </h3>
+			<h3 style="margin-top:10px;"><span style="color:gray;">Pris per {{ produkt.enhed }} :</span> &nbsp;&nbsp;  {{ produkt.pris_enhed | currency }} 
+				<a class="btn btn-primary btn-lg pull-right" 
+					href='/#kontakt'
+					style="position:relative; top:-10px;" 
+					title="Klik for at høre mere om {{ produkt.navn }}">
+					Få mere at vide ...
+				</a>
+			</h3>
 		</div>
 
 	</div>

@@ -2,13 +2,13 @@
 <div class="container-fluid">
 
 	<div class="alert alert-success text-center">
-		<h2>
+		<h3>
 			<i class="fa fa-phone"></i>
 			<span style="position:relative; top:-2px;">
 				Ring <strong>+45 2372 2282 </strong>
 				mandag-fredag mellem kl. 09-17.
 			</span>
-		</h2>
+		</h3>
 	</div>
 
 	<img src="images/ajax-loader.gif" ng-show="progress == true">
@@ -22,14 +22,14 @@
     <div class="form-group form-group-lg">
 			<label class="col-md-4 control-label required" for="produkt">Vil gerne høre mere om :</label>
 			<div class="col-md-8">
-		    <input class="form-control input-lg" type="text" ng-model="formular.emne" id="emne">
+		    <input class="form-control" type="text" ng-model="formular.emne" id="emne">
 			</div>
 		</div>
 
     <div class="form-group form-group-lg">
 			<label class="col-md-4 control-label required" for="produkt">Navn :</label>
 			<div class="col-md-8">
-		    <input class="form-control input-lg" type="text" ng-model="formular.navn">
+		    <input class="form-control" type="text" ng-model="formular.navn">
 			</div>
 		</div>
 
@@ -43,21 +43,21 @@
     <div class="form-group form-group-lg">
 			<label class="col-md-4 control-label" for="produkt">Telefon :</label>
 			<div class="col-md-8">
-		    <input class="form-control input-lg" type="text" ng-model="formular.telefon">
+		    <input class="form-control" type="text" ng-model="formular.telefon">
 			</div>
 		</div>
 
     <div class="form-group form-group-lg">
 			<label class="col-md-4 control-label required" for="produkt">Email-adresse :</label>
 			<div class="col-md-8">
-		    <input class="form-control input-lg" type="email" ng-model="formular.email">
+		    <input class="form-control" type="email" ng-model="formular.email">
 			</div>
 		</div>
 
     <div class="form-group form-group-lg">
 			<label class="col-md-4 control-label required" for="produkt">Gentag email-adresse :</label>
 			<div class="col-md-8">
-		    <input class="form-control input-lg" type="email" ng-model="formular.email_repeat">
+		    <input class="form-control" type="email" ng-model="formular.email_repeat">
 			</div>
 		</div>
 
@@ -90,6 +90,8 @@
 		Det eneste der sker med ovenstående kontaktformular er, at den sendes som en email der ryger i indbakken markeret som "kontaktformular", 
 		hvor den vil blive behandlet som en hvilken som helst anden email, blot med en høj prioritet. 
 	</p>
+
+	<br><br>
 
 	<div class="alert alert-success text-center">
 		<h3>

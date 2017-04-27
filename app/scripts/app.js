@@ -61,9 +61,19 @@ angular.module('gulveonlineApp', [
         controllerAs: 'produkt'
       })
       .when('/kategori/:id/:id', {
-        templateUrl: 'views/kategori.html',
+        templateUrl: 'views/produktList.html',
         controller: 'KategoriCtrl',
         controllerAs: 'kategori'
+      })
+      .when('/soeg', {
+        templateUrl: 'views/produktList.html',
+        controller: 'SearchCtrl',
+        controllerAs: 'search'
+      })
+      .when('/tilbud', {
+        templateUrl: 'views/produktList.html',
+        controller: 'TilbudCtrl',
+        controllerAs: 'tilbud'
       })
 
 			//undersider

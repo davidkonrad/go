@@ -3,7 +3,6 @@
 	ng-hide="isLoggedIn" 
 	class="container-fluid" 
 	style="color:#fff;height:200px;background-image: url('images/back.jpg');background-repeat: repeat-x;">
-<!-- e74c3c c0392b F44336 #d35400 -->
   <h1><strong><code style="padding-left:10px;padding-right:10px;"><a href="/" class="unstyled">gulve.online</a></code></strong></h1>
   <h2><em>Stav, plank og mosaik</em></h2>
 </div>
@@ -20,9 +19,22 @@
 			</button>
 			<div class="navbar-brand pull-left" style="width:240px;">
 				<div class="input-group stylish-input-group" style="width:230px;">
-					<input type="text" class="form-control" placeholder="Søg på gulve.online" >
+					<input type="text" 
+						class="form-control" 
+						placeholder="Søg på gulve.online" 
+						input-enter="doSearch()"
+						select-on-click
+						ng-model="searchTerm"
+						id="search-input">
 					<span class="input-group-addon">
-						<button type="submit">
+						<button type="submit" 
+							ng-disabled="searchTerm == '' || searchTerm == undefined "
+							data-title="Tip: Begræns søgning ved at søge på flere ord adskilt af mellemrum. F.eks <strong>eg sild 16x68</strong>" 
+							data-placement="right" 
+							data-container="body"
+							data-html="true"
+							ng-click="doSearch()"
+							bs-tooltip>
 							<span class="glyphicon glyphicon-search"></span>
 						</button>  
 					</span>
@@ -87,7 +99,7 @@
 				</li>
 
 				<li><a href="#">Forside</a></li>
-				<li><a href="#">Tilbud</a></li>
+				<li><a href="#/tilbud">Tilbud</a></li>
 				<li><a href="#/levering">Levering</a></li>
 				<li><a href="#/kontakt">Kontakt</a></li>
 				<li><a href="#/referencer">Referencer</a></li>

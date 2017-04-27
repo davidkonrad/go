@@ -19,6 +19,11 @@ angular.module('gulveonlineApp')
 			$window.location.reload();
 		};
 
+		$scope.searchTerm = undefined;
+		$scope.doSearch = function() {
+			$window.location.href = '#/soeg/';
+		};
+
 		ESPBA.get('kategori', {} ).then(function(r) {
 			$scope.kategorier = r.data;
 		});
@@ -40,9 +45,5 @@ angular.module('gulveonlineApp')
 			checkMenu();
 		});
 
-		$scope.popover = {
-		  //"title": "Title",
-		  "content": "Hello Popover<br />This is a multiline message!"
-		};
 
   }]);

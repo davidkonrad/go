@@ -3,12 +3,14 @@
 
 	<div class="row">
 
-	<h1>{{ kategori.navn }}</h1>
-	<p ng-bind-html="kategori.beskrivelse"></p>
+	<h1>{{ produktList.title }}</h1>
+	<p ng-bind-html="produktList.desc"></p>
 
 	<div class="md-col-12 clearfix">
 		<h5 class="pull-left" style="margin-bottom: 0px; margin-top:20px;"> 
-			Viser {{ produkter.length }} produkter 
+			Viser {{ produkter.length }} 
+			<span ng-if="produkter.length == 1">produkt</span>
+			<span ng-if="produkter.length == 0 || produkter.length > 1">produkter</span>
 		</h5>
 		<h5 class="pull-right"> 
 			Sorter efter
@@ -61,6 +63,7 @@
 			</h2>
 			<h4 style="line-height:140%;">
 				<span ng-if="p.vare_nr != '' "><strong title="gulve.online varenr: {{ p.vare_nr }}">{{ p.vare_nr }}</strong>.</span>
+				<span ng-if="p.kategori != '' ">{{ p.kategori }}.</span>
 				<span ng-if="p.sort != '' ">Træsort {{ p.sort }}.</span>
 				<span ng-if="p.dimension != '' ">{{ p.dimension }}.</span>
 				<span ng-if="p.overflade != '' ">{{ p.overflade }} </span>  

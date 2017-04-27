@@ -5,13 +5,8 @@
  *
  */
 angular.module('gulveonlineApp')
-  .controller('KategoriCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta',
-	function($scope, $routeParams, $timeout, ESPBA, Lookup, Meta) {
-
-		var id = $routeParams.id;
-
-		//produktList properties
-		$scope.produktList = {};
+  .controller('TilbudCtrl', ['$scope', '$http', '$timeout', 'ESPBA', 'Lookup', 'Meta',
+	function($scope, $http, $timeout, ESPBA, Lookup, Meta) {
 
 		$scope.sortering = false;
 		$scope.sorteringItems = [
@@ -20,19 +15,17 @@ angular.module('gulveonlineApp')
 			{ id: 'sort_id', navn: 'Træsorter' }
 		];
 
-		ESPBA.get('kategori', { id: id }).then(function(r) {
-			$scope.kategori = r.data[0];
+		$scope.produkter = [];
 
-			$scope.produktList.title = $scope.kategori.navn;
-			$scope.produktList.desc = $scope.kategori.beskrivelse;
-
-			Meta.setTitle($scope.kategori.navn);
-			Meta.setDescription($scope.kategori.beskrivelse || $scope.kategori.navn);
-		});
-
-		ESPBA.get('produkter', { kategori_id: id, aktiv: 1 }).then(function(r) {
+		//produktList properties
+		$scope.produktList = {};
+		$scope.produktList.title = 'Aktuelle Tilbud';
+		$scope.produktList.desc = 'Gælder så længe lager laves. Klik på produktet for at se lagerbeholdning og evt. leveringstid.';
+		
+		ESPBA.get('produkter', { produkt_type_id: 2 }).then(function(r) {
 			$scope.produkter = r.data;
 			$scope.produkter.forEach(function(p) {
+				p.kategori = Lookup.kategoriNavn(p.kategori_id);
 				p.sort = Lookup.sortNavn(p.sort_id).toLowerCase();
 				p.enhed = Lookup.enhedNavn(p.enhed_id);
 				p.overflade = Lookup.overfladeNavn(p.overflade_id);
@@ -46,6 +39,7 @@ angular.module('gulveonlineApp')
 						p.billede = 'images/default-picture.jpg';
 					}
 				});
+
 				ESPBA.get('tilbud', { produkt_id: p.id }, { limit: 1 } ).then(function(b) {
 					if (b.data.length) {
 						p.tilbud_pris_enhed = b.data[0].tilbud_pris_enhed;
@@ -54,6 +48,7 @@ angular.module('gulveonlineApp')
 
 			});
 		});
+
 
 }]);
 

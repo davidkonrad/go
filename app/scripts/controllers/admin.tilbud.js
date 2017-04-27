@@ -20,7 +20,7 @@ angular.module('gulveonlineApp')
 		};
 		var getProdukt = function(id) {
 			for (var i=0, l=$scope.produkter.length; i<l; i++) {
-				if ($scope.produkter[i].id === id) {
+				if ($scope.produkter[i].id == id) {
 					return formatProdukt($scope.produkter[i]);
 				}
 			}

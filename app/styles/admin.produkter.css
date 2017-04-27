@@ -74,3 +74,7 @@ div.dt-button-collection a.dt-button:not(.active) {
 	min-height: 500px !important;
 }
 
+.tooltip-inner {
+	text-align: left;
+}
+

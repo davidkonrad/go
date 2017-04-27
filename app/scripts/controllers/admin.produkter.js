@@ -21,7 +21,7 @@ angular.module('gulveonlineApp')
 				.withClass('text-center')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
-					return data === 1 ? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
+					return data === '1' ? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
 				} else {
 					return data;
 				}
@@ -33,7 +33,7 @@ angular.module('gulveonlineApp')
 				.withClass('text-center')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
-					return data === 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
+					return data === '1'	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
 				} else {
 					return data;
 				}
@@ -100,7 +100,7 @@ angular.module('gulveonlineApp')
 				.withClass('text-center')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
-					return data === 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
+					return data === '1'	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
 				} else {
 					return data;
 				}
@@ -128,6 +128,23 @@ angular.module('gulveonlineApp')
 			})
 			.withOption('rowCallback', function(row, data /*, index*/) {
 				$(row).attr('produkt-id', data.id);
+
+				var err = '';
+				if (data.navn == '') err+='Produktet har ikke noget <strong>Navn</strong>. ';
+				if (data.kategori_id <= 0) err+='Produktet ikke knyttet til en <strong>Kategori</strong>. ';
+				if (data.vare_nr == '') err+='Der mangler <strong>VareNr</strong>. ';
+				if (data.pris_enhed <= 0) err+='Der mangler <strong>Pris</strong>. ';
+				if (data.dimension == '') err+='Der mangler <strong>Dimension</strong>. ';
+				
+				if (err != '') {
+					$(row).addClass('warning');
+					$(row).tooltip({
+						title: err,
+						trigger: 'hover',
+						placement: 'left',
+						html: true
+					});
+				}
 			})
 			.withOption('dom', 'Blfrtip')
 			.withOption('stateSave', true)

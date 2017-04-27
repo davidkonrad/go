@@ -51,7 +51,7 @@ angular.module('gulveonlineApp')
 			$scope.dtInstance = instance;
     };
 
-		$(document).on('click', '#table-profil tbody td:not(.no-click)', function(e) {
+		$(document).on('click', '#table-profil tbody td', function(e) {
 			var id=$(this).parent().attr('profil-id');
 			if (!id) {
 				e.preventDefault();

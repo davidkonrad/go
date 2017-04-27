@@ -51,8 +51,8 @@ angular.module('gulveonlineApp')
 			$scope.dtInstance = instance;
     };
 
-		$(document).on('click', '#table-enhed tbody td:not(.no-click)', function(e) {
-			var id=$(this).parent().attr('enhed-id');
+		$(document).on('click', '#table-kvalitet tbody td', function(e) {
+			var id=$(this).parent().attr('kvalitet-id');
 			if (!id) {
 				e.preventDefault();
 				e.stopPropagation();

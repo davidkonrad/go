@@ -95,20 +95,26 @@
 
 .tilbud {
 	color: #fff;
-	background-color: #008a00; /*#e51400;*/
+	background-color: #008a00; 
 	font-weight: bold;
 }
-
 .restlager {
 	color: white;
-	background-color: #1A237E; /* #1ba1e2;  */
+	background-color: #1A237E; 
 	font-weight: bold;
 }
-
 .nyhed {
 	color: white;
 	background-color: #d80073; 
 	font-weight: bold;
 }
-
+.produkt-badge {
+	padding-top: 7px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 50%;
+	position: relative;
+	top: -2px;
+}
 

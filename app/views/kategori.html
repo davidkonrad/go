@@ -29,7 +29,6 @@
 		<hr class="clearfix" style="margin-top:0px;">
 	</div>
 
-
 	<div class="row md-col-12 clearfix" 
 			ng-repeat="p in produkter | orderBy:sortering" 
 			ng-class-even="'element-even'"
@@ -39,20 +38,36 @@
 				<a ng-href="#/produkt/{{p.navn}}/{{p.id}}">
 					{{ p.navn }} 
 				</a>
+				&nbsp;
+				<span ng-if="p.produkt_type_id == 2" class="badge produkt-badge tilbud">TILBUD</span>
+				<span ng-if="p.produkt_type_id == 3" class="badge produkt-badge restlager">RESTPARTI</span>
+				<span ng-if="p.nyhed == 1" class="badge produkt-badge nyhed">NYHED</span>
 			</h3>
 		</div>
 		<div class="col-md-3 text-center" style="max-height:120px;overflow:hidden;">
-			<img class="img-thumbnail" ng-src="{{ p.billede }}" alt="{{ p.navn }}">
+			<a ng-href="#/produkt/{{p.navn}}/{{p.id}}">
+				<img class="img-thumbnail" ng-src="{{ p.billede }}" alt="{{ p.navn }}">
+			</a>
 		</div>
 		<div class="col-md-9">
 			<h2 class="text-success" style="margin-top:0px;">
-				DKK {{ p.pris_enhed | currency:"":2 }} {{ p.enhed }}
+				<span ng-if="p.tilbud_pris_enhed">
+					<strike class="text-muted">{{ p.pris_enhed | currency }}</strike>
+					{{ p.tilbud_pris_enhed | currency }} /{{ p.enhed }}
+				</span>
+				<span ng-if="!p.tilbud_pris_enhed">
+					{{ p.pris_enhed | currency }} /{{ p.enhed }}
+				</span>
 			</h2>
 			<h4 style="line-height:140%;">
+				<span ng-if="p.vare_nr != '' "><strong title="gulve.online varenr: {{ p.vare_nr }}">{{ p.vare_nr }}</strong>.</span>
 				<span ng-if="p.sort != '' ">Træsort {{ p.sort }}.</span>
+				<span ng-if="p.dimension != '' ">{{ p.dimension }}.</span>
 				<span ng-if="p.overflade != '' ">{{ p.overflade }} </span>  
-				<span ng-if="p.kvalitet != '' ">{{ p.kvalitet }} kvalitet / sortering.</span>  
-				<br>
+				<span ng-if="p.kvalitet != '' ">{{ p.kvalitet }} kvalitet / sortering.</span>
+				<span ng-if="p.profil != '' ">{{ p.profil }} profil.</span>
+				<span ng-if="p.pakker > 0 ">Leveres i uåbnede pakker.</span>
+				<span ng-if="p.pakke_str > 0 ">{{ p.pakke_str }} m&sup2;/pakke.</span>                
 				<span ng-if="p.paa_lager>0">{{ p.paa_lager }} m&sup2; på lager. Kan leveres straks.</span>
 				<span ng-if="p.paa_lager<=0">1-2 ugers leveringstid</span>
 

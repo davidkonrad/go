@@ -33,7 +33,6 @@ angular.module('gulveonlineApp')
 				//tilbud
 				if (produkt.produkt_type_id === '2') {
 					ESPBA.get('tilbud', { produkt_id: produkt.id }, { limit: 1 }).then(function(tilbud) {
-						console.log(tilbud);
 						if (tilbud.data.length) {
 							produkt.tilbud_pris_enhed = tilbud.data[0].tilbud_pris_enhed;
 						}

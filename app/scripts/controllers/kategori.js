@@ -1,11 +1,8 @@
 'use strict';
 
 /**
- * @ngdoc function
- * @name gulveonlineApp.controller:KategoriCtrl
- * @description
- * #Kategori
- * Controller of the gulveonlineApp
+ *
+ *
  */
 angular.module('gulveonlineApp')
   .controller('KategoriCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta',
@@ -33,15 +30,21 @@ angular.module('gulveonlineApp')
 				p.enhed = Lookup.enhedNavn(p.enhed_id);
 				p.overflade = Lookup.overfladeNavn(p.overflade_id);
 				p.kvalitet = Lookup.kvalitetNavn(p.kvalitet_id);
+				p.profil = Lookup.profilNavn(p.profil_id);
 
 				ESPBA.get('billeder', { produkt_id: p.id }, { limit: 1, orderBy : 'rand()' } ).then(function(b) {
 					if (b.data.length) {
-						console.log('OK', b.data[0].path);
 						p.billede = 'media-uploads/'+b.data[0].path;
 					} else {
 						p.billede = 'images/default-picture.jpg';
 					}
 				});
+				ESPBA.get('tilbud', { produkt_id: p.id }, { limit: 1 } ).then(function(b) {
+					if (b.data.length) {
+						p.tilbud_pris_enhed = b.data[0].tilbud_pris_enhed;
+					}
+				});
+
 			});
 		});
 

@@ -22,7 +22,7 @@ angular.module('gulveonlineApp')
 				.withClass('text-center no-click')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
-					return data === '1' ? '<i class="glyphicon glyphicon-ok text-success"></i>' : '';
+					return data == 1 ? '<i class="glyphicon glyphicon-ok text-success"></i>' : '';
 				} else {
 					return data;
 				}

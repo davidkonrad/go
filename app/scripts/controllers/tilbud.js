@@ -17,6 +17,9 @@ angular.module('gulveonlineApp')
 
 		$scope.produkter = [];
 
+		Meta.setTitle('Aktuelle Tilbud');
+		Meta.setDescription('Tilbud og restpartier indenfor plank, stav, sildeben, mosaik mv. Altsammen massiv eg, ask, ipe, moseeeg og andre træsorter');
+
 		//produktList properties
 		$scope.produktList = {};
 		$scope.produktList.title = 'Aktuelle Tilbud';

@@ -19,7 +19,7 @@ body {
 
 /* Custom page header */
 .header {
-  margin-bottom: 10px;
+  XXmargin-bottom: 10px;
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -49,14 +49,6 @@ body {
   padding: 14px 24px;
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
@@ -72,7 +64,7 @@ body {
   }
   /* Space out the masthead */
   .header {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
@@ -89,7 +81,6 @@ html {
 }
 body {
 	font-family: "noto sans", arial, sans-serif;
-  /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
 .footer {

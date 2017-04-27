@@ -9,7 +9,7 @@ davidkonrad at googles gmail site
     <base href="/">
     <meta name="viewport" content="width=device-width">
 		<link rel="shortcut icon" href="images/fav/favicon.ico" type="image/x-icon" />
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -49,15 +49,17 @@ davidkonrad at googles gmail site
 
     <div class="container-fluid max-width">
 
-			<div class="alert alert-danger text-center">
-			  <strong>Bemærk</strong> Siden er under udarbejdelse. Alle produkter, tilbud og restpartier er udelukkende demonstration.
-				<h3>gulve.online går i luften omkring fredag 01.05.2017</h3>
+			<div ng-controller="NavbarCtrl">
+				<div ng-if="!isLoggedIn" class="alert alert-danger text-center" >
+				  <strong>Bemærk</strong> Siden er under udarbejdelse. Alle produkter, tilbud og restpartier er udelukkende demonstration.
+					<h3>gulve.online går i luften omkring mandag 01.05.2017</h3>
+				</div>
 			</div>
 
 	    <div ng-view="" autoscroll></div>
     </div>
 
-    <div class="footer navbar-fixed-bottom">
+    <div class="footer navbar-fixed-bottom"  ng-controller="NavbarCtrl">
 			<div ng-include="'views/footer.html'"></div>
     </div>
 

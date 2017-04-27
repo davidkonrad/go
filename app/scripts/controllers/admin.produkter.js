@@ -21,7 +21,7 @@ angular.module('gulveonlineApp')
 				.withClass('text-center')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
-					return data === '1' ? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
+					return data == 1 ? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
 				} else {
 					return data;
 				}
@@ -33,7 +33,7 @@ angular.module('gulveonlineApp')
 				.withClass('text-center')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
-					return data === '1'	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
+					return data == 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
 				} else {
 					return data;
 				}
@@ -100,7 +100,7 @@ angular.module('gulveonlineApp')
 				.withClass('text-center')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
-					return data === '1'	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
+					return data == 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
 				} else {
 					return data;
 				}
@@ -141,7 +141,6 @@ angular.module('gulveonlineApp')
 					$(row).tooltip({
 						title: err,
 						trigger: 'hover',
-						placement: 'left',
 						html: true
 					});
 				}

@@ -55,10 +55,20 @@
 		</table>
 
 		<div class="alert alert-success">
-<!--
-			<h3 style="margin-top:10px;">Pris per {{ produkt.enhed }} DKK {{ produkt.pris_enhed | currency:",":2 }} </h3>
--->
-			<h3 style="margin-top:10px;"><span style="color:gray;">Pris per {{ produkt.enhed }} :</span> &nbsp;&nbsp;  {{ produkt.pris_enhed | currency }} 
+
+
+
+			<h3 style="margin-top:10px;">
+				<span style="color:gray;">Pris per {{ produkt.enhed }} :</span> &nbsp; 
+
+				<span ng-if="produkt.tilbud_pris_enhed">
+					<strike class="text-muted">{{ produkt.pris_enhed | currency }}</strike>
+					{{ produkt.tilbud_pris_enhed | currency }} 
+				</span>
+				<span ng-if="!produkt.tilbud_pris_enhed">
+					{{ produkt.pris_enhed | currency }} 
+				</span>
+
 				<a class="btn btn-primary btn-lg pull-right" 
 					href='/#kontakt'
 					style="position:relative; top:-10px;" 

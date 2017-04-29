@@ -56,9 +56,11 @@
 .boxed-produkt-spec {
 	padding-top: 4px;
 	padding-left: 6px;
+	padding-right: 4px;
+	line-height: 17px;
 }
 .boxed-produkt-spec span {
-	white-space: nowrap;
+	word-wrap: break-word;
 }
 .boxed-produkt-spec span:after {
 	content:'.';

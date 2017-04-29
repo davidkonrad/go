@@ -12,6 +12,7 @@ angular.module('gulveonlineApp')
 		
 		Meta.setTitle('Massive plankegulve, stavparket, sildeben, mosaik, terrasseplank');
 		Meta.setDescription('gulve.online er førende importør af massive plankegulve, parketstave, sildeben og mosaik. De fleste produkter er baseret på bæredygtig FSC-certificeret skovdrift');
+
 		function initProdukter() {
 			$scope.produkter.forEach(function(produkt) {
 
@@ -46,7 +47,7 @@ angular.module('gulveonlineApp')
 			$scope.produkter = r.data;
 			var newLimit = 12-$scope.produkter.length;
 			if (newLimit>0) {
-				ESPBA.get('produkter', { aktiv: 1 }, { limit: newLimit, orderBy : { field: 'edited_timestamp', order: 'desc' }}).then(function(r) {
+				ESPBA.get('produkter', { aktiv: 1, forside: 0 }, { limit: newLimit, orderBy : { field: 'edited_timestamp', order: 'desc' }}).then(function(r) {
 					$scope.produkter = $scope.produkter.concat(r.data);
 					initProdukter();
 				});

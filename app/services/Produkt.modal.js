@@ -36,7 +36,6 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 			$scope.canSave = function() {
 				return $scope.edit.pris_enhed != undefined &&
 					$scope.edit.enhed_id != undefined &&
-					$scope.edit.paa_lager != undefined &&
 					$scope.edit.navn != undefined &&
 					$scope.edit.kategori_id != undefined
 			};

@@ -10,7 +10,7 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
-    "font-awesome": "~4.1.0",
+    "font-awesome": "~4.4.0",
     "jszip": "2.6.0",
     "pdfmake": "*",
     "angular-datatables": "0.6.1",

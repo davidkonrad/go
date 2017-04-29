@@ -2,7 +2,7 @@
 
 <section>
 
-	<h1>Nyheder, tilbud og aktuelle restpartier</h1>
+	<h1>Nyheder, aktuelle tilbud og restpartier</h1>
 	<br>
 
 	<div ng-repeat="p in produkter" class="col-md-4 well well-lg boxed-produkt" style="background-color:#fff;">
@@ -24,9 +24,9 @@
 					<span ng-if="p.kategori != '' ">{{ p.kategori }}</span>
 					<span ng-if="p.sort != '' ">{{ p.sort }}</span>
 					<span ng-if="p.kvalitet != '' ">{{ p.kvalitet }}</span>
-					<span ng-if="p.dimension != '' ">{{ p.dimension }}</span>
 					<span ng-if="p.overflade != '' ">{{ p.overflade }}</span>
 					<span ng-if="p.profil != '' ">{{ p.profil }} profil</span>
+					<span ng-if="p.dimension != '' ">{{ p.dimension }}</span>
 				</div>
 				<div class="boxed-produkt-price">
 					<span ng-if="p.tilbud_pris_enhed">

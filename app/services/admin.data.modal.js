@@ -6,7 +6,7 @@
  * 
  */
 
-angular.module('gulveonlineApp').factory('AdminDataModal', function($modal, $q, ESPBA) {
+angular.module('gulveonlineApp').factory('AdminDataModal', function($modal, $q, ESPBA, Lookup) {
 
 	var deferred = null,
 			modal = null;
@@ -31,7 +31,6 @@ angular.module('gulveonlineApp').factory('AdminDataModal', function($modal, $q, 
 			};
 
 			$scope.canSave = function() {
-				//console.log($scope.edit, required);
 				for (var i=0, l=required.length; i<l; i++) {
 					if (!$scope.edit[required[i]]) return false
 				}
@@ -65,21 +64,23 @@ angular.module('gulveonlineApp').factory('AdminDataModal', function($modal, $q, 
 				if (value) {
 					if (id) {
 						ESPBA.update(table, $scope.edit).then(function(r) {
-							close()
-						})
+							Lookup.init();
+							close();
+						});
 					} else {
 						ESPBA.insert(table, $scope.edit).then(function(r) {
-							close()
+							Lookup.init();
+							close();
 						})
 					}
 				} else {
-					close()
+					close();
 				}
 			}
 
 			angular.element('body').on('keydown keypress', function(e) {
 				if (e.charCode == 27) $scope.modalClose(false)
-			})
+			});
 
       return deferred.promise;
 		}

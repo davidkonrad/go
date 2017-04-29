@@ -64,7 +64,7 @@
 							    <div class="form-group">
 							      <label class="col-md-3 control-label" for="vare_nr">VareNr.</label>
 										<div class="col-md-5">
-									    <input class="form-control" ng-model="edit.vare_nr" id="vare_nr">
+									    <input select-on-click class="form-control" ng-model="edit.vare_nr" id="vare_nr">
 										</div>
 									</div>
 
@@ -85,10 +85,11 @@
 									</div>
 
 								  <div class="form-group">
-										<label class="col-md-3 control-label required" for="paa_lager">Lager</label>
+										<label class="col-md-3 control-label" for="paa_lager">Lager</label>
 										<div class="col-md-5" style="white-space: nowrap;">
-									    <input only-digits 
-												class="form-control" 
+									    <input class="form-control" 
+												only-digits 
+												select-on-click
 												style="display:inline;" 
 												ng-model="edit.paa_lager" 
 												id="paa_lager" 
@@ -100,8 +101,9 @@
 							    <div class="form-group">
 							      <label class="col-md-3 control-label required" for="pris_enhed">Pris</label>
 										<div class="col-md-5" style="white-space: nowrap;">
-									    <input only-digits 
-												class="form-control" 
+									    <input class="form-control" 
+												only-digits 
+												select-on-click
 												style="display:inline;" 
 												ng-model="edit.pris_enhed" 
 												placeholder="DKK Pris">
@@ -110,10 +112,11 @@
 									</div>
 
 							    <div class="form-group">
-							      <label class="col-md-3 control-label required" for="pakker">Pakker</label>
+							      <label class="col-md-3 control-label" for="pakker">Pakker</label>
 										<div class="col-md-5" style="white-space: nowrap;">
-									    <input only-digits 
-												class="form-control" 
+									    <input class="form-control" 
+												only-digits 
+												select-on-click
 												style="display:inline;"
 												id="pakker" 
 												ng-model="edit.pakker">
@@ -123,8 +126,9 @@
 							    <div class="form-group">
 							      <label class="col-md-3 control-label" for="pakke_str">Pakke str</label>
 										<div class="col-md-5" style="white-space: nowrap;">
-									    <input only-digits 
-												class="form-control" 
+									    <input class="form-control" 
+												only-digits 
+												select-on-click
 												style="display:inline;" 
 												id="pakke_str"
 												ng-model="edit.pakke_str">
@@ -153,9 +157,12 @@
 									</div>
 
 							    <div class="form-group">
-							      <label class="col-md-2 control-label" for="navn">Navn</label>
+							      <label class="col-md-2 control-label required" for="navn">Navn</label>
 										<div class="col-md-10">
-									    <input class="form-control" ng-model="edit.navn" placeholder="Ex. Kernerøget eg Weitzer">
+									    <input class="form-control" 
+												select-on-click
+												ng-model="edit.navn" 
+												placeholder="Ex. Kernerøget eg Weitzer">
 										</div>
 									</div>
 
@@ -242,7 +249,9 @@
 							    <div class="form-group">
 							      <label class="col-md-2 control-label">Dimension</label>
 										<div class="col-md-8">
-									    <input class="form-control" ng-model="edit.dimension">
+									    <input class="form-control" 
+												select-on-click
+												ng-model="edit.dimension">
 										</div>
 									</div>
 

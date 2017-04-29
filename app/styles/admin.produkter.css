@@ -78,3 +78,10 @@ div.dt-button-collection a.dt-button:not(.active) {
 	text-align: left;
 }
 
+table.dataTable tbody th.no-padding, 
+table.dataTable tbody td.no-padding {
+	padding-left: 7px;
+	padding-right: 2px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}

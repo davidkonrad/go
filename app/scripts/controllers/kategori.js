@@ -30,7 +30,7 @@ angular.module('gulveonlineApp')
 			Meta.setDescription($scope.kategori.beskrivelse || $scope.kategori.navn);
 		});
 
-		ESPBA.get('produkter', { kategori_id: id, aktiv: 1 }).then(function(r) {
+		ESPBA.get('produkter', { kategori_id: id, aktiv: 1 }, { orderBy : { field: 'edited_timestamp', order: 'desc' }}).then(function(r) {
 			$scope.produkter = r.data;
 			$scope.produkter.forEach(function(p) {
 				p.sort = Lookup.sortNavn(p.sort_id).toLowerCase();

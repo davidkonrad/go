@@ -13,6 +13,16 @@ angular.module('gulveonlineApp')
 		}
 
 		$scope.dtColumns = [
+
+      DTColumnBuilder.newColumn(null)
+				.withOption('width', '20px')
+				.withTitle('')
+				.withClass('no-click no-padding')
+				.withOption('orderable', false)
+				.renderWith(function(data, type, full /*, meta*/) {
+					return '<button class="btn btn-primary btn-xs btn-clone" produkt-id="'+full.id+'" title="Klon dette produkt"><i class="fa fa-clone"></i></button>';
+				}),
+
       DTColumnBuilder.newColumn('vare_nr').withTitle('VareNr.'),
 
       DTColumnBuilder.newColumn('aktiv')
@@ -141,6 +151,7 @@ angular.module('gulveonlineApp')
 					$(row).tooltip({
 						title: err,
 						trigger: 'hover',
+						container: 'body',
 						html: true
 					});
 				}
@@ -195,6 +206,33 @@ angular.module('gulveonlineApp')
 			});	
 		});
 
+		angular.element('#table-produkter').on('click', 'tbody button.btn-clone', function(e) {
+			var id=$(this).attr('produkt-id');
+			if (confirm('Kopier produkt?')) {
+				ESPBA.get('produkter', { id: id }).then(function(p) {
+					var data = p.data[0];
+					delete data.id;
+					if (data.vare_nr != '') {
+						data.vare_nr+=' (kopi)';
+					} else {
+						data.vare_nr = id+' (kopi)';
+					}
+					if (data.navn != '') {
+						data.navn+=' (kopi)';
+					} else {
+						data.navn = 'produkt #'+id+' (kopi)';
+					}
+
+					ESPBA.insert('produkter', data).then(function(p) {
+						$scope.dtInstance.reloadData();
+						id = p.data[0].id;
+						ProduktModal.show($scope, id).then(function() {
+							$scope.dtInstance.reloadData();
+						});
+					});
+				});
+			}
+		});
 
 
 }]);

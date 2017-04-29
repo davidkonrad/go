@@ -62,7 +62,8 @@
 .no-margin {
 	margin: 0px !important;
 }
-.no-padding {
+div.no-padding,
+span.no-padding {
 	padding: 0px !important;
 }
 

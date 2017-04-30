@@ -121,7 +121,7 @@ angular.module('gulveonlineApp')
 				.withTitle('')
 				.withClass('no-click')
 				.renderWith(function(data, type, full /*, meta*/) {
-						return '<a href="#/produkt/'+full.navn+'/'+full.id+'"><i class="glyphicon glyphicon-share-alt text-primary"></i></a>';
+						return '<a href="#/produkt/'+Utils.urlName(full.navn)+'/'+full.id+'"><i class="glyphicon glyphicon-share-alt text-primary"></i></a>';
 				})
 		];
 
@@ -130,7 +130,7 @@ angular.module('gulveonlineApp')
 				var defer = $q.defer();
 				ESPBA.get('produkter', {}).then(function(res) {
 					$scope.data = res.data;
-					defer.resolve(res.data);
+					defer.resolve($scope.data);
 				});
 				return defer.promise;
 	    })

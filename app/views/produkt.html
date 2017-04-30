@@ -21,9 +21,9 @@
 					<td>Kategori</td>
 					<td>{{ produkt.kategori }}</td>
 				</tr>
-				<tr ng-if="produkt.traesort != '' ">
+				<tr ng-if="produkt.sort != '' ">
 					<td>Træsort</td>
-					<td>{{ produkt.traesort }}</td>
+					<td>{{ produkt.sort }}</td>
 				</tr>
 				<tr ng-if="produkt.kvalitet != '' ">
 					<td>Sortering</td>
@@ -55,8 +55,6 @@
 		</table>
 
 		<div class="alert alert-success">
-
-
 
 			<h3 style="margin-top:10px;">
 				<span style="color:gray;">Pris per {{ produkt.enhed }} :</span> &nbsp; 

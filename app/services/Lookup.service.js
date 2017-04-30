@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', function(ESPBA) {
+angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(ESPBA, Utils) {
 
 	//pass data between pages
 	var passData = undefined;
@@ -147,6 +147,22 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', function(ESPBA) {
 		},
 		produktItems: function() {
 			return produktItems
+		},
+
+		//produkt formatter
+		formatProdukt: function(produkt) {
+			produkt.kategori = this.kategoriNavn(produkt.kategori_id).trim();
+			produkt.sort = this.sortNavn(produkt.sort_id).trim();
+			produkt.kvalitet = this.kvalitetNavn(produkt.kvalitet_id).trim();
+			produkt.overflade = this.overfladeNavn(produkt.overflade_id).trim();
+			produkt.enhed = this.enhedNavn(produkt.enhed_id).trim();
+			produkt.profil = this.profilNavn(produkt.profil_id).trim();
+			produkt.urlName = Utils.urlName(produkt.navn);
+
+			produkt.enhed = this.enhedNavn(produkt.enhed_id);
+			produkt.enhed_flertal = this.enhedNavnFlertal(produkt.enhed_id);
+			produkt.enhed_spec = this.enhedSpecifikation(produkt.enhed_id);
+
 		}
 
 

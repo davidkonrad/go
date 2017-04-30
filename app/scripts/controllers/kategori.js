@@ -5,8 +5,8 @@
  *
  */
 angular.module('gulveonlineApp')
-  .controller('KategoriCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta',
-	function($scope, $routeParams, $timeout, ESPBA, Lookup, Meta) {
+  .controller('KategoriCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta', 'Utils',
+	function($scope, $routeParams, $timeout, ESPBA, Lookup, Meta, Utils) {
 
 		var id = $routeParams.id;
 
@@ -33,11 +33,8 @@ angular.module('gulveonlineApp')
 		ESPBA.get('produkter', { kategori_id: id, aktiv: 1 }, { orderBy : { field: 'edited_timestamp', order: 'desc' }}).then(function(r) {
 			$scope.produkter = r.data;
 			$scope.produkter.forEach(function(p) {
-				p.sort = Lookup.sortNavn(p.sort_id).toLowerCase();
-				p.enhed = Lookup.enhedNavn(p.enhed_id);
-				p.overflade = Lookup.overfladeNavn(p.overflade_id);
-				p.kvalitet = Lookup.kvalitetNavn(p.kvalitet_id);
-				p.profil = Lookup.profilNavn(p.profil_id);
+
+				Lookup.formatProdukt(p);
 
 				ESPBA.get('billeder', { produkt_id: p.id }, { limit: 1, orderBy : 'rand()' } ).then(function(b) {
 					if (b.data.length) {

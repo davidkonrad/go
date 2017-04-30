@@ -74,13 +74,13 @@ angular.module('gulveonlineApp')
 
 		$scope.dtOptions = DTOptionsBuilder
 			.fromFnPromise(function() {
-				ESPBA.get('produkter', { aktiv: 1 }).then(function(r) {
-					$scope.produkter = r.data;
-				});
 				var defer = $q.defer();
-				ESPBA.get('tilbud', {}).then(function(res) {
-					$scope.data = res.data;
-					defer.resolve(res.data);
+				ESPBA.get('produkter', { aktiv: 1 }).then(function(p) {
+					$scope.produkter = p.data;
+					ESPBA.get('tilbud', {}).then(function(t) {
+						$scope.data = t.data;
+						defer.resolve(t.data);
+					});
 				});
 				return defer.promise;
 	    })

@@ -7,7 +7,7 @@
 
 	<div ng-repeat="p in produkter" class="col-md-4 well well-lg boxed-produkt" style="background-color:#fff;">
 		<article>
-			<a ng-href="#/produkt/{{ p.navn }}/{{ p.id }}" class="unstyled">
+			<a ng-href="#/produkt/{{ p.urlName }}/{{ p.id }}" class="unstyled">
 
 				<h4 title="{{ p.navn }}">{{ p.navn || '&nbsp;' }}</h4> <!-- ensure correct height even on empty produkt names -->
 
@@ -26,7 +26,7 @@
 					<span ng-if="p.kvalitet != '' ">{{ p.kvalitet }}</span>
 					<span ng-if="p.overflade != '' ">{{ p.overflade }}</span>
 					<span ng-if="p.profil != '' ">{{ p.profil }} profil</span>
-					<span ng-if="p.dimension != '' ">{{ p.dimension }}</span>
+					<span ng-if="p.dimension != '' && p.dimension != null">{{ p.dimension }}</span>
 				</div>
 				<div class="boxed-produkt-price">
 					<span ng-if="p.tilbud_pris_enhed">

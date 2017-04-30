@@ -5,8 +5,8 @@
  *
  */
 angular.module('gulveonlineApp')
-  .controller('FrontpageCtrl', ['$scope', '$q', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta',
-	function($scope, $q, $routeParams, $timeout, ESPBA, Lookup, Meta) {
+  .controller('FrontpageCtrl', ['$scope', '$q', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta', 'Utils',
+	function($scope, $q, $routeParams, $timeout, ESPBA, Lookup, Meta, Utils) {
 
 		$scope.produkter = [];
 		
@@ -16,12 +16,7 @@ angular.module('gulveonlineApp')
 		function initProdukter() {
 			$scope.produkter.forEach(function(produkt) {
 
-				produkt.kategori = Lookup.kategoriNavn(produkt.kategori_id).trim();
-				produkt.sort = Lookup.sortNavn(produkt.sort_id).trim();
-				produkt.kvalitet = Lookup.kvalitetNavn(produkt.kvalitet_id).trim();
-				produkt.overflade = Lookup.overfladeNavn(produkt.overflade_id).trim();
-				produkt.enhed = Lookup.enhedNavn(produkt.enhed_id).trim();
-				produkt.profil = Lookup.profilNavn(produkt.profil_id).trim();
+				Lookup.formatProdukt(produkt);				
 
 				ESPBA.get('billeder', { produkt_id: produkt.id }, { limit: 1, orderBy : 'rand()' }).then(function(img) {
 					if (img.data.length>0 && img.data[0].path !== undefined) {
@@ -47,7 +42,7 @@ angular.module('gulveonlineApp')
 			$scope.produkter = r.data;
 			var newLimit = 12-$scope.produkter.length;
 			if (newLimit>0) {
-				ESPBA.get('produkter', { aktiv: 1, forside: 0 }, { limit: newLimit, orderBy : { field: 'edited_timestamp', order: 'desc' }}).then(function(r) {
+				ESPBA.get('produkter', { aktiv: 1, forside: 0 }, { limit: newLimit, orderBy : 'rand()' }).then(function(r) {
 					$scope.produkter = $scope.produkter.concat(r.data);
 					initProdukter();
 				});

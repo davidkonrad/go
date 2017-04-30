@@ -5,8 +5,8 @@
  *
  */
 angular.module('gulveonlineApp')
-  .controller('TilbudCtrl', ['$scope', '$http', '$timeout', 'ESPBA', 'Lookup', 'Meta',
-	function($scope, $http, $timeout, ESPBA, Lookup, Meta) {
+  .controller('TilbudCtrl', ['$scope', '$http', '$timeout', 'ESPBA', 'Lookup', 'Meta', 'Utils',
+	function($scope, $http, $timeout, ESPBA, Lookup, Meta, Utils) {
 
 		$scope.sortering = false;
 		$scope.sorteringItems = [
@@ -28,12 +28,8 @@ angular.module('gulveonlineApp')
 		ESPBA.get('produkter', { produkt_type_id: 2 }).then(function(r) {
 			$scope.produkter = r.data;
 			$scope.produkter.forEach(function(p) {
-				p.kategori = Lookup.kategoriNavn(p.kategori_id);
-				p.sort = Lookup.sortNavn(p.sort_id).toLowerCase();
-				p.enhed = Lookup.enhedNavn(p.enhed_id);
-				p.overflade = Lookup.overfladeNavn(p.overflade_id);
-				p.kvalitet = Lookup.kvalitetNavn(p.kvalitet_id);
-				p.profil = Lookup.profilNavn(p.profil_id);
+
+				Lookup.formatProdukt(p);
 
 				ESPBA.get('billeder', { produkt_id: p.id }, { limit: 1, orderBy : 'rand()' } ).then(function(b) {
 					if (b.data.length) {

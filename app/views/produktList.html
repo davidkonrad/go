@@ -37,7 +37,7 @@
 			style="margin-bottom: 10px !important; padding:10px;">
 		<div class="md-col-12">
 			<h3 class="text-nowrap" style="margin-top: 10px !important;">
-				<a ng-href="#/produkt/{{p.navn}}/{{p.id}}">
+				<a ng-href="#/produkt/{{p.urlName}}/{{p.id}}">
 					{{ p.navn }} 
 				</a>
 				&nbsp;
@@ -47,7 +47,7 @@
 			</h3>
 		</div>
 		<div class="col-md-3 text-center" style="max-height:120px;overflow:hidden;">
-			<a ng-href="#/produkt/{{p.navn}}/{{p.id}}">
+			<a ng-href="#/produkt/{{p.urlName}}/{{p.id}}">
 				<img class="img-thumbnail" ng-src="{{ p.billede }}" alt="{{ p.navn }}">
 			</a>
 		</div>

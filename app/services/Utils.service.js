@@ -22,9 +22,22 @@ angular.module('gulveonlineApp').factory('Utils', function() {
         "sPrevious": "Forrige"
 	    },
 	    "oAria": {
-        "sSortAscending":  ": activate to sort column ascending",
-        "sSortDescending": ": activate to sort column descending"
+        "sSortAscending":  ": Sorter kolonne faldende",
+        "sSortDescending": ": Sorter kolonne stigende"
 	    }
+		},
+
+		//fix name with spaces and æøå for url use
+		urlName: function(s) {
+			s = s.replace(/ /g, '-');
+			s = s.replace(/[\/]/g, '-');
+			s = s.replace(/æ/g, 'ae');
+			s = s.replace(/ø/g, 'oe');
+			s = s.replace(/å/g, 'aa');
+			s = s.replace(/é/g, 'e');
+			s = s.replace(/---/g, '-');
+			s = s.replace(/--/g, '-');
+			return s;
 		},
 
 		todayStr: function() {

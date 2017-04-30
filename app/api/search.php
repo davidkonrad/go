@@ -30,13 +30,13 @@ class Search extends DbPDO {
 				$w = ' ( p.produkt_type_id = 2 ) ';
 			} else {
 				$w = ' (';
-				$w.= 'p.navn like "%'.$t.'%" or ';
-				$w.= '(r.navn like "%'.$t.'%" and r.id = p.profil_id) or ';
-				$w.= '(k.navn like "%'.$t.'%" and k.id = p.kategori_id) or ';
-				$w.= '(s.navn like "%'.$t.'%" and s.id = p.sort_id) or ';
-				$w.= '(o.navn like "%'.$t.'%" and o.id = p.overflade_id) or ';
-				$w.= '(v.navn like "%'.$t.'%" and v.id = p.kvalitet_id) or ';
-				$w.= 'p.dimension like "%'.$t.'%" ';
+				$w.= '(p.navn like "%'.$t.'%") or ';
+				$w.= '(r.id = p.profil_id and r.navn like "%'.$t.'%") or ';
+				$w.= '(k.id = p.kategori_id and k.navn like "%'.$t.'%") or ';
+				$w.= '(s.id = p.sort_id and s.navn like "%'.$t.'%") or ';
+				$w.= '(o.id = p.overflade_id and o.navn like "%'.$t.'%") or ';
+				$w.= '(v.id = p.kvalitet_id and v.navn like "%'.$t.'%") or ';
+				$w.= '(p.dimension like "%'.$t.'%") ';
 				$w.= ')';
 			}
 
@@ -54,6 +54,6 @@ class Search extends DbPDO {
 /**
 	*
 	*/
-$search = new Search( $_GET['term'] );
+$search = new Search();
 
 ?>

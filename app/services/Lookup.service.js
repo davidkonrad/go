@@ -157,12 +157,33 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 			produkt.overflade = this.overfladeNavn(produkt.overflade_id).trim();
 			produkt.enhed = this.enhedNavn(produkt.enhed_id).trim();
 			produkt.profil = this.profilNavn(produkt.profil_id).trim();
+
 			produkt.urlName = Utils.urlName(produkt.navn);
+			produkt.urlKvalitet = Utils.urlName(produkt.kvalitet);
+			produkt.urlSort = Utils.urlName(produkt.sort);
+			produkt.urlOverflade = Utils.urlName(produkt.overflade);
+			produkt.urlProfil = Utils.urlName(produkt.profil);
 
 			produkt.enhed = this.enhedNavn(produkt.enhed_id);
 			produkt.enhed_flertal = this.enhedNavnFlertal(produkt.enhed_id);
 			produkt.enhed_spec = this.enhedSpecifikation(produkt.enhed_id);
 
+			produkt.sortPrice = produkt.pris_enhed;
+
+			ESPBA.get('billeder', { produkt_id: produkt.id } ).then(function(b) {
+				if (b.data.length) {
+					produkt.billede = 'media-uploads/'+b.data[0].path;
+					produkt.billeder = b.data;
+				} else {
+					produkt.billede = 'images/default-picture.jpg';
+				}
+			});
+			ESPBA.get('tilbud', { produkt_id: produkt.id }, { limit: 1 } ).then(function(b) {
+				if (b.data.length) {
+					produkt.tilbud_pris_enhed = b.data[0].tilbud_pris_enhed;
+					produkt.sortPrice = b.data[0].tilbud_pris_enhed;
+				}
+			});
 		}
 
 

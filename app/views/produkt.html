@@ -23,19 +23,47 @@
 				</tr>
 				<tr ng-if="produkt.sort != '' ">
 					<td>Træsort</td>
-					<td>{{ produkt.sort }}</td>
+					<td>
+						<a class="unstyled"
+							ng-href="#/oversigt/traesort/{{ produkt.urlSort }}/{{ produkt.sort_id }}" 
+							title="Klik for at se alle gulve i træsorten {{ produkt.sort | lowercase }}">
+							{{ produkt.sort }}
+							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
+						</a>
+					</td>
 				</tr>
 				<tr ng-if="produkt.kvalitet != '' ">
 					<td>Sortering</td>
-					<td>{{ produkt.kvalitet }}</td>
+					<td>
+						<a class="unstyled"
+							ng-href="#/oversigt/kvalitet/{{ produkt.urlKvalitet }}/{{ produkt.kvalitet_id }}" 
+							title="Klik for at se alle gulve i kvaliteten {{ produkt.kvalitet | lowercase }}">
+							{{ produkt.kvalitet }}
+							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
+						</a>
+					</td>
 				</tr>
 				<tr ng-if="produkt.overflade != '' ">
 					<td>Overfladebehandling</td>
-					<td>{{ produkt.overflade }}</td>
+					<td>
+						<a class="unstyled"
+							ng-href="#/oversigt/overflade-behandling/{{ produkt.urlOverflade }}/{{ produkt.overflade_id }}" 
+							title="Klik for at se alle gulve med {{ produkt.overflade | lowercase }} overflade">
+							{{ produkt.overflade }}
+							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
+						</a>
+					</td>
 				</tr>
 				<tr ng-if="produkt.profil != '' ">
 					<td>Profil</td>
-					<td>{{ produkt.profil }}</td>
+					<td>
+						<a class="unstyled"
+							ng-href="#/oversigt/profil/{{ produkt.urlProfil }}/{{ produkt.profil_id }}" 
+							title="Klik for at se alle gulve med {{ produkt.profiloverflade | lowercase }} profil">
+							{{ produkt.profil }}
+							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
+						</a>
+					</td>
 				</tr>
 				<tr ng-if="produkt.dimension != '' ">
 					<td>{{ produkt.enhed_spec }}</td>
@@ -78,7 +106,7 @@
 
 	</div>
 
-	<div ng-repeat="i in billeder" class="image image-md">
+	<div ng-repeat="i in produkt.billeder" class="image image-md">
 		<img class="thumbnail" ng-src="/media-uploads/{{ i.path }}" style="cursor:pointer;" fancyboxable>
 	</div>
 

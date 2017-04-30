@@ -48,14 +48,5 @@ angular.module('gulveonlineApp')
 
 		});
 
-		ESPBA.get('billeder', { produkt_id: id }).then(function(r) {
-			$scope.billeder = r.data;
-		});
-		ESPBA.get('tilbud', { produkt_id: id }, { limit: 1 } ).then(function(b) {
-			if (b.data.length) {
-				$scope.produkt.tilbud_pris_enhed = b.data[0].tilbud_pris_enhed;
-			}
-		});
-
 
 }]);

@@ -15,26 +15,7 @@ angular.module('gulveonlineApp')
 
 		function initProdukter() {
 			$scope.produkter.forEach(function(produkt) {
-
 				Lookup.formatProdukt(produkt);				
-
-				ESPBA.get('billeder', { produkt_id: produkt.id }, { limit: 1, orderBy : 'rand()' }).then(function(img) {
-					if (img.data.length>0 && img.data[0].path !== undefined) {
-						produkt.image = 'media-uploads/' + img.data[0].path;
-					} else {
-						produkt.image = 'images/default-picture.jpg';
-					}
-				});
-
-				//tilbud
-				if (produkt.produkt_type_id == 2) {
-					ESPBA.get('tilbud', { produkt_id: produkt.id }, { limit: 1 }).then(function(tilbud) {
-						if (tilbud.data.length) {
-							produkt.tilbud_pris_enhed = tilbud.data[0].tilbud_pris_enhed;
-						}
-					});
-				}
-
 			});
 		}
 				
@@ -53,7 +34,7 @@ angular.module('gulveonlineApp')
 
 		$scope.getBackgroundStyle = function(produkt) {
 			return {		
-				'background-image':'url(' + produkt.image + ')'
+				'background-image':'url(' + produkt.billede + ')'
 			};
 		};
 

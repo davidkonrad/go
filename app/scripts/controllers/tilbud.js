@@ -10,7 +10,7 @@ angular.module('gulveonlineApp')
 
 		$scope.sortering = false;
 		$scope.sorteringItems = [
-			{ id: 'pris_enhed', navn: 'Laveste m² pris' },
+			{ id: 'sortPrice', navn: 'Laveste m² pris' },
 			{ id: 'paa_lager', navn: 'Antal m² på lager' },
 			{ id: 'sort_id', navn: 'Træsorter' }
 		];

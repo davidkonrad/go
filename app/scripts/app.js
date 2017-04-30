@@ -54,7 +54,6 @@ angular.module('gulveonlineApp', [
         controller: 'IndeksCtrl',
         controllerAs: 'indeks'
       })
-
       .when('/produkt/:id/:id', {
         templateUrl: 'views/produkt.html',
         controller: 'ProduktCtrl',
@@ -64,6 +63,11 @@ angular.module('gulveonlineApp', [
         templateUrl: 'views/produktList.html',
         controller: 'KategoriCtrl',
         controllerAs: 'kategori'
+      })
+      .when('/oversigt/:type/:navn/:id', {
+        templateUrl: 'views/produktList.html',
+        controller: 'OversigtCtrl',
+        controllerAs: 'oversigt'
       })
       .when('/soeg', {
         templateUrl: 'views/produktList.html',

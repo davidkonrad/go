@@ -9,7 +9,7 @@
 		<article>
 			<a ng-href="#/produkt/{{ p.urlName }}/{{ p.id }}" class="unstyled">
 
-				<h4 title="{{ p.navn }}">{{ p.navn || '&nbsp;' }}</h4> <!-- ensure correct height even on empty produkt names -->
+				<h4 title="{{ p.navn }}">{{ p.navn || '&nbsp;' }}</h4> 
 
 				<div class="boxed-produkt-image" ng-style="getBackgroundStyle(p)">
 					<div class="boxed-title" ng-class="{ 'restlager': p.produkt_type_id == 3, 'tilbud': p.produkt_type_id == 2, 'nyhed': p.nyhed == 1 }">
@@ -25,7 +25,7 @@
 					<span ng-if="p.sort != '' ">{{ p.sort }}</span>
 					<span ng-if="p.kvalitet != '' ">{{ p.kvalitet }}</span>
 					<span ng-if="p.overflade != '' ">{{ p.overflade }}</span>
-					<span ng-if="p.profil != '' ">{{ p.profil }} profil</span>
+					<span ng-if="p.profil != '' ">{{ p.profil }}</span>
 					<span ng-if="p.dimension != '' && p.dimension != null">{{ p.dimension }}</span>
 				</div>
 				<div class="boxed-produkt-price">

@@ -101,7 +101,7 @@ span.no-padding {
 
 /* search */
 #imaginary_container{
-    margin-top:20%; /* Don't copy this */
+	margin-top:20%; /* Don't copy this */
 }
 .stylish-input-group .input-group-addon{
     background: white !important; 
@@ -112,8 +112,8 @@ span.no-padding {
 	border-color:#ccc;
 }
 .stylish-input-group button{
-	border:0;
-	background:transparent;
+	border: 0;
+	background: transparent;
 }
 
 /** new affix **/
@@ -131,15 +131,6 @@ span.no-padding {
 	z-index: 1005;
 }
 
-/* Make Navigation Toggle on Desktop Hover */
-/*
-@media only screen and (min-width : 768px) {
-	.dropdown:hover .dropdown-menu {
-		display: block;
-	}
-}
-*/
-
 /* large dropdown menu */
 .dropdown-menu-left {
 	position: absolute !important;
@@ -150,7 +141,7 @@ span.no-padding {
 /*  ----------------------  NAVBAR RENDERING  ---------------------- */
 
 .three-column-navbar {
-	width: 46em; 
+	width: 47em; 
 	height: auto; 
 	margin: 4px 8px; 
 	padding-bottom: 20px;

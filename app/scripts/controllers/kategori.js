@@ -17,7 +17,7 @@ angular.module('gulveonlineApp')
 		$scope.sorteringItems = [
 			{ id: 'sortPrice', navn: 'Laveste m² pris' },
 			{ id: 'paa_lager', navn: 'Antal m² på lager' },
-			{ id: 'sort_id', navn: 'Træsorter' }
+			{ id: 'sort', navn: 'Træsorter' }
 		];
 
 		ESPBA.get('kategori', { id: id }).then(function(r) {

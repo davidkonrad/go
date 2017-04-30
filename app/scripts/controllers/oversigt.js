@@ -19,7 +19,7 @@ angular.module('gulveonlineApp')
 		];
 			
 		var id = $routeParams.id;
-		var navn = $routeParams.navn;
+		var navn = $routeParams.navn.replace(/-/g, ' ');
 		$scope.produktList = {};
 
 		var table;
@@ -45,6 +45,10 @@ angular.module('gulveonlineApp')
 				//should never happen
 				table = $routeParams.type;
 				break;
+		}
+
+		if (table != ' sort') {
+			$scope.sorteringItems.push(	{ id: 'sort', navn: 'Træsorter' } );
 		}
 
 		var field = table + '_id';

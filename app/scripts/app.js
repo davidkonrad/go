@@ -79,6 +79,11 @@ angular.module('gulveonlineApp', [
         controller: 'TilbudCtrl',
         controllerAs: 'tilbud'
       })
+      .when('/restpartier', {
+        templateUrl: 'views/produktList.html',
+        controller: 'RestpartiCtrl',
+        controllerAs: 'restpartier'
+      })
 
 			//undersider
       .when('/vilkaar-og-betingelser', {

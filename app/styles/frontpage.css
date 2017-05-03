@@ -67,21 +67,6 @@
 	padding-right:5px;
 }
 
-/*
-.boxed-produkt-tilbud {
-	border: 1px solid #008a00; 
-}
-.boxed-produkt-normal {
-	border: 1px solid #dadada;
-}
-.boxed-produkt-nyhed {
-	border: 1px solid #d80073;
-}
-.boxed-produkt-restlager {
-	border: 1px solid #1A237E;
-}
-*/
-
 .boxed-title {
 	position: relative;
 	font-size: 125%;
@@ -111,13 +96,15 @@
 	font-weight: bold;
 }
 .produkt-badge {
-	padding-top: 7px;
+	padding-top: 6px;
 	padding-bottom: 5px;
 	padding-left: 10px;
 	padding-right: 10px;
-	font-size: 50%;
+	font-size: 45%;
 	position: relative;
 	top: -2px;
+	border-radius: 7px;
+	letter-spacing: 1.1px;
 }
 
 .produkt-badge-small {
@@ -129,5 +116,6 @@
 	position: relative;
 	top: -1px;
 	font-weight: normal !important;
+	border-radius: 6px;
 }
 

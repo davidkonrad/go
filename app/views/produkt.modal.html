@@ -142,17 +142,19 @@
 
 							    <div class="form-group">
 							      <label class="col-md-2 control-label" for="produkt_type">ProdType</label>
-										<div class="col-md-5">
-											<button type="button" 
-												id="sort_id"
-												class="btn btn-default" 
-												ng-model="edit.produkt_type_id" 
-												data-toggle="true"
-												placeholder="Vælg"
-												bs-select
-												bs-options="produkt_type.id as produkt_type.navn for produkt_type in produktTypeItems">
-											  <span class="caret"></span>
-											</button>
+										<div class="col-md-7">
+											<label class="radio-inline">
+												<input type="radio" value="1" name="produkt_type_id" ng-model="edit.produkt_type_id">
+												Produkt
+											</label>
+											<label class="radio-inline">
+												<input type="radio" value="2" name="produkt_type_id" ng-model="edit.produkt_type_id">
+												Tilbud
+											</label>
+											<label class="radio-inline">
+												<input type="radio" value="3" name="produkt_type_id" ng-model="edit.produkt_type_id">
+												Restparti
+											</label>
 										</div>
 									</div>
 

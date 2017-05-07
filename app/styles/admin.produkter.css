@@ -3,7 +3,7 @@ table.table-striped tbody tr {
 	cursor: pointer;
 }
 
-table tbody tr td:not(.may-wrap) {
+table tbody tr td {
 	white-space: nowrap
 }
 
@@ -28,7 +28,7 @@ label.required:before {
 }
 
 .td-beskrivelse {
-	max-width: 300px;
+	max-width: 250px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }	

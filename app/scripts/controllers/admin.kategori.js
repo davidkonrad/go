@@ -14,8 +14,7 @@ angular.module('gulveonlineApp')
 
 		$scope.dtColumns = [
       DTColumnBuilder.newColumn('id').withTitle('#id'),
-      DTColumnBuilder.newColumn('navn').withTitle('Navn'),
-      DTColumnBuilder.newColumn('beskrivelse').withTitle('Beskrivelse').withClass('td-beskrivelse'),
+
       DTColumnBuilder.newColumn('aktiv')
 				.withOption('width', '40px')
 				.withTitle('Aktiv')
@@ -26,7 +25,25 @@ angular.module('gulveonlineApp')
 				} else {
 					return data;
 				}
-			})
+			}),
+
+      DTColumnBuilder.newColumn('navn').withTitle('Navn'),
+
+      DTColumnBuilder.newColumn('beskrivelse')
+				.withTitle('Beskrivelse')
+				.withClass('td-beskrivelse')
+				.renderWith(function(data /* type, full, meta*/) {
+					return Utils.plainText(data);
+				}),
+
+      DTColumnBuilder.newColumn('meta_title')
+				.withTitle('Title')
+				.withClass('td-beskrivelse'),
+
+      DTColumnBuilder.newColumn('meta_desc')
+				.withTitle('Meta desc.')
+				.withClass('td-beskrivelse')
+
 		];
 
 		$scope.dtOptions = DTOptionsBuilder

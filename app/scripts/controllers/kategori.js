@@ -26,8 +26,8 @@ angular.module('gulveonlineApp')
 			$scope.produktList.title = $scope.kategori.navn;
 			$scope.produktList.desc = $scope.kategori.beskrivelse;
 
-			Meta.setTitle($scope.kategori.navn);
-			Meta.setDescription($scope.kategori.beskrivelse || $scope.kategori.navn);
+			Meta.setTitle($scope.kategori.meta_title || $scope.kategori.navn);
+			Meta.setDescription($scope.kategori.meta_desc || $scope.kategori.beskrivelse || $scope.kategori.navn);
 		});
 
 		ESPBA.get('produkter', { kategori_id: id, aktiv: 1 }, { orderBy : { field: 'edited_timestamp', order: 'desc' }}).then(function(r) {

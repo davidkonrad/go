@@ -46,6 +46,13 @@ angular.module('gulveonlineApp').factory('Utils', function() {
 			s+= '-'+(d.getMonth()+1);
 			s+= '-'+d.getFullYear();
 			return s;
+		},
+
+		plainText: function(snippet) {
+			var div = document.createElement("div"); //will be garbage collected, no need to remove
+			div.innerHTML = snippet;
+			var text = div.textContent || div.innerText || "";
+			return text;
 		}
 
 	}

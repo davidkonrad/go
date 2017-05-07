@@ -39,9 +39,8 @@ angular.module('gulveonlineApp')
 						}
 
 						var total = count($scope.kategorier);
-						var colSize = Math.max(total / 3)-5;
-						console.log(total, colSize);
-
+						var colSize = Math.max(total / 3); //-5;
+		
 						var columns = { one: [], two: [], three: [] };
 						$scope.kategorier.forEach(function(k) {
 							if (count(columns.one)<colSize) {

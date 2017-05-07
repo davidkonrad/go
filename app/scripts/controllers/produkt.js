@@ -17,9 +17,8 @@ angular.module('gulveonlineApp')
 			//store current id for kontakt
 			Lookup.setPassData({ produkt_navn: $scope.produkt.navn });
 
-			Meta.setTitle($scope.produkt.navn);
-
 			Lookup.formatProdukt($scope.produkt);
+			Meta.setTitle($scope.produkt.navn + ', ' + $scope.produkt.kategori.toLowerCase());
 
 			var meta = $scope.produkt.navn + '.';
 			if ($scope.produkt.kategori) {

@@ -86,8 +86,7 @@ table.dataTable tbody td.no-padding {
 	padding-bottom: 10px;
 }
 
-/** fix angulae-dataTables pagination issue **/
-
+/** fix angular-dataTables pagination issue **/
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
 	padding: 0px;
 }

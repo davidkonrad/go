@@ -3,7 +3,7 @@ table.table-striped tbody tr {
 	cursor: pointer;
 }
 
-table tbody tr td {
+table tbody tr td:not(.may-wrap) {
 	white-space: nowrap
 }
 

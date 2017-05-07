@@ -71,12 +71,12 @@
 				</tr>
 				<tr>
 					<td>Lagerkapacitet</td>
-					<td ng-if="produkt.paa_lager > 0 ">{{ produkt.paa_lager | number }} {{ produkt.enhed_flertal }} kan leveres straks</td>
+					<td ng-if="produkt.paa_lager > 0 ">{{ produkt.paa_lager | number:2 }} {{ produkt.enhed_flertal }} kan leveres straks</td>
 					<td ng-if="produkt.paa_lager == 0 ">Leveringstid 1-2 uger</td>
 				</tr>
 				<tr ng-if="produkt.pakker > 0 ">
-					<td>Leveres i uåbnede pakker</td>
-					<td>{{ produkt.pakke_str }} {{ produkt.enhed }} per pakke</td>
+					<td>Leveres i pakker</td>
+					<td>{{ produkt.pakke_str | number:2 }} {{ produkt.enhed }} per pakke</td>
 				</tr>
 
 			</tbody>

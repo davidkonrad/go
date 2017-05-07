@@ -18,7 +18,7 @@ angular.module('gulveonlineApp')
 			Lookup.setPassData({ produkt_navn: $scope.produkt.navn });
 
 			Lookup.formatProdukt($scope.produkt);
-			Meta.setTitle($scope.produkt.navn + ', ' + $scope.produkt.kategori.toLowerCase());
+			Meta.setTitle($scope.produkt.navn);
 
 			var meta = $scope.produkt.navn + '.';
 			if ($scope.produkt.kategori) {

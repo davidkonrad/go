@@ -15,7 +15,12 @@ angular.module('gulveonlineApp')
 		$scope.dtColumns = [
       DTColumnBuilder.newColumn('id').withTitle('#id'),
       DTColumnBuilder.newColumn('navn').withTitle('Navn'),
-      DTColumnBuilder.newColumn('beskrivelse').withTitle('Beskrivelse').withClass('td-beskrivelse')
+      DTColumnBuilder.newColumn('beskrivelse')
+				.withTitle('Beskrivelse')
+				.withClass('td-beskrivelse')
+				.renderWith(function(data) {
+					return Utils.plainText(data)
+				})
 		];
 
 		$scope.dtOptions = DTOptionsBuilder

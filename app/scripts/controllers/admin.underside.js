@@ -16,11 +16,15 @@ angular.module('gulveonlineApp')
       DTColumnBuilder.newColumn('id').withTitle('#id'),
       DTColumnBuilder.newColumn('link').withTitle('Link'),
       DTColumnBuilder.newColumn('link_navn').withTitle('Link navn'),
-      DTColumnBuilder.newColumn('meta_title').withTitle('Meta Title'),
-      DTColumnBuilder.newColumn('meta_desc').withTitle('Meta desc'),
-      DTColumnBuilder.newColumn('indhold').withTitle('Indhold').renderWith(function(data) {
-				return $('<div>').html(data).text().substring(0,50)+'...';
-			})
+
+      DTColumnBuilder.newColumn('indhold')
+				.withClass('td-beskrivelse')
+				.withTitle('Indhold').renderWith(function(data) {
+					return Utils.plainText(data);
+				}),
+
+      DTColumnBuilder.newColumn('meta_title').withTitle('Title'),
+      DTColumnBuilder.newColumn('meta_desc').withTitle('Meta desc.')
 		];
 
 		$scope.dtOptions = DTOptionsBuilder

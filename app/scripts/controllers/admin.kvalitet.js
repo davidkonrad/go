@@ -51,7 +51,7 @@ angular.module('gulveonlineApp')
 			$scope.dtInstance = instance;
     };
 
-		$(document).on('click', '#table-kvalitet tbody td', function(e) {
+		$('#table-kvalitet').on('click', 'tbody td', function(e) {
 			var id=$(this).parent().attr('kvalitet-id');
 			if (!id) {
 				e.preventDefault();

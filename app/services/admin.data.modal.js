@@ -37,20 +37,20 @@ angular.module('gulveonlineApp').factory('AdminDataModal', function($modal, $q, 
 				return true
 			}
 
-			modal = $modal({
+			if (!modal) modal = $modal({
 				scope: $scope,
 				templateUrl: 'views/'+view,
 				backdrop: 'static',
 				show: false,
 				keyboard: false
-			})
+			});
 
 			modal.$promise.then(function() {
-			})
+			});
 
 			modal.$promise.then(modal.show).then(function() {
 				//
-			})
+			});
 
 			$scope.modalClose = function(value) {
 

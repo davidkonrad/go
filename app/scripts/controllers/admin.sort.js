@@ -52,7 +52,7 @@ angular.module('gulveonlineApp')
 			$scope.dtInstance = instance;
     };
 
-		$(document).on('click', '#table-sort tbody td:not(.no-click)', function(e) {
+		$('#table-sort').on('click', 'tbody td:not(.no-click)', function(e) {
 			var id=$(this).parent().attr('sort-id');
 			if (!id) {
 				e.preventDefault();

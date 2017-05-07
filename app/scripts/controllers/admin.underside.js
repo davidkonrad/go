@@ -56,7 +56,7 @@ angular.module('gulveonlineApp')
 			$scope.dtInstance = instance;
     };
 
-		$(document).on('click', '#table-underside tbody td', function(e) {
+		$('#table-underside').on('click', 'tbody td', function(e) {
 			var id=$(this).parent().attr('underside-id');
 			if (!id) {
 				e.preventDefault();

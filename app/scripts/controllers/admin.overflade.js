@@ -51,7 +51,7 @@ angular.module('gulveonlineApp')
 			$scope.dtInstance = instance;
     };
 
-		$(document).on('click', '#table-overflade tbody td:not(.no-click)', function(e) {
+		$('#table-overflade').on('click', 'tbody td:not(.no-click)', function(e) {
 			var id=$(this).parent().attr('overflade-id');
 			if (!id) {
 				e.preventDefault();

@@ -53,11 +53,11 @@ angular.module('gulveonlineApp')
 			$scope.dtInstance = instance;
     };
 
-		$(document).on('click', '#table-enhed tbody td:not(.no-click)', function(e) {
+		$('#table-enhed').on('click', 'tbody td:not(.no-click)', function(e) {
 			var id=$(this).parent().attr('enhed-id');
+			e.preventDefault();
+			e.stopPropagation();
 			if (!id) {
-				e.preventDefault();
-				e.stopPropagation();
 				return;
 			}
 			AdminDataModal.show($scope, 'enhed', id, 'admin.enhed.modal.html', ['ental', 'flertal']).then(function(updated) {

@@ -62,11 +62,11 @@ angular.module('gulveonlineApp')
 			$scope.dtInstance = instance;
     };
 
-		$(document).on('click', '#table-kategori tbody td:not(.no-click)', function(e) {
+		$('#table-kategori').on('click', 'tbody td:not(.no-click)', function(e) {
 			var id=$(this).parent().attr('kategori-id');
+			e.preventDefault();
+			e.stopPropagation();
 			if (!id) {
-				e.preventDefault();
-				e.stopPropagation();
 				return;
 			}
 			AdminDataModal.show($scope, 'kategori', id, 'admin.kategori.modal.html', ['navn']).then(function(updated) {

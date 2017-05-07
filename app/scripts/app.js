@@ -174,7 +174,7 @@ angular.module('gulveonlineApp', [
 		ESPBA.setApiPath('api/espba.php');	
 
 		Lookup.init();
-		//Meta.setTitleSuffix(' :: gulve-online');		
+		Meta.setTitleSuffix(' :: gulve-online');		
 
 	});
 

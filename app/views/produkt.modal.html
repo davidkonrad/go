@@ -272,7 +272,6 @@
 					</div>
 
 					<div bs-pane data-title="Billeder">
-			
 						<div ng-repeat="i in billeder" class="image">
 							<img class="thumbnail" ng-src="/media-uploads/{{ i.path }}">
 							<span class="remove-image" 
@@ -281,14 +280,12 @@
 								<i class="glyphicon glyphicon-remove text-danger bg-warning"></i>
 							</span>
 						</div>
-			
 						<div class="alert alert-danger" 
 							style="margin-top:20px;"
 							role="alert" 
 							ng-show="edit.id == undefined">
 							Du kan først oploade billeder efter produktet er oprettet
 						</div>
-	
 						<div style="clear:both; float:left; margin-top: 10px;">
 							<button class="btn btn-primary btn-xs" 
 								style="margin-top: 2px;"
@@ -297,7 +294,24 @@
 								<i class="glyphicon glyphicon-plus"></i>&nbsp;Upload billede
 							</button>
 						</div>
+					</div>
 
+					<div bs-pane data-title="Meta">
+						<form role="form" class="form-horizontal">
+					    <div class="form-group">
+					      <label class="col-md-2 control-label" for="meta_title">Title</label>
+								<div class="col-md-9">
+							    <input select-on-click class="form-control" ng-model="edit.meta_title" id="meta_title">
+								</div>
+							</div>
+
+					    <div class="form-group">
+					      <label class="col-md-2 control-label" for="meta_desc">Meta desc.</label>
+								<div class="col-md-9">
+									<textarea class="form-control" ng-model="edit.meta_desc" id="meta_desc" rows="2"></textarea>
+								</div>
+							</div>
+						</form>
 					</div>
 
 				</div>

@@ -14,13 +14,13 @@ angular.module('gulveonlineApp')
 			var kategorier = r.data;
 			var loop = 0;
 			kategorier.forEach(function(k) {
-				k.urlName = Utils.urlName(k.navn);
+				k.url = Utils.getKategoriLink(k);
 
 				ESPBA.get('produkter', { kategori_id: k.id, aktiv: 1 }, { orderBy: 'navn'}).then(function(r) {
 					loop++;
 					k.produkter = r.data;
 					k.produkter.forEach(function(p) {
-						p.urlName = Utils.urlName(p.navn);
+						p.url = Utils.getProduktLink(p);
 					});
 
 					//filter out empty kategorier

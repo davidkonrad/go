@@ -5,10 +5,10 @@
 	<div class="col-md-4">
 		<div ng-repeat="k in columns.one">
 			<h3>
-				<a ng-href="#/kategori/{{ k.urlName }}/{{ k.id }}" class="unstyled">{{ k.navn }}</a>
+				<a href="{{ k.url }}" class="unstyled">{{ k.navn }}</a>
 			</h3>
 			<div ng-repeat="p in k.produkter" style="margin-bottom: 2px;">
-				<a ng-href="#/produkt/{{ p.urlName }}/{{ p.id }}" style="margin-left:20px;">{{p.navn}}</a>
+				<a href="{{ p.url }}" title="Gå til {{ p.navn }}" style="margin-left:20px;">{{p.navn}}</a>
 				<span ng-if="p.produkt_type_id == 2" class="badge produkt-badge-small tilbud">TILBUD</span>
 				<span ng-if="p.produkt_type_id == 3" class="badge produkt-badge-small restlager">RESTPARTI</span>
 				<span ng-if="p.nyhed == 1" class="badge produkt-badge-small nyhed">NYHED</span>
@@ -21,10 +21,10 @@
 	<div class="col-md-4">
 		<div ng-repeat="k in columns.two">
 			<h3>
-				<a ng-href="#/kategori/{{ k.urlName }}/{{ k.id }}" class="unstyled">{{ k.navn }}</a>
+				<a href="{{ k.url }}" class="unstyled">{{ k.navn }}</a>
 			</h3>
 			<div ng-repeat="p in k.produkter" style="margin-bottom: 2px;">
-				<a ng-href="#/produkt/{{ p.urlName }}/{{ p.id }}" style="margin-left:20px;">{{p.navn}}</a>
+				<a href="{{ p.url }}" title="Gå til {{ p.navn }}" style="margin-left:20px;">{{p.navn}}</a>
 				<span ng-if="p.produkt_type_id == 2" class="badge produkt-badge-small tilbud">TILBUD</span>
 				<span ng-if="p.produkt_type_id == 3" class="badge produkt-badge-small restlager">RESTPARTI</span>
 				<span ng-if="p.nyhed == 1" class="badge produkt-badge-small nyhed">NYHED</span>
@@ -37,10 +37,10 @@
 	<div class="col-md-4">
 		<div ng-repeat="k in columns.three">
 		<h3>
-			<a ng-href="#/kategori/{{ k.urlName }}/{{ k.id }}" class="unstyled">{{ k.navn }}</a>
+			<a href="{{ k.url }}" class="unstyled">{{ k.navn }}</a>
 		</h3>
 		<div ng-repeat="p in k.produkter" style="margin-bottom: 2px;">
-			<a ng-href="#/produkt/{{ p.urlName }}/{{ p.id }}" style="margin-left:20px;">{{p.navn}}</a>
+			<a href="{{ p.url }}" title="Gå til {{ p.navn }}" style="margin-left:20px;">{{p.navn}}</a>
 			<span ng-if="p.produkt_type_id == 2" class="badge produkt-badge-small tilbud">TILBUD</span>
 			<span ng-if="p.produkt_type_id == 3" class="badge produkt-badge-small restlager">RESTPARTI</span>
 			<span ng-if="p.nyhed == 1" class="badge produkt-badge-small nyhed">NYHED</span>

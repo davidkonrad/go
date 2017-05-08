@@ -159,6 +159,11 @@ angular.module('gulveonlineApp', [
         controller: 'AdminProfilCtrl',
         controllerAs: 'admin'
       })
+	   .when('/admin-sitemap', {
+        templateUrl: 'views/admin.sitemap.html',
+        controller: 'SitemapCtrl',
+        controllerAs: 'sitemap'
+      })
 
       .otherwise({
         redirectTo: '/'

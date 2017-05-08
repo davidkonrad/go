@@ -40,20 +40,44 @@ angular.module('gulveonlineApp').factory('Utils', function() {
 			return s;
 		},
 
-		todayStr: function() {
+		//get current date in danish format
+		todayStr: function(delimiter) {
+			if (!delimiter) delimiter = '-';
 			var d = new Date();	
 			var s = d.getDate();
-			s+= '-'+(d.getMonth()+1);
-			s+= '-'+d.getFullYear();
+			s+= delimiter + (d.getMonth()+1);
+			s+= delimiter + d.getFullYear();
 			return s;
 		},
 
+		//return plain text from HTML snippet
 		plainText: function(snippet) {
 			var div = document.createElement("div"); //will be garbage collected, no need to remove
 			div.innerHTML = snippet;
 			var text = div.textContent || div.innerText || "";
 			return text;
+		},
+
+		urlLinkBase: 'http://gulve.online/#/',
+
+		//get a fully qualified kategori link
+		getKategoriLink: function(kategori) {
+			if (!kategori.navn || !kategori.id) return this.urlLinkBase;
+			return this.urlLinkBase + 'kategori/'+ this.urlName(kategori.navn) + '/'+ kategori.id;
+		},
+
+		//get a fully qualified produkt link
+		getProduktLink: function(produkt) {
+			if (!produkt.navn || !produkt.id) return this.urlLinkBase;
+			return this.urlLinkBase + 'produkt/'+ this.urlName(produkt.navn) + '/'+ produkt.id;
+		},
+
+		//get a fully qualified oversigt/ link
+		getOversigtLink: function(pseudoKategori, item) {
+			if (!item.navn || !item.id) return this.urlLinkBase;
+			return this.urlLinkBase + 'oversigt/'+ pseudoKategori + '/' + this.urlName(item.navn) + '/'+ item.id;
 		}
+
 
 	}
 

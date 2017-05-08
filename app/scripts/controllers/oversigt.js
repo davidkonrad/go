@@ -26,19 +26,19 @@ angular.module('gulveonlineApp')
 		switch ($routeParams.type) {
 			case 'traesort' : 
 				table = 'sort'; 
-				$scope.produktList.title = 'Træsort '+navn.toLowerCase();
+				$scope.produktList.title = 'Træsort '+ Lookup.sortNavn(id);
 				break;
 			case 'overflade-behandling' :
 				table = 'overflade'; 
-				$scope.produktList.title = navn + ' overflade';
+				$scope.produktList.title = Lookup.overfladeNavn(id) + ' overflade';
 				break;
 			case 'profil' :
 				table = 'profil'; 
-				$scope.produktList.title = navn + ' profil';
+				$scope.produktList.title = Lookup.profilNavn(id) + ' profil';
 				break;
-			case 'kvalitet' :
+			case 'sortering' :
 				table = 'kvalitet'; 
-				$scope.produktList.title = navn + ' kvalitet / sortering';
+				$scope.produktList.title = Lookup.kvalitetNavn(id) + ' sortering';
 				break;
 
 			default :

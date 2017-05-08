@@ -3,7 +3,7 @@
 
 	<h1>{{ produkt.navn }}</h1>
 
-	<div class="md-col-12">
+	<div class="col-md-12">
 		<p ng-bind-html="produkt.beskrivelse"></p>
 
 		<table class="table">
@@ -103,16 +103,16 @@
 				</a>
 			</h3>
 		</div>
-
 	</div>
-
+	
 	<div ng-repeat="i in produkt.billeder" class="image image-md">
 		<img class="thumbnail" ng-src="/media-uploads/{{ i.path }}" style="cursor:pointer;" fancyboxable>
 	</div>
 
+	<br><br><br><br><br><br><br><br>
+	
 </div>
 
 
-<br><br><br><br>
 
 

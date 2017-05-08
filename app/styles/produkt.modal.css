@@ -29,24 +29,22 @@
 }
 
 div.image {
-	height: 200px !important;
 	width: 200px !important;
-	max-height: 200px !important;
+	max-height: 150px !important;
 	max-width: 200px !important;
 	clear: none;
-	float: left;
 	margin-top: 5px;
 	margin-right: 5px;
 	display: inline-block;
 	position: relative;
 	margin-left: 20px;
-	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
 div.image-md {
-	height: 200px !important;
+	vertical-align: top;
 	width: 200px !important;
-	max-height: 200px !important;
+	max-height: 150px !important;
 	max-width: 200px !important;
 }
 div.image-lgmd {

@@ -26,7 +26,7 @@ angular.module('gulveonlineApp')
 		switch ($routeParams.type) {
 			case 'traesort' : 
 				table = 'sort'; 
-				$scope.produktList.title = 'Træsort '+ Lookup.sortNavn(id);
+				$scope.produktList.title = 'Træsort '+ Lookup.sortNavn(id).toLowerCase();
 				break;
 			case 'overflade-behandling' :
 				table = 'overflade'; 
@@ -50,6 +50,9 @@ angular.module('gulveonlineApp')
 		if (table != ' sort') {
 			$scope.sorteringItems.push(	{ id: 'sort', navn: 'Træsorter' } );
 		}
+
+		//add kategori / gulvtype sortering as the last item
+		$scope.sorteringItems.push(	{ id: 'kategori', navn: 'Gulvtype' } );
 
 		var field = table + '_id';
 		

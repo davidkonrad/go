@@ -17,7 +17,7 @@ angular.module('gulveonlineApp')
       DTColumnBuilder.newColumn(null)
 				.withOption('width', '20px')
 				.withTitle('')
-				.withClass('no-click no-padding')
+				.withClass('no-click no-padding no-export')
 				.withOption('orderable', false)
 				.renderWith(function(data, type, full /*, meta*/) {
 					return '<button class="btn btn-primary btn-xs btn-clone" produkt-id="'+full.id+'" title="Klon dette produkt"><i class="fa fa-clone"></i></button>';
@@ -28,7 +28,7 @@ angular.module('gulveonlineApp')
       DTColumnBuilder.newColumn('aktiv')
 				.withOption('width', '40px')
 				.withTitle('Aktiv')
-				.withClass('text-center')
+				.withClass('text-center no-export')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
 					return data == 1 ? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
@@ -40,7 +40,7 @@ angular.module('gulveonlineApp')
       DTColumnBuilder.newColumn('forside')
 				.withOption('width', '40px')
 				.withTitle('Forside')
-				.withClass('text-center')
+				.withClass('text-center no-export')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
 					return data == 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
@@ -107,7 +107,7 @@ angular.module('gulveonlineApp')
       DTColumnBuilder.newColumn('nyhed')
 				.withOption('width', '40px')
 				.withTitle('Nyhed')
-				.withClass('text-center')
+				.withClass('text-center no-export')
 				.renderWith(function(data, type /*, full, meta*/) {
 				if (type === 'display') {
 					return data == 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
@@ -119,7 +119,7 @@ angular.module('gulveonlineApp')
       DTColumnBuilder.newColumn(null)
 				.withOption('width', '20px')
 				.withTitle('')
-				.withClass('no-click')
+				.withClass('no-click no-export')
 				.renderWith(function(data, type, full /*, meta*/) {
 						return '<a href="#/produkt/'+Utils.urlName(full.navn)+'/'+full.id+'"><i class="glyphicon glyphicon-share-alt text-primary"></i></a>';
 				})
@@ -167,12 +167,18 @@ angular.module('gulveonlineApp')
 				{ extend : 'excelHtml5',
 					text: '<span title="Download filtrerede produkter som Excel-regneark"><i class="glyphicon glyphicon-download-alt"></i>&nbsp;Excel</span>',
 					filename: 'gulveonline_'+Utils.todayStr(),
-					className: 'btn btn-default btn-xs'
+					className: 'btn btn-default btn-xs',
+					exportOptions: {
+						columns: "#table-produkter thead th:not(.no-export)"
+					}
 				},
 				{ extend : 'pdfHtml5',
 					text: '<span title="Download filtrerede produkter som PDF-regneark"><i class="glyphicon glyphicon-download-alt"></i>&nbsp;PDF</span>',
 					filename: 'gulveonline_'+Utils.todayStr(),
-					className: 'btn btn-default btn-xs'
+					className: 'btn btn-default btn-xs',
+					exportOptions: {
+						columns: "#table-produkter thead th:not(.no-export)"
+					}
 				},
 				{ text: '<span><i class="glyphicon glyphicon-plus text-success"></i>&nbsp;Nyt Produkt</span>',
 					className: 'btn btn-xs',

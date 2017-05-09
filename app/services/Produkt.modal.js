@@ -28,9 +28,19 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 					$scope.reloadImages();
 				})
 			};
+
 			$scope.$watch('edit.enhed_id', function() {
 				$scope.enhedFlertal = Lookup.enhedNavnFlertal($scope.edit.enhed_id);
 				$scope.enhedEntal = Lookup.enhedNavn($scope.edit.enhed_id);
+			});
+
+			$scope.$watch('edit.pakker', function(newVal, oldVal) {
+				if (newVal == oldVal) return;
+				console.log('ok', typeof $scope.edit.pakke_str);
+				if ($scope.edit.pakke_str) {
+					var paa_lager = parseFloat($scope.edit.pakke_str) * parseFloat(newVal);
+					$scope.edit.paa_lager = Math.round(paa_lager * 100) / 100;
+				}
 			});
 
 			$scope.canSave = function() {

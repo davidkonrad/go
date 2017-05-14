@@ -2,6 +2,9 @@
 
 angular.module('gulveonlineApp').factory('Utils', function() {
 
+	var isLocalHost = (location.hostname === "localhost" || location.hostname === "127.0.0.1");
+	var urlLinkBase = isLocalHost ? 'http://localhost:9000/' : 'http://gulve.online/';
+
 	return {
 		dataTables_daDk: {
 	    "sEmptyTable":     "Ingen tilgængelige data (prøv en anden søgning)",
@@ -58,24 +61,22 @@ angular.module('gulveonlineApp').factory('Utils', function() {
 			return text;
 		},
 
-		urlLinkBase: 'http://gulve.online/#/',
-
 		//get a fully qualified kategori link
 		getKategoriLink: function(kategori) {
 			if (!kategori.navn || !kategori.id) return this.urlLinkBase;
-			return this.urlLinkBase + 'kategori/'+ this.urlName(kategori.navn) + '/'+ kategori.id;
+			return urlLinkBase + 'kategori/'+ this.urlName(kategori.navn) + '/'+ kategori.id;
 		},
 
 		//get a fully qualified produkt link
 		getProduktLink: function(produkt) {
 			if (!produkt.navn || !produkt.id) return this.urlLinkBase;
-			return this.urlLinkBase + 'produkt/'+ this.urlName(produkt.navn) + '/'+ produkt.id;
+			return urlLinkBase + 'produkt/'+ this.urlName(produkt.navn) + '/'+ produkt.id;
 		},
 
-		//get a fully qualified oversigt/ link
+		//get a fully qualified oversigt/kategori link
 		getOversigtLink: function(pseudoKategori, item) {
 			if (!item.navn || !item.id) return this.urlLinkBase;
-			return this.urlLinkBase + 'oversigt/'+ pseudoKategori + '/' + this.urlName(item.navn) + '/'+ item.id;
+			return urlLinkBase + 'oversigt/'+ pseudoKategori + '/' + this.urlName(item.navn) + '/'+ item.id;
 		}
 
 

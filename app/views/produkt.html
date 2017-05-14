@@ -25,7 +25,7 @@
 					<td>Træsort</td>
 					<td>
 						<a class="unstyled"
-							ng-href="#/oversigt/traesort/{{ produkt.urlSort }}/{{ produkt.sort_id }}" 
+							href="{{ produkt.urlSort }}"
 							title="Klik for at se alle gulve i træsorten {{ produkt.sort | lowercase }}">
 							{{ produkt.sort }}
 							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
@@ -36,7 +36,7 @@
 					<td>Sortering</td>
 					<td>
 						<a class="unstyled"
-							ng-href="#/oversigt/sortering/{{ produkt.urlKvalitet }}/{{ produkt.kvalitet_id }}" 
+							href="{{ produkt.urlKvalitet }}"
 							title="Klik for at se alle gulve i kvaliteten {{ produkt.kvalitet | lowercase }}">
 							{{ produkt.kvalitet }}
 							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
@@ -47,7 +47,7 @@
 					<td>Overfladebehandling</td>
 					<td>
 						<a class="unstyled"
-							ng-href="#/oversigt/overflade-behandling/{{ produkt.urlOverflade }}/{{ produkt.overflade_id }}" 
+							href="{{ produkt.urlOverflade }}" 
 							title="Klik for at se alle gulve med {{ produkt.overflade | lowercase }} overflade">
 							{{ produkt.overflade }}
 							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
@@ -58,7 +58,7 @@
 					<td>Profil</td>
 					<td>
 						<a class="unstyled"
-							ng-href="#/oversigt/profil/{{ produkt.urlProfil }}/{{ produkt.profil_id }}" 
+							href="{{ produkt.urlProfil }}" 
 							title="Klik for at se alle gulve med {{ produkt.profiloverflade | lowercase }} profil">
 							{{ produkt.profil }}
 							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>

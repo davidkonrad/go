@@ -18,9 +18,16 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 	function idToNavn(table, id, field) {
 		if (!field) field = 'navn';
 		for (var i=0, l=table.length; i<l; i++) {
-			if (table[i].id == id) return table[i][field]
+			if (table[i].id == id) return table[i][field];
 		}
-		return ''
+		return '';
+	};
+
+	function idToItem(table, id) {
+		for (var i=0, l=table.length; i<l; i++) {
+			if (table[i].id == id) return table[i];
+		}
+		return '';
 	};
 
 	return {
@@ -158,11 +165,13 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 			produkt.enhed = this.enhedNavn(produkt.enhed_id).trim();
 			produkt.profil = this.profilNavn(produkt.profil_id).trim();
 
+			produkt.url = Utils.getProduktLink(produkt);
 			produkt.urlName = Utils.urlName(produkt.navn);
-			produkt.urlKvalitet = Utils.urlName(produkt.kvalitet);
-			produkt.urlSort = Utils.urlName(produkt.sort);
-			produkt.urlOverflade = Utils.urlName(produkt.overflade);
-			produkt.urlProfil = Utils.urlName(produkt.profil);
+
+			produkt.urlKvalitet = Utils.getOversigtLink('sortering', idToItem(kvalitetItems, produkt.kvalitet_id));
+			produkt.urlSort = Utils.getOversigtLink('traesort', idToItem(sortItems, produkt.sort_id));
+			produkt.urlProfil = Utils.getOversigtLink('profil', idToItem(profilItems, produkt.profil_id));
+			produkt.urlOverflade = Utils.getOversigtLink('overflade', idToItem(overfladeItems, produkt.overflade_id));
 
 			produkt.enhed = this.enhedNavn(produkt.enhed_id);
 			produkt.enhed_flertal = this.enhedNavnFlertal(produkt.enhed_id);

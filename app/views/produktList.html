@@ -40,13 +40,13 @@
 				<span ng-if="p.produkt_type_id == 2" class="badge produkt-badge tilbud">TILBUD</span>
 				<span ng-if="p.produkt_type_id == 3" class="badge produkt-badge restlager">RESTPARTI</span>
 				<span ng-if="p.nyhed == 1" class="badge produkt-badge nyhed">NYHED</span>
-				<a ng-href="#/produkt/{{p.urlName}}/{{p.id}}">
+				<a href="{{ p.url }}" title="Gå til {{ p.navn }}">
 					{{ p.navn }} 
 				</a>
 			</h3>
 		</div>
 		<div class="col-md-3 text-center" style="max-height:120px;overflow:hidden;">
-			<a ng-href="#/produkt/{{p.urlName}}/{{p.id}}">
+			<a href="{{ p.url }}" title="{{ p.navn }}" class="unstyled">
 				<img class="img-thumbnail" ng-src="{{ p.billede }}" alt="{{ p.navn }}">
 			</a>
 		</div>

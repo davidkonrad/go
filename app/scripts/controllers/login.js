@@ -25,7 +25,7 @@ angular.module('gulveonlineApp')
 				if (r.error) {
 					$scope.user.error = r.error;
 				} else {
-					$window.location.href = '#/admin-produkter';
+					$window.location.href = '/admin-produkter';
 					$window.location.reload();
 				}
 			});

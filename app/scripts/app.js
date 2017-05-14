@@ -30,14 +30,27 @@ angular.module('gulveonlineApp', [
 	'ESPBA',
 	'Meta'
   ])
-  .config(function ($locationProvider, $routeProvider) {
+  .config(function ($locationProvider, $routeProvider, $httpProvider) {
 
+		$locationProvider.html5Mode(true);
+
+		/*
+		if (window.history && window.history.pushState) {
+			//$locationProvider.html5Mode(true).hashPrefix('!');
+			$locationProvider.html5Mode({
+				enabled : true,
+				requireBase : true
+			});
+		}
+		*/
+
+		/*
 		$locationProvider.hashPrefix('');
-		$locationProvider.html5Mode({
+			$locationProvider.html5Mode({
 			enabled : false,
-			requireBase : false
+			requireBase : true
 		});
-
+		*/
     $routeProvider
       .when('/', {
         templateUrl: 'views/frontpage.html',
@@ -179,7 +192,7 @@ angular.module('gulveonlineApp', [
 		ESPBA.setApiPath('api/espba.php');	
 
 		Lookup.init();
-		Meta.setTitleSuffix(' :: gulve-online');		
+		//Meta.setTitleSuffix(' :: gulve-online');		
 
 	});
 

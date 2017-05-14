@@ -7,7 +7,10 @@
 
 	<div ng-repeat="p in produkter" class="col-md-4 well well-lg boxed-produkt" style="background-color:#fff;">
 		<article>
+			<!--
 			<a ng-href="#/produkt/{{ p.urlName }}/{{ p.id }}" class="unstyled">
+			-->
+			<a href="{{ p.url }}" class="unstyled">
 
 				<h4 title="{{ p.navn }}">{{ p.navn || '&nbsp;' }}</h4> 
 

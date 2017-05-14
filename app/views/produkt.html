@@ -37,7 +37,7 @@
 					<td>
 						<a class="unstyled"
 							href="{{ produkt.urlKvalitet }}"
-							title="Klik for at se alle gulve i kvaliteten {{ produkt.kvalitet | lowercase }}">
+							title="Klik for at se alle gulve i {{ produkt.kvalitet | lowercase }} sortering">
 							{{ produkt.kvalitet }}
 							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
 						</a>
@@ -96,7 +96,7 @@
 				</span>
 
 				<a class="btn btn-primary btn-lg pull-right" 
-					href='/#kontakt'
+					href='/kontakt'
 					style="position:relative; top:-10px;" 
 					title="Klik for at høre mere om {{ produkt.navn }}">
 					Få mere at vide ...

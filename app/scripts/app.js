@@ -34,23 +34,6 @@ angular.module('gulveonlineApp', [
 
 		$locationProvider.html5Mode(true);
 
-		/*
-		if (window.history && window.history.pushState) {
-			//$locationProvider.html5Mode(true).hashPrefix('!');
-			$locationProvider.html5Mode({
-				enabled : true,
-				requireBase : true
-			});
-		}
-		*/
-
-		/*
-		$locationProvider.hashPrefix('');
-			$locationProvider.html5Mode({
-			enabled : false,
-			requireBase : true
-		});
-		*/
     $routeProvider
       .when('/', {
         templateUrl: 'views/frontpage.html',

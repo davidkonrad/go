@@ -2,4 +2,4 @@
 
 User-agent: *
 Disallow:
-Sitemap: sitemap.txt
+Sitemap: http://gulve.online/sitemap.txt

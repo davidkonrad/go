@@ -87,6 +87,8 @@
 			<h3 style="margin-top:10px;">
 				<span style="color:gray;">Pris per {{ produkt.enhed }} :</span> &nbsp; 
 
+				<span class="clearfix visible-xs" ng-if="produkt.tilbud_pris_enhed"></span>
+
 				<span ng-if="produkt.tilbud_pris_enhed">
 					<strike class="text-muted">{{ produkt.pris_enhed | currency }}</strike>
 					{{ produkt.tilbud_pris_enhed | currency }} 
@@ -95,12 +97,26 @@
 					{{ produkt.pris_enhed | currency }} 
 				</span>
 
-				<a class="btn btn-primary btn-lg pull-right" 
+				<span class="clearfix visible-xs"><br></span>
+
+				<!-- for normal devices -->
+				<a class="btn btn-primary btn-lg pull-right visible-sm visible-md visible-lg" 
 					href='/kontakt'
 					style="position:relative; top:-10px;" 
 					title="Klik for at høre mere om {{ produkt.navn }}">
 					Få mere at vide ...
 				</a>
+
+				<!-- small devices -->
+				<a class="btn btn-primary btn-sm pull-left visible-xs" 
+					href='/kontakt'
+					style="position:relative; top:-10px;" 
+					title="Klik for at høre mere om {{ produkt.navn }}">
+					Få mere at vide ...
+				</a>
+
+				<span class="clearfix visible-xs"><br></span>
+
 			</h3>
 		</div>
 	</div>

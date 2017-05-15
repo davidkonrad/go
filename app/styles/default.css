@@ -24,13 +24,19 @@ body {
 		max-width: 730px;
 	}
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 712px) {
 	.container {
 		max-width: 710px !important;
+		padding-left: 1px;
+		padding-right: 1px;
+	}
+	.col-xs-12 {
+		padding-left: 1px;
+		padding-right: 1px;
 	}
 	table.table {
-		width: 500px;
-		max-width: 510px !important;
+		width: 350px;
+		max-width: 350px !important;
 	}
 }
 

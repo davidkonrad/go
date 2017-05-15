@@ -24,5 +24,14 @@ body {
 		max-width: 730px;
 	}
 }
+@media screen and (max-width: 768px) {
+	.container {
+		max-width: 710px !important;
+	}
+	table.table {
+		width: 500px;
+		max-width: 510px !important;
+	}
+}
 
 

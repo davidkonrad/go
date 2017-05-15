@@ -20,10 +20,11 @@ angular.module('gulveonlineApp')
 		$scope.sorteringItems = [
 			{ id: 'sortPrice', navn: 'Laveste m² pris' },
 			{ id: 'paa_lager', navn: 'Antal m² på lager' },
-			{ id: 'sort', navn: 'Træsorter' }
+			{ id: 'sort', navn: 'Træsorter' },
+			{ id: 'kategori', navn: 'Gulvtype' }
 		];
 
-		ESPBA.get('produkter', { aktiv: 1, produkt_type_id: 3 }).then(function(r) {
+		ESPBA.get('produkter', { aktiv: 1, produkt_type_id: 3 }, { orderBy : { field: 'edited_timestamp', order: 'desc' }} ).then(function(r) {
 			$scope.produkter = r.data;
 			$scope.produkter.forEach(function(p) {
 				Lookup.formatProdukt(p);

@@ -12,7 +12,8 @@ angular.module('gulveonlineApp')
 		$scope.sorteringItems = [
 			{ id: 'sortPrice', navn: 'Laveste m² pris' },
 			{ id: 'paa_lager', navn: 'Antal m² på lager' },
-			{ id: 'sort_id', navn: 'Træsorter' }
+			{ id: 'sort_id', navn: 'Træsorter' },
+			{ id: 'kategori', navn: 'Gulvtype' }
 		];
 
 		Meta.setTitle('Søgning');
@@ -22,7 +23,7 @@ angular.module('gulveonlineApp')
 
 		//produktList properties
 		$scope.produktList = {};
-		$scope.produktList.title = 'Søgning';
+		$scope.produktList.title = 'Søger ..';
 
 		var doSearch = function(term) {
 			//just reuse ESPBA settings
@@ -36,12 +37,20 @@ angular.module('gulveonlineApp')
 				$scope.produkter.forEach(function(p) {
 					Lookup.formatProdukt(p);
 				});
+				$timeout(function() {
+				$scope.produktList.title = 'Søgning';
+					angular.element('#search-gif').hide();
+				});
 			});
 		}
 
-		var term = angular.element('#search-input').val();
+		var term = angular.element('#search-input').val().trim();
+		angular.element('#search-input').val(term);
 		if (term) {
-			$scope.produktList.desc = '<h4>' + term.split(' ').join(' + ') + '</h4>';
+			var terms = term.split(' ');
+			for (var i=0; i<terms.length; i++) { terms[i] = terms[i].quote() };
+			terms = terms.join(' + ');			
+			$scope.produktList.desc = '<h4>' + terms + '</h4>';
 			doSearch(term);
 		}
 

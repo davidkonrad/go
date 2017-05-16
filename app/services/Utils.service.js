@@ -5,6 +5,10 @@ angular.module('gulveonlineApp').factory('Utils', function() {
 	var isLocalHost = (location.hostname === "localhost" || location.hostname === "127.0.0.1");
 	var urlLinkBase = isLocalHost ? 'http://localhost:9000/' : 'http://gulve.online/';
 
+	String.prototype.quote = function() {
+		return '"' + this + '"';
+	}
+
 	return {
 		dataTables_daDk: {
 	    "sEmptyTable":     "Ingen tilgængelige data (prøv en anden søgning)",

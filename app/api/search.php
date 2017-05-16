@@ -31,11 +31,12 @@ class Search extends DbPDO {
 			} else {
 				$w = ' (';
 				$w.= '(p.navn like "%'.$t.'%") or ';
-				$w.= '(r.id = p.profil_id and r.navn like "%'.$t.'%") or ';
-				$w.= '(k.id = p.kategori_id and k.navn like "%'.$t.'%") or ';
-				$w.= '(s.id = p.sort_id and s.navn like "%'.$t.'%") or ';
-				$w.= '(o.id = p.overflade_id and o.navn like "%'.$t.'%") or ';
-				$w.= '(v.id = p.kvalitet_id and v.navn like "%'.$t.'%") or ';
+				$w.= '(p.vare_nr like "%'.$t.'%") or ';
+				$w.= '(p.profil_id = r.id and r.navn like "%'.$t.'%") or ';
+				$w.= '(p.kategori_id = k.id and k.navn like "%'.$t.'%") or ';
+				$w.= '(p.sort_id = s.id and s.navn like "%'.$t.'%") or ';
+				$w.= '(p.overflade_id = o.id and o.navn like "%'.$t.'%") or ';
+				$w.= '(p.kvalitet_id = v.id and v.navn like "%'.$t.'%") or ';
 				$w.= '(p.dimension like "%'.$t.'%") ';
 				$w.= ')';
 			}
@@ -45,6 +46,8 @@ class Search extends DbPDO {
 
 		$SQL.=' where '.$where;
 
+		//echo $SQL;
+		//return;
 		$result = $this->queryJSON($SQL);
 		echo $result;
 	}

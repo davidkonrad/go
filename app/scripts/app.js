@@ -28,9 +28,12 @@ angular.module('gulveonlineApp', [
 	'ngFileUpload',
 	'fancyboxplus',
 	'ESPBA',
-	'Meta'
+	'Meta',
+	'angular-loading-bar'
   ])
-  .config(function ($locationProvider, $routeProvider, $httpProvider) {
+  .config(function ($locationProvider, $routeProvider, cfpLoadingBarProvider) {
+
+    cfpLoadingBarProvider.includeSpinner = false;
 
 		$locationProvider.html5Mode(true);
 

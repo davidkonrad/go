@@ -8,8 +8,8 @@
  * Controller of the gulveonlineApp
  */
 angular.module('gulveonlineApp')
-  .controller('NavbarCtrl', ['$scope', '$window', '$timeout', 'Login', 'ESPBA', 
-	function($scope, $window, $timeout, Login, ESPBA) {
+  .controller('NavbarCtrl', ['$scope', '$window', '$location', '$timeout', 'Login', 'ESPBA', 
+	function($scope, $window, $location, $timeout, Login, ESPBA) {
 	
 		$scope.isLoggedIn = Login.isLoggedIn();
 
@@ -21,7 +21,7 @@ angular.module('gulveonlineApp')
 
 		$scope.searchTerm = undefined;
 		$scope.doSearch = function() {
-			$window.location.href = '/soeg/';
+			$location.path('/soeg/');
 		};
 
 		ESPBA.get('kategori', {} ).then(function(r) {

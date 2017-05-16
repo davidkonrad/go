@@ -72,6 +72,7 @@ module.exports = function(config) {
       'bower_components/jquery.easing/js/jquery.easing.min.js',
       'bower_components/fancybox-plus/src/jquery.fancybox-plus.js',
       'bower_components/angular-fancybox-plus/js/angular-fancybox-plus.js',
+      'bower_components/angular-loading-bar/build/loading-bar.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

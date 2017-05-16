@@ -43,15 +43,28 @@ angular.module('gulveonlineApp')
 			});
 		}
 
-		var term = angular.element('#search-input').val().trim();
-		angular.element('#search-input').val(term);
-		if (term) {
-			doSearch(term);
-			var terms = term.split(' ');
-			for (var i=0; i<terms.length; i++) { terms[i] = terms[i].quote() };
-			terms = terms.join(' + ');			
-			$scope.produktList.desc = '<h4>' + terms + '</h4>';
+		var searchInit = function() {
+			var term = angular.element('#search-input').val().trim();
+			angular.element('#search-input').val(term);
+			if (term) {
+				doSearch(term);
+				var terms = term.split(' ');
+				for (var i=0; i<terms.length; i++) { terms[i] = terms[i].quote() };
+				terms = terms.join(' + ');			
+				$scope.produktList.desc = '<h4>' + terms + '</h4>';
+			}
 		}
+
+		//invoked from navbar $location.path()
+		searchInit();
+
+		//hijack search inout enter, so search is performed id $location is /soeg already
+		angular.element('#search-input').on('keydown', function(e) {
+			if (e.keyCode == 13) {
+				searchInit();
+			}
+		});
+
 
 }]);
 

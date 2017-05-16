@@ -38,8 +38,7 @@ angular.module('gulveonlineApp')
 					Lookup.formatProdukt(p);
 				});
 				$timeout(function() {
-				$scope.produktList.title = 'Søgning';
-					angular.element('#search-gif').hide();
+					$scope.produktList.title = 'Søgning';
 				});
 			});
 		}
@@ -47,11 +46,11 @@ angular.module('gulveonlineApp')
 		var term = angular.element('#search-input').val().trim();
 		angular.element('#search-input').val(term);
 		if (term) {
+			doSearch(term);
 			var terms = term.split(' ');
 			for (var i=0; i<terms.length; i++) { terms[i] = terms[i].quote() };
 			terms = terms.join(' + ');			
 			$scope.produktList.desc = '<h4>' + terms + '</h4>';
-			doSearch(term);
 		}
 
 }]);

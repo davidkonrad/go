@@ -21,7 +21,7 @@ angular.module('gulveonlineApp')
 
 		$scope.searchTerm = undefined;
 		$scope.doSearch = function() {
-			$location.path('/soeg/');
+			$location.path('/soeg');
 		};
 
 		ESPBA.get('kategori', {} ).then(function(r) {

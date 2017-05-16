@@ -5,8 +5,8 @@
  *
  */
 angular.module('gulveonlineApp')
-  .controller('LoginCtrl', ['$scope', '$window', 'ESPBA', 'Login', 'RememberMe', 
-	function($scope, $window, ESPBA, Login, RememberMe) {
+  .controller('LoginCtrl', ['$scope', '$location', '$window', 'ESPBA', 'Login', 'RememberMe', 
+	function($scope, $location, $window, ESPBA, Login, RememberMe) {
 
 		var rm = RememberMe.get();
 
@@ -25,11 +25,10 @@ angular.module('gulveonlineApp')
 				if (r.error) {
 					$scope.user.error = r.error;
 				} else {
-					$window.location.href = '/admin-produkter';
+					$location.path('/admin-produkter');
 					$window.location.reload();
 				}
 			});
 		};
-
-			
+	
 }]);

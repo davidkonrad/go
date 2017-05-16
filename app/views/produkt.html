@@ -122,10 +122,15 @@
 	</div>
 	
 	<div ng-repeat="i in produkt.billeder" class="image image-md">
-		<img class="thumbnail" ng-src="/media-uploads/{{ i.path }}" style="cursor:pointer;" fancyboxable>
+		<img class="thumbnail" 
+			ng-src="/media-uploads/{{ i.path }}" 
+			style="cursor:pointer;" 
+			fancyboxable="{centerOnScroll:true,margin:20}">
 	</div>
 
-	<br><br><br><br><br><br><br><br>
+	<div class="clearfix">
+		<br><br><br>
+	</div>
 	
 </div>
 

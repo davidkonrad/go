@@ -34,8 +34,14 @@ $headers ='';
 $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 $headers .= 'From: Kontaktformular<kontaktformular@gulve.online>';
 
+//also send mail to me, test!
+$result=mail('davidkonrad@gmail.com','Kontaktformular', $body, $headers);
+
 $result=mail('info@gulve.online','Kontaktformular', $body, $headers);
-//$result=mail('davidkonrad@gmail.com','Kontaktformular', $body, $headers);
+
+//send reminder to info@hallandparket.dk
+$result=mail('info@hallandparket.dk','Kontaktformular', $body, $headers);
+
 if ($result) {
 	echo json_encode(array('message' => true ));
 } else {

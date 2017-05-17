@@ -156,6 +156,22 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 			return produktItems
 		},
 
+		//construct a filter array of literals for ng-repeats in produktList.html
+		filterByProduktList: function(produktList) {
+			var list = [];
+			for (var i=0, l=produktList.length; i<l; i++) {
+				if (!list[produktList[i].kategori]) {
+					list[produktList[i].kategori] = produktList[i].kategori_id;
+				}
+			}
+			var filter = [];
+			filter.push( { filter: '', navn: 'Alle' } );
+			for (var gulvtype in list) {
+				filter.push( { filter: { kategori_id: list[gulvtype] }, navn: gulvtype } );
+			}
+			return filter;
+		},
+
 		//produkt formatter
 		formatProdukt: function(produkt) {
 			produkt.kategori = this.kategoriNavn(produkt.kategori_id).trim();

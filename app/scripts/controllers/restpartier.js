@@ -20,16 +20,19 @@ angular.module('gulveonlineApp')
 		$scope.sorteringItems = [
 			{ id: 'sortPrice', navn: 'Laveste m² pris' },
 			{ id: 'paa_lager', navn: 'Antal m² på lager' },
-			{ id: 'sort', navn: 'Træsorter' },
-			{ id: 'kategori', navn: 'Gulvtype' }
+			{ id: 'sort', navn: 'Træsorter' }
 		];
 
 		ESPBA.get('produkter', { aktiv: 1, produkt_type_id: 3 }, { orderBy : { field: 'edited_timestamp', order: 'desc' }} ).then(function(r) {
 			$scope.produkter = r.data;
-			$scope.produkter.forEach(function(p) {
-				Lookup.formatProdukt(p);
-			});
+			for (var i=0, l=$scope.produkter.length; i<l; i++) {
+				Lookup.formatProdukt($scope.produkter[i]);
+				if (i == l-1) {
+					$scope.gulvtypeItems = Lookup.filterByProduktList($scope.produkter);
+				}
+			}
 		});
+
 
 }]);
 

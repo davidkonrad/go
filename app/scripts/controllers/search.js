@@ -12,8 +12,7 @@ angular.module('gulveonlineApp')
 		$scope.sorteringItems = [
 			{ id: 'sortPrice', navn: 'Laveste m² pris' },
 			{ id: 'paa_lager', navn: 'Antal m² på lager' },
-			{ id: 'sort_id', navn: 'Træsorter' },
-			{ id: 'kategori', navn: 'Gulvtype' }
+			{ id: 'sort_id', navn: 'Træsorter' }
 		];
 
 		Meta.setTitle('Søgning');
@@ -39,6 +38,7 @@ angular.module('gulveonlineApp')
 				});
 				$timeout(function() {
 					$scope.produktList.title = 'Søgning';
+					$scope.gulvtypeItems = Lookup.filterByProduktList($scope.produkter);
 				});
 			});
 		}

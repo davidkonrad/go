@@ -8,11 +8,26 @@
 
 	<div class="md-col-12 clearfix">
 		<h5 class="pull-left" style="margin-bottom: 0px; margin-top:20px;"> 
-			Viser {{ produkter.length }} 
-			<span ng-if="produkter.length == 1">produkt</span>
-			<span ng-if="produkter.length == 0 || produkter.length > 1">produkter</span>
+			Viser {{ filtered.length }} 
+			<span ng-if="filtered.length == 1">produkt</span>
+			<span ng-if="filtered.length == 0 || filtered.length > 1">produkter</span>
+			af {{ produkter.length }} mulige.
 		</h5>
+
 		<h5 class="pull-right"> 
+			<span	ng-show="gulvtypeItems != undefined">Gulvtype</span>
+			<button type="button" 
+				ng-show="gulvtypeItems != undefined"
+				class="btn btn-sm btn-default" 
+				ng-model="filter" 
+				data-toggle="true"
+				placeholder="Vælg"
+				data-container='body'
+				bs-select
+				bs-options="filter.filter as filter.navn for filter in gulvtypeItems">
+			  <span class="caret"></span>
+			</button>
+			&nbsp;&nbsp;&nbsp;
 			Sorter efter
 			<button type="button" 
 				class="btn btn-sm btn-default" 
@@ -24,7 +39,10 @@
 				bs-options="sort.id as sort.navn for sort in sorteringItems">
 			  <span class="caret"></span>
 			</button>
+
 		</h5>
+
+
 	</div>
 
 	<div class="md-col-12 ">
@@ -32,7 +50,7 @@
 	</div>
 
 	<div class="row md-col-12 clearfix" 
-			ng-repeat="p in produkter | orderBy:sortering" 
+			ng-repeat="p in filtered = ( produkter | orderBy:sortering | filter: filter )" 
 			ng-class-even="'element-even'"
 			style="margin-bottom: 10px !important; padding:10px;">
 		<div class="md-col-12">

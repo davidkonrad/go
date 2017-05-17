@@ -51,9 +51,6 @@ angular.module('gulveonlineApp')
 			$scope.sorteringItems.push(	{ id: 'sort', navn: 'Træsorter' } );
 		}
 
-		//add kategori / gulvtype sortering as the last item
-		$scope.sorteringItems.push(	{ id: 'kategori', navn: 'Gulvtype' } );
-
 		var field = table + '_id';
 		
 		ESPBA.get(table, { id: id }).then(function(r) {
@@ -65,7 +62,9 @@ angular.module('gulveonlineApp')
 
 		ESPBA.get('produkter', search ).then(function(r) {
 			$scope.produkter = r.data;
-			$scope.produkter.forEach(function(p) {
+
+			for (var i=0, l=$scope.produkter.length; i<l; i++) {
+				var p = $scope.produkter[i];
 				Lookup.formatProdukt(p);
 
 				ESPBA.get('billeder', { produkt_id: p.id }, { limit: 1, orderBy : 'rand()' } ).then(function(b) {
@@ -81,7 +80,11 @@ angular.module('gulveonlineApp')
 					}
 				});
 
-			});
+				if (i == l-1) {
+					$scope.gulvtypeItems = Lookup.filterByProduktList($scope.produkter);
+				}
+			}
+			
 		});
 
 	

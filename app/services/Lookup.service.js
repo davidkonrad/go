@@ -172,6 +172,14 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 			return filter;
 		},
 
+		//return if produkt with attr == value exists
+		hasProdukterWithAttr: function(attrName, value) {
+			for (var i=0, l=produktItems.length; i<l; i++) {
+				if (produktItems[i][attrName] == value && produktItems[i].aktiv) return true;
+			}
+			return false;
+		},
+			
 		//produkt formatter
 		formatProdukt: function(produkt) {
 			produkt.kategori = this.kategoriNavn(produkt.kategori_id).trim();

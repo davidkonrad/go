@@ -55,6 +55,20 @@ angular.module('gulveonlineApp')
 		
 		ESPBA.get(table, { id: id }).then(function(r) {
 			$scope.produktList.desc = r.data[0].beskrivelse;
+
+			//update meta
+			if (r.data[0].meta_title && r.data[0].meta_title !='') {
+				Meta.setTitle(r.data[0].meta_title);
+			} else {
+				Meta.setTitle(r.data[0].navn);
+			}
+
+			if (r.data[0].meta_desc && r.data[0].meta_desc !='') {
+				Meta.setDescription(r.data[0].meta_desc);
+			} else {
+				Meta.setDescription(r.data[0].beskrivelse);
+			}
+
 		});
 
 		var search = { aktiv: 1 };

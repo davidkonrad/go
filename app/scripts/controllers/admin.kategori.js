@@ -37,7 +37,7 @@ angular.module('gulveonlineApp')
 				}),
 
       DTColumnBuilder.newColumn('meta_title')
-				.withTitle('Title')
+				.withTitle('Meta title')
 				.withClass('td-beskrivelse'),
 
       DTColumnBuilder.newColumn('meta_desc')

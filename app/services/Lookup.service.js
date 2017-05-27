@@ -195,7 +195,7 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 			produkt.urlKvalitet = Utils.getOversigtLink('sortering', idToItem(kvalitetItems, produkt.kvalitet_id));
 			produkt.urlSort = Utils.getOversigtLink('traesort', idToItem(sortItems, produkt.sort_id));
 			produkt.urlProfil = Utils.getOversigtLink('profil', idToItem(profilItems, produkt.profil_id));
-			produkt.urlOverflade = Utils.getOversigtLink('overflade', idToItem(overfladeItems, produkt.overflade_id));
+			produkt.urlOverflade = Utils.getOversigtLink('overflade-behandling', idToItem(overfladeItems, produkt.overflade_id));
 
 			produkt.enhed = this.enhedNavn(produkt.enhed_id);
 			produkt.enhed_flertal = this.enhedNavnFlertal(produkt.enhed_id);

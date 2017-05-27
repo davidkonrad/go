@@ -9,15 +9,15 @@ angular.module('gulveonlineApp').directive('readMore', function($timeout) {
 
 			$timeout(function() {
 
-				if (element[0].offsetHeight > 110) {
+				if (element[0].offsetHeight > 60) {
 
 					var linkSuffix = new Date().getTime();
 					var readMoreClass = 'readMore'+linkSuffix;
 					var moreText = ' ▼  Læs mere';
 					var lessText = ' ▲  Læs mindre';
-					var link = 	'<code><a href="#" class="unstyled ' + readMoreClass + '">' + moreText + '</a></code>';
+					var link = 	'<code><a href="#" class="unstyled ' + readMoreClass + '">' + moreText + '</a></code><br><br>';
 
-					element[0].style.height = '120px';				
+					element[0].style.height = '70px';				
 					element[0].style.overflowY = 'hidden';
 					
 					$(element).after(link);
@@ -27,10 +27,10 @@ angular.module('gulveonlineApp').directive('readMore', function($timeout) {
 							element[0].style.overflowY = 'visible';
 							$(this).text(lessText);
 						} else {
-							element[0].style.height = '120px';				
+							element[0].style.height = '70px';				
 							element[0].style.overflowY = 'hidden';
 							$(this).text(moreText);
-							$("body").animate({scrollTop: $(this).offset().top -100}, "fast");
+							$("body").animate({scrollTop: $(this).offset().top -70}, "fast");
 						}
 					});
 				}

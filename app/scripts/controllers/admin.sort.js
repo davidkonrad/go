@@ -20,7 +20,17 @@ angular.module('gulveonlineApp')
 				.withClass('td-beskrivelse')
 				.renderWith(function(data) {
 					return Utils.plainText(data)
-				})
+				}),
+
+			DTColumnBuilder.newColumn('meta_title')
+				.withTitle('Meta title')
+				.withClass('td-beskrivelse'),
+
+      DTColumnBuilder.newColumn('meta_desc')
+				.withTitle('Meta desc.')
+				.withClass('td-beskrivelse')
+
+
 		];
 
 		$scope.dtOptions = DTOptionsBuilder

@@ -134,17 +134,19 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 		profilNavn: function(id) {
 			return idToNavn(profilItems, id)
 		},
-		getKategori: function(id) {
-			for (var i=0, l=kategoriItems.length; i<l; i++) {
-				if (kategoriItems[i].id == id) {
-					return kategoriItems[i].navn
-				}
-			}
-			return false
-		},
 		produktNavn: function(id) {
 			return idToNavn(produkter, id)
 		},
+		//return the kategori object
+		getKategori: function(id) {
+			for (var i=0, l=kategoriItems.length; i<l; i++) {
+				if (kategoriItems[i].id == id) {
+					return kategoriItems[i];
+				}
+			}
+			return false;
+		},
+
 
 		//return tables
 		sortItems: function() {
@@ -174,13 +176,13 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 
 		//construct a filter array of literals for ng-repeats in produktList.html
 		filterByProduktList: function(produktList) {
-			var list = undefined;
+			var list = [];
 			for (var i=0, l=produktList.length; i<l; i++) {
 				if (!list[produktList[i].kategori]) {
 					list[produktList[i].kategori] = produktList[i].kategori_id;
 				}
 			}
-			var filter = undefined;
+			var filter = [];
 			filter.push( { filter: '', navn: 'Alle' } );
 			for (var gulvtype in list) {
 				filter.push( { filter: { kategori_id: list[gulvtype] }, navn: gulvtype } );
@@ -208,6 +210,7 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 			produkt.url = Utils.getProduktLink(produkt);
 			produkt.urlName = Utils.urlName(produkt.navn);
 
+			produkt.urlKategori = Utils.getKategoriLink( this.getKategori( produkt.kategori_id ));
 			produkt.urlKvalitet = Utils.getOversigtLink('sortering', idToItem(kvalitetItems, produkt.kvalitet_id));
 			produkt.urlSort = Utils.getOversigtLink('traesort', idToItem(sortItems, produkt.sort_id));
 			produkt.urlProfil = Utils.getOversigtLink('profil', idToItem(profilItems, produkt.profil_id));

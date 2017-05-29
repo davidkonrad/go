@@ -19,7 +19,14 @@
 				</tr>
 				<tr>
 					<td>Kategori</td>
-					<td>{{ produkt.kategori }}</td>
+					<td>
+						<a class="unstyled"
+							href="{{ produkt.urlKategori }}"
+							title="Klik for at se alle gulve i kategorien {{ produkt.kategori | lowercase }}">
+							{{ produkt.kategori }}
+							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
+						</a>
+					</td>
 				</tr>
 				<tr ng-if="produkt.sort != '' ">
 					<td>Træsort</td>

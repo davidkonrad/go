@@ -18,7 +18,6 @@ angular.module('gulveonlineApp')
 			{ id: 'sortPrice', navn: 'Laveste m² pris' },
 			{ id: 'paa_lager', navn: 'Antal m² på lager' },
 			{ id: 'sort', navn: 'Træsorter' }
-			//{ id: 'kategori', navn: 'Gulvtype' }
 		];
 
 		ESPBA.get('kategori', { id: id }).then(function(r) {

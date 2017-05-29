@@ -169,16 +169,20 @@ angular.module('gulveonlineApp', [
       });
 
   })
-	.run(function($location, Lookup, ESPBA, Meta) {
+	.run(function($rootScope, $location, Lookup, ESPBA, Meta) {
+
+		$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){ 
+			// this is required if you want to prevent the $UrlRouter reverting the URL to the previous valid location
+			event.preventDefault();
+		});
+
 		if ($location.host() === 'localhost') {
 			ESPBA.setHost('http://localhost/html/gulveonline/app/');
 		} else {
 			ESPBA.setHost('http://gulve.online/');
 		}
 		ESPBA.setApiPath('api/espba.php');	
-
 		Lookup.init();
-		//Meta.setTitleSuffix(' :: gulve-online');		
 
 	});
 

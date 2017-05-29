@@ -1,19 +1,19 @@
 'use strict';
 
-angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(ESPBA, Utils) {
+angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', function($q, ESPBA, Utils) {
 
 	//pass data between pages
 	var passData = undefined;
 
 	//lookup lists
-	var sortItems = [];
-	var overfladeItems = [];
-	var kvalitetItems = [];
-	var kategoriItems = [];
-	var enhedItems = [];
-	var produktTypeItems = [];
-	var profilItems = [];
-	var produktItems = [];
+	var sortItems = undefined;
+	var overfladeItems = undefined;
+	var kvalitetItems = undefined;
+	var kategoriItems = undefined;
+	var enhedItems = undefined;
+	var produktTypeItems = undefined;
+	var profilItems = undefined;
+	var produktItems = undefined;
 
 	function idToNavn(table, id, field) {
 		if (!field) field = 'navn';
@@ -44,18 +44,18 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 
 		//lookup service
 		init: function() {
-			ESPBA.get('kategori', {}).then(function(r) {
-				r.data.sort(function(a, b) {
-					return a.navn.localeCompare(b.navn)
-				});
-				kategoriItems = r.data;
-			});
+			var	deferred = $q.defer();
 
-			ESPBA.get('sort', {}).then(function(r) {
-				r.data.sort(function(a, b) {
-					return a.navn.localeCompare(b.navn)
-				});
-				sortItems = r.data;
+			var check = function() {
+				if (profilItems && overfladeItems && kvalitetItems && sortItems && kategoriItems) {
+		      deferred.resolve();
+				}
+			};
+			check(); //subsitutes a method for "already initted"
+
+			ESPBA.get('profil', {}).then(function(r) {
+				profilItems = r.data;
+				check();
 			});
 
 			ESPBA.get('overflade', {}).then(function(r) {
@@ -63,6 +63,7 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 					return a.navn.localeCompare(b.navn)
 				});
 				overfladeItems = r.data;
+				check();
 			});
 
 			ESPBA.get('kvalitet', {}).then(function(r) {
@@ -70,6 +71,23 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 					return a.navn.localeCompare(b.navn)
 				});
 				kvalitetItems = r.data;
+				check();
+			});
+
+			ESPBA.get('kategori', {}).then(function(r) {
+				r.data.sort(function(a, b) {
+					return a.navn.localeCompare(b.navn)
+				});
+				kategoriItems = r.data;
+				check();
+			});
+
+			ESPBA.get('sort', {}).then(function(r) {
+				r.data.sort(function(a, b) {
+					return a.navn.localeCompare(b.navn)
+				});
+				sortItems = r.data;
+				check();
 			});
 
 			ESPBA.get('enhed', {}).then(function(r) {
@@ -80,13 +98,11 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 				produktTypeItems = r.data;
 			});
 
-			ESPBA.get('profil', {}).then(function(r) {
-				profilItems = r.data;
-			});
-
 			ESPBA.get('produkter', {}).then(function(r) {
 				produktItems = r.data;
 			});
+
+      return deferred.promise;
 
 		},
 
@@ -158,13 +174,13 @@ angular.module('gulveonlineApp').factory('Lookup', ['ESPBA', 'Utils', function(E
 
 		//construct a filter array of literals for ng-repeats in produktList.html
 		filterByProduktList: function(produktList) {
-			var list = [];
+			var list = undefined;
 			for (var i=0, l=produktList.length; i<l; i++) {
 				if (!list[produktList[i].kategori]) {
 					list[produktList[i].kategori] = produktList[i].kategori_id;
 				}
 			}
-			var filter = [];
+			var filter = undefined;
 			filter.push( { filter: '', navn: 'Alle' } );
 			for (var gulvtype in list) {
 				filter.push( { filter: { kategori_id: list[gulvtype] }, navn: gulvtype } );

@@ -116,12 +116,20 @@ angular.module('gulveonlineApp')
 				}
 			}),
 
+			DTColumnBuilder.newColumn('meta_title')
+				.withTitle('Meta title')
+				.withClass('td-beskrivelse no-export'),
+
+      DTColumnBuilder.newColumn('meta_desc')
+				.withTitle('Meta desc.')
+				.withClass('td-beskrivelse no-export'),
+
       DTColumnBuilder.newColumn(null)
 				.withOption('width', '20px')
 				.withTitle('')
 				.withClass('no-click no-export')
 				.renderWith(function(data, type, full /*, meta*/) {
-						return '<a href="#/produkt/'+Utils.urlName(full.navn)+'/'+full.id+'"><i class="glyphicon glyphicon-share-alt text-primary"></i></a>';
+					return '<a href="' + Utils.getProduktLink(full) +'"><i class="glyphicon glyphicon-share-alt text-primary"></i></a>';
 				})
 		];
 

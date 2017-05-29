@@ -11,17 +11,13 @@
 
 .ta-editor.form-control.produkt-beskrivelse, 
 .ta-scroll-window.form-control.produkt-beskrivelse {
-	height: 180px;
+	height: 97%; /*180px;*/
 	min-height: 180px;
 	overflow: auto;
 	font-family: inherit;
 	font-size: 100%;
 	width: 100%;	
 	margin-top: 5px;
-}
-.form-control.myform2-height > .ta-bind {
-	min-height: 180px;
-	padding: 6px 12px;
 }
 
 .control-label {

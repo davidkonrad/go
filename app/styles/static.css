@@ -194,9 +194,7 @@ a.unstyled {
 	clear: none;
 }
 .go-navbar-right {
-	float: right;
 	clear: none; 
-	padding-right:20px;
 }
 code.go-navbar-logo {
 	padding-left:10px;

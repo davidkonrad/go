@@ -2,21 +2,35 @@
 <div ng-controller="NavbarCtrl"
 	ng-hide="isLoggedIn" 
 	class="container-fluid go-navbar">
-	<div class="go-navbar-left">
+	<div class="go-navbar-left col-md-9 col-sm-6  col-xs-12">
 	  <h1><strong><code class="go-navbar-logo"><a href="/" class="unstyled" title="gulve.online forside">gulve.online</a></code></strong></h1>
-	  <h2><em>Stav, plank og mosaik</em></h2>
+	  <h2 style="white-space:nowrap;"><em>Stav, plank og mosaik</em></h2>
 	</div>
-	<div class="go-navbar-right">
-		<h3><i class="fa fa-fw fa-phone"></i>&nbsp;&nbsp;
-			<small style="color:white">(+45)</small> 2372 2282
-			<br>
-		</h3>
-		<h3>
-			<i class="fa fa-fw fa-envelope"></i>&nbsp;
-			<a href="mailto:info@gulve.online" class="unstyled" title="Klik for at 
+	<div class="go-navbar-right col-md-3 col-sm-6 col-xs-12">
+		<div class="visible-md visible-sm visible-lg">
+			<h3><i class="fa fa-fw fa-phone"></i>&nbsp;&nbsp;
+				<small style="color:white">(+45)</small> 2372 2282
+				<br>
+			</h3>
+			<h3>
+				<i class="fa fa-fw fa-envelope"></i>&nbsp;
+				<a href="mailto:info@gulve.online" class="unstyled" title="Klik for at 
 sende en mail">info@gulve.online</a>
-		</h3>
+			</h3>
+		</div>
 	</div>
+		<div class="visible-xs">
+			<h5><i class="fa fa-fw fa-phone"></i>&nbsp;&nbsp;
+				<small style="color:white">(+45)</small> 2372 2282
+			</h5>
+			<h5 class="clearfix">
+				<i class="fa fa-fw fa-envelope"></i>&nbsp;
+				<a href="mailto:info@gulve.online" class="unstyled" title="Klik for at 
+sende en mail">info@gulve.online</a>
+			</h5>
+		</div>
+	</div>
+
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-top" bs-affix data-offset-top="197" ng-controller="NavbarCtrl">

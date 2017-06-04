@@ -120,7 +120,6 @@ span.no-padding {
 }
 
 /** new affix **/
-
 .affix {
 	top: 0;
 	width: 100%;
@@ -183,3 +182,23 @@ a.unstyled {
 }
 
 
+/* navbar top */
+.go-navbar {
+	color:#fff;
+	height:200px;
+	background-image: url('../images/back.jpg');
+	background-repeat: repeat-x;
+}
+.go-navbar-left {
+	float: left;
+	clear: none;
+}
+.go-navbar-right {
+	float: right;
+	clear: none; 
+	padding-right:20px;
+}
+code.go-navbar-logo {
+	padding-left:10px;
+	padding-right:10px;
+}

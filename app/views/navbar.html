@@ -1,10 +1,22 @@
 
 <div ng-controller="NavbarCtrl"
 	ng-hide="isLoggedIn" 
-	class="container-fluid" 
-	style="color:#fff;height:200px;background-image: url('images/back.jpg');background-repeat: repeat-x;">
-  <h1><strong><code style="padding-left:10px;padding-right:10px;"><a href="/" class="unstyled">gulve.online</a></code></strong></h1>
-  <h2><em>Stav, plank og mosaik</em></h2>
+	class="container-fluid go-navbar">
+	<div class="go-navbar-left">
+	  <h1><strong><code class="go-navbar-logo"><a href="/" class="unstyled" title="gulve.online forside">gulve.online</a></code></strong></h1>
+	  <h2><em>Stav, plank og mosaik</em></h2>
+	</div>
+	<div class="go-navbar-right">
+		<h3><i class="fa fa-fw fa-phone"></i>&nbsp;&nbsp;
+			<small style="color:white">(+45)</small> 2372 2282
+			<br>
+		</h3>
+		<h3>
+			<i class="fa fa-fw fa-envelope"></i>&nbsp;
+			<a href="mailto:info@gulve.online" class="unstyled" title="Klik for at 
+sende en mail">info@gulve.online</a>
+		</h3>
+	</div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-top" bs-affix data-offset-top="197" ng-controller="NavbarCtrl">

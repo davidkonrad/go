@@ -179,7 +179,7 @@ angular.module('gulveonlineApp', [
 		if ($location.host() === 'localhost') {
 			ESPBA.setHost('http://localhost/html/gulveonline/app/');
 		} else {
-			ESPBA.setHost('http://gulve.online/');
+			ESPBA.setHost('https://gulve.online/');
 		}
 		ESPBA.setApiPath('api/espba.php');	
 		Lookup.init();

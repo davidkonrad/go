@@ -13,13 +13,13 @@ angular.module('gulveonlineApp')
 		}
 
 		var temp = '';
-		temp += 'http://gulve.online/tilbud' + "\n";
-		temp += 'http://gulve.online/restpartier' + "\n";
-		temp += 'http://gulve.online/kontakt' + "\n";
-		temp += 'http://gulve.online/referencer' + "\n";
-		temp += 'http://gulve.online/om-gulve-online' + "\n";
-		temp += 'http://gulve.online/produkt-oversigt' + "\n";
-		temp += 'http://gulve.online/vilkaar-og-betingelser' + "\n";
+		temp += 'https://gulve.online/tilbud' + "\n";
+		temp += 'https://gulve.online/restpartier' + "\n";
+		temp += 'https://gulve.online/kontakt' + "\n";
+		temp += 'https://gulve.online/referencer' + "\n";
+		temp += 'https://gulve.online/om-gulve-online' + "\n";
+		temp += 'https://gulve.online/produkt-oversigt' + "\n";
+		temp += 'https://gulve.online/vilkaar-og-betingelser' + "\n";
 
 		ESPBA.get('kategori', { aktiv: 1 }).then(function(kategorier) {
 			kategorier.data.forEach(function(k) {

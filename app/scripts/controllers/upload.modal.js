@@ -11,7 +11,7 @@ angular.module('gulveonlineApp')
 		if ($location.host() === 'localhost') {
 			path = 'http://localhost/html/gulveonline/app/api/';
 		} else {
-			path = 'http://gulve.online/api/';
+			path = 'https://gulve.online/api/';
 		}
 
 		return {
@@ -91,6 +91,5 @@ angular.module('gulveonlineApp')
 
 		};
 
-	}]);
-
+}]);
 

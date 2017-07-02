@@ -47,7 +47,7 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 			var	deferred = $q.defer();
 
 			var check = function() {
-				if (profilItems && overfladeItems && kvalitetItems && sortItems && kategoriItems) {
+				if (profilItems && overfladeItems && kvalitetItems && sortItems && kategoriItems && enhedItems && produktTypeItems) {
 		      deferred.resolve();
 				}
 			};
@@ -87,15 +87,17 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 					return a.navn.localeCompare(b.navn)
 				});
 				sortItems = r.data;
-				check();
+ 				check();
 			});
 
 			ESPBA.get('enhed', {}).then(function(r) {
 				enhedItems = r.data;
+				check();
 			});
 
 			ESPBA.get('produkt_type', {}).then(function(r) {
 				produktTypeItems = r.data;
+				check();
 			});
 
 			ESPBA.get('produkter', {}).then(function(r) {
@@ -103,7 +105,6 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 			});
 
       return deferred.promise;
-
 		},
 
 		//get names for record
@@ -237,7 +238,6 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 				}
 			});
 		}
-
 
 	}
 

@@ -23,14 +23,20 @@ angular.module('gulveonlineApp')
 			{ id: 'sort', navn: 'Træsorter' }
 		];
 
-		ESPBA.get('produkter', { aktiv: 1, produkt_type_id: 3 }, { orderBy : { field: 'edited_timestamp', order: 'desc' }} ).then(function(r) {
-			$scope.produkter = r.data;
-			for (var i=0, l=$scope.produkter.length; i<l; i++) {
-				Lookup.formatProdukt($scope.produkter[i]);
-				if (i == l-1) {
-					$scope.gulvtypeItems = Lookup.filterByProduktList($scope.produkter);
+		function init() {
+			ESPBA.get('produkter', { aktiv: 1, produkt_type_id: 3 }, { orderBy : { field: 'edited_timestamp', order: 'desc' }} ).then(function(r) {
+				$scope.produkter = r.data;
+				for (var i=0, l=$scope.produkter.length; i<l; i++) {
+					Lookup.formatProdukt($scope.produkter[i]);
+					if (i == l-1) {
+						$scope.gulvtypeItems = Lookup.filterByProduktList($scope.produkter);
+					}
 				}
-			}
+			});
+		}
+
+		Lookup.init().then(function() {
+			init();
 		});
 
 

@@ -25,36 +25,40 @@ angular.module('gulveonlineApp')
 		$scope.produktList.title = 'Aktuelle Tilbud';
 		$scope.produktList.desc = 'Gælder så længe lager laves. Klik på produktet for at se lagerbeholdning og evt. leveringstid.';
 		
-		ESPBA.get('produkter', { produkt_type_id: 2 }).then(function(r) {
-			$scope.produkter = r.data;
+		function init() {
+			ESPBA.get('produkter', { produkt_type_id: 2 }).then(function(r) {
+				$scope.produkter = r.data;
 
-			for (var i=0, l=$scope.produkter.length; i<l; i++) {
-				var p = $scope.produkter[i];
+				for (var i=0, l=$scope.produkter.length; i<l; i++) {
+					var p = $scope.produkter[i];
 
-				Lookup.formatProdukt(p);
+					Lookup.formatProdukt(p);
 
-				ESPBA.get('billeder', { produkt_id: p.id }, { limit: 1, orderBy : 'rand()' } ).then(function(b) {
-					if (b.data.length) {
-						p.billede = 'media-uploads/'+b.data[0].path;
-					} else {
-						p.billede = 'images/default-picture.jpg';
+					ESPBA.get('billeder', { produkt_id: p.id }, { limit: 1, orderBy : 'rand()' } ).then(function(b) {
+						if (b.data.length) {
+							p.billede = 'media-uploads/'+b.data[0].path;
+						} else {
+							p.billede = 'images/default-picture.jpg';
+						}
+					});
+
+					ESPBA.get('tilbud', { produkt_id: p.id }, { limit: 1 } ).then(function(b) {
+						if (b.data.length) {
+							p.tilbud_pris_enhed = b.data[0].tilbud_pris_enhed;
+						}
+					});
+
+					if (i == l-1) {
+						$scope.gulvtypeItems = Lookup.filterByProduktList($scope.produkter);
 					}
-				});
-
-				ESPBA.get('tilbud', { produkt_id: p.id }, { limit: 1 } ).then(function(b) {
-					if (b.data.length) {
-						p.tilbud_pris_enhed = b.data[0].tilbud_pris_enhed;
-					}
-				});
-
-				if (i == l-1) {
-					$scope.gulvtypeItems = Lookup.filterByProduktList($scope.produkter);
+			
 				}
-				
-			}
+			});
+		}
 
+		Lookup.init().then(function() {
+			init();
 		});
-
 
 }]);
 

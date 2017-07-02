@@ -20,21 +20,27 @@ angular.module('gulveonlineApp')
 			{ id: 'sort', navn: 'Træsorter' }
 		];
 
-		ESPBA.get('kategori', { id: id }).then(function(r) {
-			$scope.kategori = r.data[0];
+		function init() {
+			ESPBA.get('kategori', { id: id }).then(function(r) {
+				$scope.kategori = r.data[0];
 
-			$scope.produktList.title = $scope.kategori.navn;
-			$scope.produktList.desc = $scope.kategori.beskrivelse;
+				$scope.produktList.title = $scope.kategori.navn;
+				$scope.produktList.desc = $scope.kategori.beskrivelse;
 
-			Meta.setTitle($scope.kategori.meta_title || $scope.kategori.navn);
-			Meta.setDescription($scope.kategori.meta_desc || $scope.kategori.beskrivelse || $scope.kategori.navn);
-		});
-
-		ESPBA.get('produkter', { kategori_id: id, aktiv: 1 }, { orderBy : { field: 'edited_timestamp', order: 'desc' }}).then(function(r) {
-			$scope.produkter = r.data;
-			$scope.produkter.forEach(function(p) {
-				Lookup.formatProdukt(p);
+				Meta.setTitle($scope.kategori.meta_title || $scope.kategori.navn);
+				Meta.setDescription($scope.kategori.meta_desc || $scope.kategori.beskrivelse || $scope.kategori.navn);
 			});
+
+			ESPBA.get('produkter', { kategori_id: id, aktiv: 1 }, { orderBy : { field: 'edited_timestamp', order: 'desc' }}).then(function(r) {
+				$scope.produkter = r.data;
+				$scope.produkter.forEach(function(p) {
+					Lookup.formatProdukt(p);
+				});
+			});
+		}
+
+		Lookup.init().then(function() {
+			init();
 		});
 
 }]);

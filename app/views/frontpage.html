@@ -32,7 +32,12 @@
 							{{ p.tilbud_pris_enhed | currency }} /{{ p.enhed }}
 						</span>
 						<span ng-if="!p.tilbud_pris_enhed">
-							{{ p.pris_enhed | currency }} /{{ p.enhed }}
+							<span ng-if="p.pris_enhed == 0">
+								Ring og spørg efter pris
+							</span>
+							<span ng-if="p.pris_enhed != 0">
+								{{ p.pris_enhed | currency }} /{{ p.enhed }}
+							</span>
 						</span>
 					</div>
 				</a>

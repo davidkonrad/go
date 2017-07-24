@@ -76,11 +76,23 @@
 		<div class="col-md-9">
 			<h2 class="text-success" style="margin-top:0px;">
 				<span ng-if="p.tilbud_pris_enhed">
-					<strike class="text-muted">{{ p.pris_enhed | currency }}</strike>
-					{{ p.tilbud_pris_enhed | currency }} /{{ p.enhed }}
+					<strike class="text-muted">
+						<span ng-if="p.pris_enhed == 0">
+							Ring og spørg efter pris
+						</span>
+						<span ng-if="p.pris_enhed != 0">
+							{{ p.pris_enhed | currency }}
+						</span>
+					</strike>
+					&nbsp;{{ p.tilbud_pris_enhed | currency }} /{{ p.enhed }}
 				</span>
 				<span ng-if="!p.tilbud_pris_enhed">
-					{{ p.pris_enhed | currency }} /{{ p.enhed }}
+					<span ng-if="p.pris_enhed == 0">
+						Ring og spørg efter pris
+					</span>
+					<span ng-if="p.pris_enhed != 0">
+						{{ p.pris_enhed | currency }} /{{ p.enhed }}
+					</span>
 				</span>
 			</h2>
 			<h4 style="line-height:140%;">

@@ -63,6 +63,14 @@ angular.module('gulveonlineApp')
 			});
 		});
 
+		ESPBA.get('slidgruppe', {}).then(function(overflade) {
+			overflade.data.forEach(function(o) {
+				if (Lookup.hasProdukterWithAttr('slidgruppe_id', o.id)) {
+					temp += Utils.getOversigtLink('slidgruppe', o) + "\n";
+				}
+			});
+		});
+
 
 		$timeout(function() {
 			$scope.sitemapText = temp;

@@ -91,6 +91,7 @@
 				<span ng-if="p.overflade != '' ">{{ p.overflade }}. </span>  
 				<span ng-if="p.kvalitet != '' ">{{ p.kvalitet }} sortering. </span>
 				<span ng-if="p.profil != '' ">{{ p.profil }} profil. </span>
+				<span ng-if="p.slidgruppe != '' ">Slidgruppe {{ p.slidgruppe }}. </span>
 				<span ng-if="p.pakker > 0 ">Leveres i pakker à {{ p.pakke_str | number:2 }} m&sup2;. </span>
 				<span ng-if="p.paa_lager > 0">{{ p.paa_lager | number:2 }} m&sup2; på lager. Kan leveres straks. </span>
 				<span ng-if="p.paa_lager <= 0">1-2 ugers leveringstid. </span>

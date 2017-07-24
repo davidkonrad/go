@@ -139,15 +139,15 @@
 		</div>
 	</div>
 	
-	<div ng-repeat="i in produkt.billeder" class="image image-md">
+	<div ng-repeat="i in produkt.billeder" class="image image-md" style="overflow-y: hidden;">
 		<img class="thumbnail" 
 			ng-src="/media-uploads/{{ i.path }}" 
 			style="cursor:pointer;" 
 			fancyboxable="{centerOnScroll:true,margin:20}">
 	</div>
 
-	<div class="clearfix">
-		<br><br><br>
+	<div class="clearfix" style="clear:both;float:left;width:100%;height:30px; min-height:30px !important;">
+		&nbsp;<br>
 	</div>
 	
 </div>

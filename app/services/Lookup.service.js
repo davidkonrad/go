@@ -14,6 +14,7 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 	var produktTypeItems = undefined;
 	var profilItems = undefined;
 	var produktItems = undefined;
+	var slidgruppeItems = undefined;
 
 	function idToNavn(table, id, field) {
 		if (!field) field = 'navn';
@@ -47,7 +48,7 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 			var	deferred = $q.defer();
 
 			var check = function() {
-				if (profilItems && overfladeItems && kvalitetItems && sortItems && kategoriItems && enhedItems && produktTypeItems) {
+				if (profilItems && overfladeItems && kvalitetItems && sortItems && kategoriItems && enhedItems && produktTypeItems && slidgruppeItems) {
 		      deferred.resolve();
 				}
 			};
@@ -55,6 +56,11 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 
 			ESPBA.get('profil', {}).then(function(r) {
 				profilItems = r.data;
+				check();
+			});
+
+			ESPBA.get('slidgruppe', {}).then(function(r) {
+				slidgruppeItems = r.data;
 				check();
 			});
 
@@ -135,6 +141,9 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 		profilNavn: function(id) {
 			return idToNavn(profilItems, id)
 		},
+		slidgruppeNavn: function(id) {
+			return idToNavn(slidgruppeItems, id)
+		},
 		produktNavn: function(id) {
 			return idToNavn(produkter, id)
 		},
@@ -170,6 +179,9 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 		},
 		profilItems: function() {
 			return profilItems
+		},
+		slidgruppeItems: function() {
+			return slidgruppeItems
 		},
 		produktItems: function() {
 			return produktItems
@@ -207,6 +219,7 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 			produkt.overflade = this.overfladeNavn(produkt.overflade_id).trim();
 			produkt.enhed = this.enhedNavn(produkt.enhed_id).trim();
 			produkt.profil = this.profilNavn(produkt.profil_id).trim();
+			produkt.slidgruppe = this.slidgruppeNavn(produkt.slidgruppe_id).trim();
 
 			produkt.url = Utils.getProduktLink(produkt);
 			produkt.urlName = Utils.urlName(produkt.navn);
@@ -216,6 +229,7 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 			produkt.urlSort = Utils.getOversigtLink('traesort', idToItem(sortItems, produkt.sort_id));
 			produkt.urlProfil = Utils.getOversigtLink('profil', idToItem(profilItems, produkt.profil_id));
 			produkt.urlOverflade = Utils.getOversigtLink('overflade-behandling', idToItem(overfladeItems, produkt.overflade_id));
+			produkt.urlSlidgruppe = Utils.getOversigtLink('slidgruppe', idToItem(slidgruppeItems, produkt.slidgruppe_id));
 
 			produkt.enhed = this.enhedNavn(produkt.enhed_id);
 			produkt.enhed_flertal = this.enhedNavnFlertal(produkt.enhed_id);

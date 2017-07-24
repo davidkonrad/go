@@ -14,7 +14,9 @@
 			Viser {{ filtered.length }} 
 			<span ng-if="filtered.length == 1">produkt</span>
 			<span ng-if="filtered.length == 0 || filtered.length > 1">produkter</span>
-			af {{ produkter.length }} mulige.
+			af {{ produkter.length }} 
+			<span ng-if="filtered.length == 1">mulig</span>
+			<span ng-if="filtered.length == 0 || filtered.length > 1">mulige</span>
 		</h5>
 
 		<h5 class="pull-right"> 

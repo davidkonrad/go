@@ -66,8 +66,19 @@
 					<td>
 						<a class="unstyled"
 							href="{{ produkt.urlProfil }}" 
-							title="Klik for at se alle gulve med {{ produkt.profiloverflade | lowercase }} profil">
+							title="Klik for at se alle gulve med {{ produkt.profil | lowercase }} profil">
 							{{ produkt.profil }}
+							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
+						</a>
+					</td>
+				</tr>
+				<tr ng-if="produkt.slidgruppe != '' ">
+					<td>Slidgruppe</td>
+					<td>
+						<a class="unstyled"
+							href="{{ produkt.urlSlidgruppe }}" 
+							title="Klik for at se alle gulve med slidgruppe {{ produkt.slidgruppe }}">
+							{{ produkt.slidgruppe }}
 							&nbsp;<small><i class="text-muted fa fa-external-link"></i></small>
 						</a>
 					</td>

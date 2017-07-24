@@ -153,6 +153,13 @@ angular.module('gulveonlineApp', [
         controller: 'AdminOverfladeCtrl',
         controllerAs: 'admin'
       })
+	   .when('/admin-slidgruppe', {
+        templateUrl: 'views/admin.slidgruppe.html',
+        controller: 'AdminSlidgruppeCtrl',
+        controllerAs: 'admin'
+      })
+
+			//general pages
 	   .when('/admin-profil', {
         templateUrl: 'views/admin.profil.html',
         controller: 'AdminProfilCtrl',

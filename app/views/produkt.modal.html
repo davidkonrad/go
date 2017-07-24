@@ -249,6 +249,22 @@
 									</div>
 
 							    <div class="form-group">
+							      <label class="col-md-2 control-label" for="slidgruppe">Slidgruppe</label>
+										<div class="col-md-4">
+											<button type="button" 
+												id="slidgruppe"
+												class="btn btn-default" 
+												ng-model="edit.slidgruppe_id" 
+												data-toggle="true"
+												placeholder="Vælg"
+												bs-select
+												bs-options="slidgruppe.id as slidgruppe.navn for slidgruppe in slidgruppeItems">
+											  <span class="caret"></span>
+											</button>
+										</div>
+									</div>
+
+							    <div class="form-group">
 							      <label class="col-md-2 control-label">Dimension</label>
 										<div class="col-md-8">
 									    <input class="form-control" 

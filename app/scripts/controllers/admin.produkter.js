@@ -82,6 +82,11 @@ angular.module('gulveonlineApp')
 					return Lookup.overfladeNavn(data);
 				}),
 
+      DTColumnBuilder.newColumn('slidgruppe_id').withTitle('Slidgruppe')
+				.renderWith(function(data /*, type, full, meta*/) {
+					return Lookup.slidgruppeNavn(data);
+				}),
+
       DTColumnBuilder.newColumn('enhed_id')
 				.withTitle('Enhed')
 				.renderWith(function(data /*, type, full, meta*/) {

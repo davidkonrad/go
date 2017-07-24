@@ -41,6 +41,10 @@ angular.module('gulveonlineApp')
 					table = 'kvalitet'; 
 					$scope.produktList.title = Lookup.kvalitetNavn(id) + ' sortering';
 					break;
+				case 'slidgruppe' :
+					table = 'slidgruppe'; 
+					$scope.produktList.title = 'Slidgruppe '+Lookup.slidgruppeNavn(id);
+					break;
 
 				default :
 					//should never happen

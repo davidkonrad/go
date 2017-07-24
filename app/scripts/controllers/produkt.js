@@ -40,6 +40,9 @@ angular.module('gulveonlineApp')
 					if ($scope.produkt.profil) {
 						meta += $scope.produkt.profil + ' profil. ';
 					}
+					if ($scope.produkt.slidgruppe) {
+						meta += 'Slidgruppe '+ $scope.produkt.slidgruppe+'. ';
+					}
 					if ($scope.produkt.overflade) {
 						meta += $scope.produkt.overflade + '. ';
 					}
@@ -54,7 +57,5 @@ angular.module('gulveonlineApp')
 		Lookup.init().then(function() {
 			init();
 		});
-
-
 
 }]);

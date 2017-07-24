@@ -1,0 +1,67 @@
+<div class="modal ng-scope top am-fade-and-slide-top center col-md-12" tabindex="-1" role="dialog" style="display: block;" id="admin-data-dialog">
+	<div class="modal-dialog modal-medium">
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<h4 class="modal-title"> {{ __dataModal.title }}</h4>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="row">
+					<form role="form" class="form-horizontal col-md-12">
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label required" for="navn">Navn</label>
+							<div class="col-md-8">
+						    <input class="form-control" ng-model="edit.navn" id="navn">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label" for="beskrivelse">Beskrivelse</label>
+							<div class="col-md-10">
+								<text-angular ng-model="edit.beskrivelse" id="beskrivelse"
+									ta-text-editor-class="form-control produkt-beskrivelse col-md-12" style="height: 150px;"
+									ta-toolbar="[['bold','italics','underline'], ['insertLink'], ['undo', 'redo', 'html']]">
+								</text-angular>
+							</div>
+						</div>
+	
+				    <div class="form-group">
+				      <label class="col-md-2 control-label" for="meta-title">Meta-title</label>
+							<div class="col-md-10">
+						    <input class="form-control" ng-model="edit.meta_title" id="meta-title">
+							</div>
+						</div>
+
+				    <div class="form-group">
+				      <label class="col-md-2 control-label" for="meta-desc">Meta-desc</label>
+							<div class="col-md-10">
+						    <textarea class="form-control" ng-model="edit.meta_desc" id="meta-desc" rows="2" cols="50"></textarea>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" 
+					class="btn" 
+					ng-click="modalClose(true)" 
+					ng-class="{ 'btn-success' : canSave() }"
+					ng-enabled="canSave()">
+						{{ __dataModal.btnOk }}
+				</button> 
+				<button type="button" 
+					class="btn btn-default" 
+					ng-click="modalClose(false)" 
+					ng-show="!alertParams.okOnly" >
+						Fortryd
+				</button> 
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -62,6 +62,7 @@ angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ES
 			$scope.overfladeItems = [{ id: 0, navn: '--'}].concat(Lookup.overfladeItems());
 			$scope.produktTypeItems = [{ id: 0, navn: '--'}].concat(Lookup.produktTypeItems());
 			$scope.profilItems = [{ id: 0, navn: '--'}].concat(Lookup.profilItems());
+			$scope.slidgruppeItems = [{ id: 0, navn: '--'}].concat(Lookup.slidgruppeItems());
 
 			modal = $modal({
 				scope: $scope,

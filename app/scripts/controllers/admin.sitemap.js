@@ -19,7 +19,6 @@ angular.module('gulveonlineApp')
 		temp += 'https://gulve.online/referencer' + "\n";
 		temp += 'https://gulve.online/om-gulve-online' + "\n";
 		temp += 'https://gulve.online/produkt-oversigt' + "\n";
-		temp += 'https://gulve.online/vilkaar-og-betingelser' + "\n";
 
 		ESPBA.get('kategori', { aktiv: 1 }).then(function(kategorier) {
 			kategorier.data.forEach(function(k) {

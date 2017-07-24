@@ -108,11 +108,23 @@
 				<span class="clearfix visible-xs" ng-if="produkt.tilbud_pris_enhed"></span>
 
 				<span ng-if="produkt.tilbud_pris_enhed">
-					<strike class="text-muted">{{ produkt.pris_enhed | currency }}</strike>
-					{{ produkt.tilbud_pris_enhed | currency }} 
+					<strike class="text-muted">
+						<span ng-if="produkt.pris_enhed == 0">
+							Ring og spørg efter pris
+						</span>
+						<span ng-if="produkt.pris_enhed != 0">
+							{{ produkt.pris_enhed | currency }}
+						</span>
+					</strike>
+					&nbsp;{{ produkt.tilbud_pris_enhed | currency }} 
 				</span>
 				<span ng-if="!produkt.tilbud_pris_enhed">
-					{{ produkt.pris_enhed | currency }} 
+					<span ng-if="produkt.pris_enhed == 0">
+						Ring og spørg efter pris
+					</span>
+					<span ng-if="produkt.pris_enhed != 0">
+						{{ produkt.pris_enhed | currency }}
+					</span>
 				</span>
 
 				<span class="clearfix visible-xs"><br></span>

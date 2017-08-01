@@ -46,6 +46,24 @@ angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', func
 		//lookup service
 		init: function() {
 			var	deferred = $q.defer();
+			var that = this;
+			if (!ESPBA.getToken()) {
+				ESPBA.init().then(function() {
+					that.__init().then(function() {
+			      deferred.resolve();
+					})
+				})
+			} else {
+				that.__init().then(function() {
+		      deferred.resolve();
+				})
+			}
+      return deferred.promise;
+		},
+
+		//internal initialize
+		__init: function() {
+			var	deferred = $q.defer();
 
 			var check = function() {
 				if (profilItems && overfladeItems && kvalitetItems && sortItems && kategoriItems && enhedItems && produktTypeItems && slidgruppeItems) {

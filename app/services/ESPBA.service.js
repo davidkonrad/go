@@ -23,6 +23,7 @@ angular.module('ESPBA', [])
 		var host = 'http://localhost/';
 		var api_path = 'api/espba.php';	
 		var returnMode = 'response'; //response || json
+		var token = undefined;
 
 		var process = function(r) {
 			return returnMode == 'json' ? r.data : r
@@ -50,27 +51,45 @@ angular.module('ESPBA', [])
 			setHost: function(h) {
 				host = h;
 			},
-			getHost: function() {
-				return host;
-			},
 			setApiPath: function(p) {
 				api_path = p;
 			},
-			getApiPath: function() {
-				return api_path;
-			},
-
 			setReturnMode: function(m) {
 				m = m.toString().toLowerCase();
 				if (~['response', 'json'].indexOf(m)) {
 					returnMode = m
 				}
 			},
+
+			getHost: function() {
+				return host;
+			},
+			getApiPath: function() {
+				return api_path;
+			},
+			getToken: function() {
+				return token;
+			},
+
+			init: function() {
+				var deferred = $q.defer();
+				var data = { __action: 'init' };
+				$http({
+					url: host + api_path,
+					method: 'POST',
+					params: data
+				}).then(function(r) {
+					token = r.data.token || false;
+		      deferred.resolve( process(r) )
+				})
+	      return deferred.promise;
+			},
 				
 			get: function(table, data, selectParams) {
 				var deferred = $q.defer();
 				data.__action = 'get';
 				data.__table = table;
+				data.__token = token;
 				data = parse(data, selectParams);
 
 				$http({
@@ -78,6 +97,7 @@ angular.module('ESPBA', [])
 					method: 'GET',
 					params: data
 				}).then(function(r) {
+					console.log(data, r);
 		      deferred.resolve( process(r) )
 				})
 	      return deferred.promise;
@@ -87,6 +107,7 @@ angular.module('ESPBA', [])
 				var deferred = $q.defer();
 				data.__action = 'delete';
 				data.__table = table;
+				data.__token = token;
 
 				$http({
 					url: host + api_path,
@@ -102,6 +123,8 @@ angular.module('ESPBA', [])
 				var deferred = $q.defer();
 				data.__action = 'update';
 				data.__table = table;
+				data.__token = token;
+
 				$http({
 					url: host + api_path,
 					method: 'POST',
@@ -116,6 +139,8 @@ angular.module('ESPBA', [])
 				var deferred = $q.defer();
 				data.__action = 'insert';
 				data.__table = table;
+				data.__token = token;
+
 				$http({
 					url: host + api_path,
 					method: 'POST',
@@ -129,5 +154,4 @@ angular.module('ESPBA', [])
 		}		
 
 }]);
-
 

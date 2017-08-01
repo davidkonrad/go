@@ -188,9 +188,11 @@ angular.module('gulveonlineApp', [
 		} else {
 			ESPBA.setHost('https://gulve.online/');
 		}
-		ESPBA.setApiPath('api/espba.php');	
-		Lookup.init();
+		ESPBA.setApiPath('api/espba.php');
+		ESPBA.init().then(function() {
+			Lookup.init();
+		});
 
-	});
+});
 
 

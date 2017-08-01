@@ -24,9 +24,11 @@ angular.module('gulveonlineApp')
 			$location.path('/soeg');
 		};
 
+		/*
 		ESPBA.get('kategori', {} ).then(function(r) {
 			$scope.kategorier = r.data;
 		});
+		*/
 
 		//restyle produkt kategorier if resize or on small devices
 		function checkMenu() {

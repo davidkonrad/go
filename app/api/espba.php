@@ -10,10 +10,14 @@ error_reporting(E_ALL & ~E_NOTICE);
 ini_set('display_errors', '1');
 */
 
+session_start();
+
 include('Db.php');
 
 class ESPBA extends DbPDO {
 	private $table;
+	private $action;
+	private $token;
 
 /**
 	* constructor
@@ -22,25 +26,39 @@ class ESPBA extends DbPDO {
   * @desc Allow the script being executed from foreign locations. 
 	* @desc Note: This is optional. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
 	*/
-	public function __construct($table, $array) {
+	public function __construct($array) {
 		parent::__construct();
 		
+		//file_put_contents('test.txt', $_SERVER['HTTP_ACCEPT']."\n".json_encode($_SERVER, JSON_PRETTY_PRINT));
+
 		if ($this->isLocalhost()) {
 			header('Access-Control-Allow-Origin	: *');
 		}
 
-		$this->table = $table;
+		if ($_SERVER['HTTP_ACCEPT'] != 'application/json, text/plain, */*') {
+			$response = array('message' => 'restricted');
+			echo json_encode($response);
+			return;
+		}
+
+		$this->table = isset($array['__table']) ? $array['__table'] : false;
+		$this->action = isset($array['__action']) ? $array['__action'] : false;
+		$this->token = isset($array['__token']) ? $array['__token'] : false;
+
+		unset($array['__table']);
+		unset($array['__action']);
+		unset($array['__token']);
+
 		$this->process($array);
 	}
+
 
 /**
   * @desc process a CRUD request, i.e insert, get, update and delete
   * @param array $array, essentially the $_GET 
 	*/
 	public function process($array) {
-		$action = $array['__action'];
-		unset($array['__action']);
-		switch ($action) {
+		switch ($this->action) {
 			case 'insert' :
 				$this->insert($array);
 				break;
@@ -57,12 +75,40 @@ class ESPBA extends DbPDO {
 				$this->update($array);
 				break;
 
+			case 'init' :
+				$this->init();
+				break;
+
 			default:
-				echo $this->err('Not recognizeable "'.$action.'"', 'bad request');
+				echo $this->err('Not recognizeable "'.$this->action.'"', 'bad request');
 				break;
 		}
 	}
 
+/**
+  * @desc set token
+  * @return JSON string
+	*/
+	private function init() {
+		$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(20));
+		$response = array('token' => $_SESSION['token']);
+		echo json_encode($response);
+	}
+
+/**
+  * @desc check token, dies if not valid
+	*/
+	private function checkToken() {
+		//pass if localhost
+		if ($this->isLocalhost()) {
+			return;
+		}
+		if (!isset($_SESSION['token']) || $this->token != $_SESSION['token']) {
+			$response = array('error' => 'Not authenticated');
+			echo json_encode($response);
+			die();
+		}
+	}
 
 /**
   * @desc return error message or latest database error
@@ -101,6 +147,8 @@ class ESPBA extends DbPDO {
   * @return JSON string
 	*/
 	public function get($array) {
+		$this->checkToken();
+
 		$limit = '';
 		$orderBy = '';
 
@@ -129,6 +177,8 @@ class ESPBA extends DbPDO {
   * @return JSON string. The inserted record, if any. 
 	*/
 	public function update($array) {
+		$this->checkToken();
+
 		$id = isset($array['id']) ? $array['id'] : false;
 		if (!$id) {
 			$this->err('update', 'id is missing');
@@ -155,6 +205,8 @@ class ESPBA extends DbPDO {
   * @return JSON string
 	*/
 	public function insert($array) {
+		$this->checkToken();
+
 		$keys = array_keys($array);
 		$keys = ' (' . implode(',', $keys).')';
 
@@ -186,6 +238,8 @@ class ESPBA extends DbPDO {
   * @return JSON string, OK or error message
 	*/
 	public function delete($array) {
+		$this->checkToken();
+
 		$params = $this->getParams($array);
 		if ($params != '') $params = ' where '.$params;
 
@@ -202,25 +256,7 @@ class ESPBA extends DbPDO {
 	}
 }
 
-
-/**
-	*
-	*/
-if (!$_GET) {
-	ESPBA::err('Unknown', 'Params expected');
-	return;
-}
-
-$params = $_GET;
-$table = isset($params['__table']) ? $params['__table'] : false;
-
-if (!$table) {
-	ESPBA::err('Unknown', 'Table not set');
-	return;
-}
-
-unset($params['__table']);
-
-$run = new ESPBA($table, $params);
+$params = isset($_GET) ? $_GET : array();
+$run = new ESPBA($params);
 
 ?>

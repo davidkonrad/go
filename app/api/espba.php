@@ -207,7 +207,7 @@ class ESPBA extends DbPDO {
 	*
 	*/
 if (!$_GET) {
-	Espb::err('Params expected');
+	ESPBA::err('Unknown', 'Params expected');
 	return;
 }
 
@@ -215,7 +215,7 @@ $params = $_GET;
 $table = isset($params['__table']) ? $params['__table'] : false;
 
 if (!$table) {
-	Espb::err('Table not set');
+	ESPBA::err('Unknown', 'Table not set');
 	return;
 }
 

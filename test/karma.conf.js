@@ -73,6 +73,8 @@ module.exports = function(config) {
       'bower_components/fancybox-plus/src/jquery.fancybox-plus.js',
       'bower_components/angular-fancybox-plus/js/angular-fancybox-plus.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',
+      'bower_components/moment/moment.js',
+      'bower_components/moment-timezone/builds/moment-timezone-with-data-2012-2022.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

@@ -23,6 +23,15 @@ angular.module('gulveonlineApp')
 					return '<button class="btn btn-primary btn-xs btn-clone" produkt-id="'+full.id+'" title="Klon dette produkt"><i class="fa fa-clone"></i></button>';
 				}),
 
+      DTColumnBuilder.newColumn('edited_timestamp')
+				.withTitle('Redigeret')
+				.renderWith(function(data, type) {
+					if (type == 'display') {
+						return moment(data).format("DD/MM/YYYY HH:mm");
+					}
+					return data
+				}),
+
       DTColumnBuilder.newColumn('vare_nr').withTitle('VareNr.'),
 
       DTColumnBuilder.newColumn('aktiv')

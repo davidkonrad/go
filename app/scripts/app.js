@@ -178,6 +178,9 @@ angular.module('gulveonlineApp', [
   })
 	.run(function($rootScope, $location, Lookup, ESPBA, Meta) {
 
+		//moment
+		moment.tz.setDefault("Europe/Copenhagen"); 
+
 		$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){ 
 			// this is required if you want to prevent the $UrlRouter reverting the URL to the previous valid location
 			event.preventDefault();

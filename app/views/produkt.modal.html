@@ -9,15 +9,14 @@
 			<div class="modal-body">
 				<div bs-tabs>
 					<div bs-pane data-title="Produkt oplysninger">
-<!--- -->
-						<div class="row" style="margin-top:20px;">
 
-							<div class="col-md-1">
-							</div>
+						<div class="row" style="margin-top:20px;">
 
 							<form role="form" class="form-horizontal" autocomplete="off">
 
-								<div class="col-md-4">
+								<div class="col-md-1">&nbsp;</div>
+<!---p1 -->
+								<div class="col-md-2">
 
 									<div class="form-group">
 										<div class="col-md-10">
@@ -62,6 +61,35 @@
 									</div>
 
 							    <div class="form-group">
+							      <span class="col-md-12">
+											<strong>Type</strong>
+										</span>
+										<div class="col-md-9">
+											<div class="radio">
+												<label>
+													<input type="radio" value="1" name="produkt_type_id" ng-model="edit.produkt_type_id">
+													Produkt
+												</label>
+											</div>
+											<div class="radio">
+												<label>
+													<input type="radio" value="2" name="produkt_type_id" ng-model="edit.produkt_type_id">
+													Tilbud
+												</label>
+											</div>
+											<div class="radio">
+												<label>
+													<input type="radio" value="3" name="produkt_type_id" ng-model="edit.produkt_type_id">
+													Restparti
+												</label>
+											</div>
+										</div>
+									</div>
+
+								</div>
+<!---p2 -->
+								<div class="col-md-3">
+							    <div class="form-group">
 							      <label class="col-md-3 control-label" for="vare_nr">VareNr.</label>
 										<div class="col-md-5">
 									    <input select-on-click class="form-control" ng-model="edit.vare_nr" id="vare_nr">
@@ -85,7 +113,7 @@
 									</div>
 
 								  <div class="form-group">
-										<label class="col-md-3 control-label" for="paa_lager">Lager</label>
+										<label class="col-md-3 control-label" for="paa_lager">På lager</label>
 										<div class="col-md-5" style="white-space: nowrap;">
 									    <input class="form-control" 
 												only-digits 
@@ -136,27 +164,18 @@
 										</div>
 									</div>
 
-								</div>
-			<!--- #2 ---->
-								<div class="col-md-6">
-
 							    <div class="form-group">
-							      <label class="col-md-2 control-label" for="produkt_type">ProdType</label>
-										<div class="col-md-7">
-											<label class="radio-inline">
-												<input type="radio" value="1" name="produkt_type_id" ng-model="edit.produkt_type_id">
-												Produkt
-											</label>
-											<label class="radio-inline">
-												<input type="radio" value="2" name="produkt_type_id" ng-model="edit.produkt_type_id">
-												Tilbud
-											</label>
-											<label class="radio-inline">
-												<input type="radio" value="3" name="produkt_type_id" ng-model="edit.produkt_type_id">
-												Restparti
-											</label>
+							      <label class="col-md-3 control-label">Lagerplads</label>
+										<div class="col-md-9">
+									    <input class="form-control" 
+												select-on-click
+												ng-model="edit.lagerplads">
 										</div>
 									</div>
+
+								</div>
+<!---p3 -->
+								<div class="col-md-5">
 
 							    <div class="form-group">
 							      <label class="col-md-2 control-label required" for="navn">Navn</label>
@@ -176,6 +195,7 @@
 												class="btn btn-default" 
 												ng-model="edit.kategori_id" 
 												data-toggle="true"
+												data-placement="auto"
 												placeholder="Vælg en kategori"
 												bs-select
 												bs-options="kategori.id as kategori.navn for kategori in kategoriItems">
@@ -192,6 +212,7 @@
 												class="btn btn-default" 
 												ng-model="edit.sort_id" 
 												data-toggle="true"
+												data-placement="auto"
 												placeholder="Vælg"
 												bs-select
 												bs-options="sort.id as sort.navn for sort in sortItems">
@@ -208,6 +229,7 @@
 												class="btn btn-default" 
 												ng-model="edit.overflade_id" 
 												data-toggle="true"
+												data-placement="auto"
 												placeholder="Vælg"
 												bs-select
 												bs-options="overflade.id as overflade.navn for overflade in overfladeItems">
@@ -224,6 +246,7 @@
 												class="btn btn-default" 
 												ng-model="edit.profil_id" 
 												data-toggle="true"
+												data-placement="auto"
 												placeholder="Vælg"
 												bs-select
 												bs-options="profil.id as profil.navn for profil in profilItems">
@@ -240,6 +263,7 @@
 												class="btn btn-default" 
 												ng-model="edit.kvalitet_id" 
 												data-toggle="true"
+												data-placement="auto"
 												placeholder="Vælg"
 												bs-select
 												bs-options="kvalitet.id as kvalitet.navn for kvalitet in kvalitetItems">
@@ -256,6 +280,7 @@
 												class="btn btn-default" 
 												ng-model="edit.slidgruppe_id" 
 												data-toggle="true"
+												data-placement="auto"
 												placeholder="Vælg"
 												bs-select
 												bs-options="slidgruppe.id as slidgruppe.navn for slidgruppe in slidgruppeItems">

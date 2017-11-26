@@ -118,17 +118,20 @@ angular.module('gulveonlineApp')
 				.withTitle('Pk.str.')
 				.withClass('text-right'),
 
+      DTColumnBuilder.newColumn('lagerplads')
+				.withTitle('Lagerplads'),
+
       DTColumnBuilder.newColumn('nyhed')
 				.withOption('width', '40px')
 				.withTitle('Nyhed')
 				.withClass('text-center no-export')
 				.renderWith(function(data, type /*, full, meta*/) {
-				if (type === 'display') {
-					return data == 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
-				} else {
-					return data;
-				}
-			}),
+					if (type === 'display') {
+						return data == 1	? '<i class="glyphicon glyphicon-ok text-success"></i>'	: '';
+					} else {
+						return data;
+					}
+				}),
 
 			DTColumnBuilder.newColumn('meta_title')
 				.withTitle('Meta title')

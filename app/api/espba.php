@@ -14,6 +14,8 @@ ini_set('display_errors', '1');
 
 include('Db.php');
 
+header('Access-Control-Allow-Origin: *');
+
 class ESPBA extends DbPDO {
 	private $table;
 	private $action;
@@ -32,7 +34,7 @@ class ESPBA extends DbPDO {
 		//file_put_contents('test.txt', $_SERVER['HTTP_ACCEPT']."\n".json_encode($_SERVER, JSON_PRETTY_PRINT));
 
 		if ($this->isLocalhost()) {
-			header('Access-Control-Allow-Origin	: *');
+			//header('Access-Control-Allow-Origin	: *');
 		}
 
 		if ($_SERVER['HTTP_ACCEPT'] != 'application/json, text/plain, */*') {

@@ -301,10 +301,14 @@
 								</div>
 							</form>
 						</div>
-
-<!--- -->
+<!-- -->
 					</div>
 
+<!-- ekstra -->
+					<div bs-pane data-title="Ekstra">
+					</div>
+
+<!-- tekst -->
 					<div bs-pane data-title="Tekst">
 						<text-angular ng-model="edit.beskrivelse" 
 							ta-text-editor-class="form-control produkt-beskrivelse col-md-12"
@@ -312,6 +316,7 @@
 						</text-angular>
 					</div>
 
+<!-- billeder -->
 					<div bs-pane data-title="Billeder">
 						<div ng-repeat="i in billeder" class="image">
 							<img class="thumbnail" ng-src="/media-uploads/{{ i.path }}">
@@ -337,6 +342,7 @@
 						</div>
 					</div>
 
+<!-- meta -->
 					<div bs-pane data-title="Meta">
 						<form role="form" class="form-horizontal" autocomplete="off">
 					    <div class="form-group">

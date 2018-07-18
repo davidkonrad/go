@@ -10,7 +10,6 @@ angular.module('gulveonlineApp')
 			$timeout(function() {			
 				var href = element.attr('href');
 				if (href && isLocalHost && href.charAt(0) == '/') {
-					console.log(href, '#'+href);
 					element.attr('href', '#'+href);
 				}
 			}, 100);

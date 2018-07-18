@@ -208,7 +208,7 @@ angular.module('gulveonlineApp')
 				{ text: '<span><i class="glyphicon glyphicon-plus text-success"></i>&nbsp;Nyt Produkt</span>',
 					className: 'btn btn-xs',
 					action: function ( /* e, dt, node, config */) {
-						ProduktModal.show($scope).then(function() {
+						ProduktModal.show().then(function() {
 							$scope.dtInstance.reloadData();
 						});
  					}
@@ -226,13 +226,14 @@ angular.module('gulveonlineApp')
 			var id=$(this).parent().attr('produkt-id');
 
 			//should never happen with new delegated event structure
+			/*
 			if (!id || ProduktModal.isShown()) {
 				e.preventDefault();
 				e.stopPropagation();
 				return;
 			}
-
-			ProduktModal.show($scope, id).then(function() {
+			*/
+			ProduktModal.show(id).then(function() {
 				$scope.dtInstance.reloadData();
 			});	
 		});

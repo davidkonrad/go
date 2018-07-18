@@ -35,8 +35,6 @@ angular.module('gulveonlineApp', [
 
     cfpLoadingBarProvider.includeSpinner = false;
 
-		//$locationProvider.html5Mode(true);
-		console.log(window.location.host);
 		if (window.location.host == 'localhost:9000') {
 			$locationProvider.html5Mode(false);
 		  $locationProvider.hashPrefix('');

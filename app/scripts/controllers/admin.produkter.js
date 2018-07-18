@@ -224,15 +224,6 @@ angular.module('gulveonlineApp')
 
 		angular.element('#table-produkter').on('click', 'tbody td:not(.no-click)', function(e) {
 			var id=$(this).parent().attr('produkt-id');
-
-			//should never happen with new delegated event structure
-			/*
-			if (!id || ProduktModal.isShown()) {
-				e.preventDefault();
-				e.stopPropagation();
-				return;
-			}
-			*/
 			ProduktModal.show(id).then(function() {
 				$scope.dtInstance.reloadData();
 			});	

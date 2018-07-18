@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			
 			<div class="modal-header">
-				<h4 class="modal-title"> {{ __dataModal.title }}</h4>
+				<h4 class="modal-title">{{ title }}</h4>
 			</div>
 
 			<div class="modal-body">
@@ -12,33 +12,26 @@
 					<form role="form" class="form-horizontal col-md-12">
 
 				    <div class="form-group">
-				      <label class="col-md-2 control-label required" for="ental">Ental</label>
+				      <label class="col-md-2 control-label required" for="key">Navn</label>
 							<div class="col-md-8">
-						    <input class="form-control" ng-model="edit.ental" id="ental">
+						    <input auto-focus class="form-control" ng-model="edit.key" id="key">
 							</div>
 						</div>
 
 				    <div class="form-group">
-				      <label class="col-md-2 control-label required" for="flertal">Flertal</label>
+				      <label class="col-md-2 control-label required" for="value">Værdi</label>
 							<div class="col-md-8">
-						    <input class="form-control" ng-model="edit.flertal" id="flertal">
+								<textarea class="col-md-12 form-control" ng-model="edit.value" id="value"></textarea>
 							</div>
 						</div>
 
 				    <div class="form-group">
-				      <label class="col-md-2 control-label required" for="specifikation">Spec.</label>
-							<div class="col-md-8">
-						    <input class="form-control" ng-model="edit.specifikation" id="specifikation">
+				      <label class="col-md-2 control-label" for="sort_order">Sortering</label>
+							<div class="col-md-3">
+						    <input class="form-control" only-numbers ng-model="edit.sort_order" id="sort_order">
 							</div>
 						</div>
 
-				    <div class="form-group">
-				      <label class="col-md-2 control-label" for="ental">Beskrivelse</label>
-							<div class="col-md-8">
-								<textarea class="form-control" rows="5" cols="50" ng-model="edit.beskrivelse"></textarea>
-							</div>
-						</div>
-	
 					</form>
 				</div>
 			</div>
@@ -49,7 +42,7 @@
 					ng-click="modalClose(true)" 
 					ng-class="{ 'btn-success' : canSave() }"
 					ng-enabled="canSave()">
-						{{ __dataModal.btnOk }}
+						{{ btnOk }}
 				</button> 
 				<button type="button" 
 					class="btn btn-default" 

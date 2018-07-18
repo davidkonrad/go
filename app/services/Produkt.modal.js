@@ -4,14 +4,14 @@
  *
  *
  */
-//angular.module('gulveonlineApp').factory('ProduktModal', function($modal, $q, ESPBA, UploadModal, Lookup) {
 angular.module('gulveonlineApp').factory('ProduktModal', ['$modal', '$q',	function($modal, $q) {
 
 	var modal;
 	var deferred;
 	var local = this;
 
-	local.modalInstance = ['$scope', 'ESPBA', 'UploadModal', 'Lookup', 'produkt_id', function($scope, ESPBA, UploadModal, Lookup, produkt_id) {
+	local.modalInstance = ['$scope', 'ESPBA', 'Utils', 'UploadModal', 'Lookup', 'ProduktEkstraModal', 'DTOptionsBuilder', 'DTColumnBuilder', 'produkt_id', 
+	function($scope, ESPBA, Utils, UploadModal, Lookup, ProduktEkstraModal, DTOptionsBuilder, DTColumnBuilder, produkt_id) {
 
 		$scope.produkt_id = produkt_id || false;
 		
@@ -120,6 +120,62 @@ angular.module('gulveonlineApp').factory('ProduktModal', ['$modal', '$q',	functi
 				close()
 			}
 		};
+
+		//produkt ekstra
+		$scope.dtEkstraColumns = [
+      DTColumnBuilder.newColumn('id')
+				.withTitle('#')
+				.withOption('orderable', false),
+
+      DTColumnBuilder.newColumn('key')
+				.withTitle('Egenskab'),
+
+      DTColumnBuilder.newColumn('value')
+				.withTitle('Værdi'),
+
+      DTColumnBuilder.newColumn('sort_order')
+				.withTitle('Sortering')
+
+		];
+
+		$scope.dtEkstraOptions = DTOptionsBuilder
+			.fromFnPromise(function() {
+				var defer = $q.defer();
+				ESPBA.get('produkt_ekstra', { produkt_id: produkt_id }).then(function(res) {
+					$scope.data = res.data;
+					defer.resolve($scope.data);
+				});
+				return defer.promise;
+	    })
+			.withOption('rowCallback', function(row, data , index) {
+				$(row).attr('produkt-ekstra-id', data.id);
+			})
+			.withOption('dom', 'Blfrtip')
+			.withOption('stateSave', true)
+			.withOption('language', Utils.dataTables_daDk)
+			.withButtons([ 
+				{ text: '<span><i class="glyphicon glyphicon-plus text-success"></i>&nbsp;Ny ekstra egenskab</span>',
+					className: 'btn btn-xs',
+					action: function( /* e, dt, node, config */) {
+						ProduktEkstraModal.show(produkt_id).then(function() {
+							$scope.dtEkstraInstance.reloadData();
+						});
+ 					}
+				}
+
+			]);
+
+		$scope.dtEkstraInstanceCallback = function(instance) {
+			$scope.dtEkstraInstance = instance;
+    };
+
+		angular.element('body').on('click', '#table-ekstra tbody td:not(.no-click)', function(e) {
+			var produkt_ekstra_id = $(this).parent().attr('produkt-ekstra-id');
+			ProduktEkstraModal.show(produkt_id, produkt_ekstra_id).then(function() {
+				$scope.dtEkstraInstance.reloadData();
+			});	
+		});
+		
 
 	}];
 

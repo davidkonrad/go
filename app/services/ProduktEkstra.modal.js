@@ -31,6 +31,16 @@ angular.module('gulveonlineApp').factory('ProduktEkstraModal', ['$modal', '$q',	
 			return $scope.edit.key != '' && $scope.edit.value != ''
 		}
 
+		function updateProduktEditedTimeStamp() {
+			var params = {
+				id: produkt_id,
+				edited_timestamp: 'CURRENT_TIMESTAMP'
+			}
+			ESPBA.update('produkter', params).then(function(r) {
+				//
+			})
+		}
+
 		$scope.modalClose = function(value) {
 
 			function close() {
@@ -46,12 +56,11 @@ angular.module('gulveonlineApp').factory('ProduktEkstraModal', ['$modal', '$q',	
 						close()
 					})
 				} else {
-					console.log($scope.edit);
 					ESPBA.insert('produkt_ekstra', $scope.edit).then(function(r) {
-						console.log(r);
 						close()
 					})
 				}
+				updateProduktEditedTimeStamp()
 			} else {
 				close()
 			}

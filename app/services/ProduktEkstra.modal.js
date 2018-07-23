@@ -19,7 +19,7 @@ angular.module('gulveonlineApp').factory('ProduktEkstraModal', ['$modal', '$q',	
 		$scope.btnOk = produkt_ekstra_id ? 'Gem' : 'Opret'; 
 		$scope.edit = {
 			produkt_id: produkt_id,
-			sort_value: 100
+			sort_order: 100
 		};
 		if (produkt_ekstra_id) {
 			ESPBA.get('produkt_ekstra', { id: produkt_ekstra_id }).then(function(res) {

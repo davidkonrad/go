@@ -97,6 +97,12 @@
 					<td>{{ produkt.pakke_str | number:2 }} {{ produkt.enhed }} per pakke</td>
 				</tr>
 
+				<!-- produkt_ekstra -->
+				<tr ng-repeat="ekstra in produkt_ekstra">
+					<td> {{ ekstra.key }}</td>
+					<td> {{ ekstra.value }}</td>		
+				</tr>
+
 			</tbody>
 		</table>
 
@@ -136,6 +142,13 @@
 					title="Klik for at høre mere om {{ produkt.navn }}">
 					Få mere at vide ...
 				</a>
+
+				<button class="btn btn-primary btn-lg pull-right visible-sm visible-md visible-lg" 
+					ng-click="downloadPDF()"
+					style="position:relative; top:-10px; margin-right: 5px;" 
+					title="Download som datablad / PDF">
+					<i class="fa fa-download"></i>&nbsp;Datablad
+				</button>
 
 				<!-- small devices -->
 				<a class="btn btn-primary btn-sm pull-left visible-xs" 

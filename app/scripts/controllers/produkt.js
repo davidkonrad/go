@@ -13,7 +13,10 @@ angular.module('gulveonlineApp').controller('ProduktCtrl', ['$scope', '$routePar
 
 		//create hidden datatable for PDF download
 		function insertDataTable() {
-			$('body').append('<table id="pdf" class="display" style="width:700px; display:none;"></table>');
+			if ($('#pdf').length == 0) {
+				console.log('appending ...');
+				$('body').append('<table id="pdf" class="display" style="width:700px; display:none;"></table>');
+			}
 			var data = [];
 			if ($scope.produkt.sort) data.push({ key: 'Træsort', value: $scope.produkt.sort });
 			if ($scope.produkt.sortering) data.push({ key: 'Kvalitet', value: $scope.produkt.sortering });
@@ -31,6 +34,7 @@ angular.module('gulveonlineApp').controller('ProduktCtrl', ['$scope', '$routePar
 			})
 
 			$('#pdf').DataTable({
+				destroy: true,
         dom: 'Bt',
 				data: data,
 				ordering: false,
@@ -38,6 +42,9 @@ angular.module('gulveonlineApp').controller('ProduktCtrl', ['$scope', '$routePar
 					{ data: 'key', title: '', width: '50%' },
 					{ data: 'value', title: '', width: '50%' }
 				],
+				initComplete: function() {
+					$('.dt-buttons').hide()
+				},
 				buttons: [{ 
 					extend: 'pdfHtml5',
 					//message: Utils.plainText($scope.produkt.beskrivelse),
@@ -77,7 +84,6 @@ angular.module('gulveonlineApp').controller('ProduktCtrl', ['$scope', '$routePar
 					}
 				}]
 			})
-			$('.dt-buttons').hide()
 		}
 
 		function init() {
@@ -131,6 +137,7 @@ angular.module('gulveonlineApp').controller('ProduktCtrl', ['$scope', '$routePar
 		}
 
 		$scope.downloadPDF = function() {
+			console.log('pdf click ...');
 			$('.buttons-pdf').click()
 		}
 

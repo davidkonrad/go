@@ -136,19 +136,19 @@
 				<span class="clearfix visible-xs"><br></span>
 
 				<!-- for normal devices -->
+				<button class="btn btn-primary btn-lg pull-right visible-sm visible-md visible-lg" 
+					ng-click="downloadPDF()"
+					style="position:relative; top:-10px; margin-left: 5px;" 
+					title="Download som datablad / PDF">
+					<i class="fa fa-download"></i>
+				</button>
+
 				<a class="btn btn-primary btn-lg pull-right visible-sm visible-md visible-lg" 
 					href='/kontakt'
 					style="position:relative; top:-10px;" 
 					title="Klik for at høre mere om {{ produkt.navn }}">
 					Få mere at vide ...
 				</a>
-
-				<button class="btn btn-primary btn-lg pull-right visible-sm visible-md visible-lg" 
-					ng-click="downloadPDF()"
-					style="position:relative; top:-10px; margin-right: 5px;" 
-					title="Download som datablad / PDF">
-					<i class="fa fa-download"></i>&nbsp;Datablad
-				</button>
 
 				<!-- small devices -->
 				<a class="btn btn-primary btn-sm pull-left visible-xs" 

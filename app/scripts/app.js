@@ -31,7 +31,7 @@ angular.module('gulveonlineApp', [
 	'Meta',
 	'angular-loading-bar'
   ])
-  .config(function ($locationProvider, $routeProvider, $stateProvider, cfpLoadingBarProvider) {
+  .config(function ($locationProvider, $routeProvider, cfpLoadingBarProvider) {
 
     cfpLoadingBarProvider.includeSpinner = false;
 
@@ -41,14 +41,6 @@ angular.module('gulveonlineApp', [
 		} else {
 			$locationProvider.html5Mode(true);
 		}
-
-		$stateProvider
-			.state('test', {
-				url: '/cat/:catId',
-				redirectTo: function(routeParams, path, search) {
-					console.log(arguments)
-				}
-			});
 
     $routeProvider
       .when('/', {

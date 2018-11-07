@@ -108,6 +108,7 @@ angular.module('gulveonlineApp').factory('ProduktModal', ['$modal', '$q',	functi
 
 			if (value) {
 				if (produkt_id) {
+					$scope.edit.edited_timestamp = 'CURRENT_TIMESTAMP';
 					ESPBA.update('produkter', $scope.edit).then(function(r) {
 						close()
 					})

@@ -182,7 +182,6 @@ angular.module('gulveonlineApp')
 						XXplacement: 'left',
 						html: true
 					});
-
 /*
 					$(row).addClass('warning');
 					$(row).attr('data-original-title', err);

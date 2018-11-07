@@ -178,9 +178,21 @@ angular.module('gulveonlineApp')
 					$(row).tooltip({
 						title: err,
 						trigger: 'hover',
-						container: 'body',
+						container: 'html',
+						XXplacement: 'left',
 						html: true
 					});
+
+/*
+					$(row).addClass('warning');
+					$(row).attr('data-original-title', err);
+					$(row).attr('data-container', 'body');
+					$(row).attr('data-html', 'true');
+					$(row).attr('data-placement', 'top');
+					$(row).attr('data-toggle', 'tooltip');
+					$(row).tooltip()
+*/
+
 				}
 			})
 			.withOption('dom', 'Blfrtip')

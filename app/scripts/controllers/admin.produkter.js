@@ -153,10 +153,12 @@ angular.module('gulveonlineApp')
 		$scope.dtOptions = DTOptionsBuilder
 			.fromFnPromise(function() {
 				var defer = $q.defer();
-				ESPBA.get('produkter', {}).then(function(res) {
-					$scope.data = res.data;
-					defer.resolve($scope.data);
-				});
+				Lookup.__init().then(function() {
+					ESPBA.get('produkter', {}).then(function(res) {
+						$scope.data = res.data;
+						defer.resolve($scope.data);
+					})
+				})
 				return defer.promise;
 	    })
 			.withOption('drawCallback', function() {

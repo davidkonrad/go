@@ -33,7 +33,7 @@ angular.module('gulveonlineApp').factory('ProduktModal', ['$modal', '$q',	functi
 			$scope.enhedEntal = Lookup.enhedNavn($scope.edit.enhed_id);
 		});
 
-		$scope.$watch('edit.pakker', function(newVal, oldVal) {
+		$scope.$watchGroup(['edit.pakker', 'edit.pakke_str'], function(newVal, oldVal) {
 			if (newVal == oldVal) return;
 			if ($scope.edit.pakke_str) {
 				var paa_lager = parseFloat($scope.edit.pakke_str) * parseFloat(newVal);
@@ -184,7 +184,7 @@ angular.module('gulveonlineApp').factory('ProduktModal', ['$modal', '$q',	functi
 			deferred = $q.defer();
 			modal = $modal({
 				controller: local.modalInstance,
-				templateUrl: 'views/produkt.modal.html',
+				templateUrl: 'services/ProduktModal/produkt.modal.html',
 				backdrop: 'static',
 				locals: { 
 					produkt_id: produkt_id 

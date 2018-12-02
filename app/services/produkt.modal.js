@@ -185,7 +185,7 @@ angular.module('gulveonlineApp').factory('ProduktModal', ['$modal', '$q',	functi
 			deferred = $q.defer();
 			modal = $modal({
 				controller: local.modalInstance,
-				templateUrl: 'services/ProduktModal/produkt.modal.html',
+				templateUrl: 'views/produkt.modal.html',
 				backdrop: 'static',
 				locals: { 
 					produkt_id: produkt_id 

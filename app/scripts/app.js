@@ -31,7 +31,9 @@ angular.module('gulveonlineApp', [
 	'Meta',
 	'angular-loading-bar'
   ])
-  .config(function ($locationProvider, $routeProvider, cfpLoadingBarProvider) {
+  .config(function ($locationProvider, $routeProvider, cfpLoadingBarProvider, $httpProvider) {
+
+		console.log($httpProvider.defaults);
 
     cfpLoadingBarProvider.includeSpinner = false;
 
@@ -100,7 +102,7 @@ angular.module('gulveonlineApp', [
         controller: 'UndersideCtrl',
         controllerAs: 'underside'
       })
-      .when('/om-gulve-online', {
+      .when('/om-hallandparket-dk', {
         templateUrl: 'views/underside.html',
         controller: 'UndersideCtrl',
         controllerAs: 'underside'
@@ -191,10 +193,12 @@ angular.module('gulveonlineApp', [
 			event.preventDefault();
 		});
 
+		console.log('host', $location.host());
 		if ($location.host() === 'localhost') {
 			ESPBA.setHost('http://localhost/html/gulveonline/app/');
 		} else {
-			ESPBA.setHost('https://gulve.online/');
+			//ESPBA.setHost('https://gulve.online/');
+			ESPBA.setHost('//hallandparket.dk/');
 		}
 		ESPBA.setApiPath('api/espba.php');
 		ESPBA.init().then(function() {

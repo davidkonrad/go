@@ -9,9 +9,9 @@ angular.module('gulveonlineApp')
 
 		var path;
 		if ($location.host() === 'localhost') {
-			path = 'http://localhost/html/gulveonline/app/api/';
+			path = 'http://localhost/html/hallandparket.dkonline/app/api/';
 		} else {
-			path = 'https://gulve.online/api/';
+			path = 'https://hallandparket.dk.online/api/';
 		}
 
 		return {

@@ -4,7 +4,7 @@ angular.module('gulveonlineApp')
   .factory('Login', ['$cookies', '$timeout', '$q', 'ESPBA', 'RememberMe', 
 	function($cookies, $timeout, $q, ESPBA, RememberMe) {
     
-	var cookieName = 'gulve.online';
+	var cookieName = 'hallandparket.dk'; //'gulve.online';
 	var	currentUser = null;
 
 	function setCookie(user) {

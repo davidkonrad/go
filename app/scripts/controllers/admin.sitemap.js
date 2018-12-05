@@ -13,12 +13,12 @@ angular.module('gulveonlineApp')
 		}
 
 		var temp = '';
-		temp += 'https://gulve.online/tilbud' + "\n";
-		temp += 'https://gulve.online/restpartier' + "\n";
-		temp += 'https://gulve.online/kontakt' + "\n";
-		temp += 'https://gulve.online/referencer' + "\n";
-		temp += 'https://gulve.online/om-gulve-online' + "\n";
-		temp += 'https://gulve.online/produkt-oversigt' + "\n";
+		temp += 'https://hallandparket.dk/tilbud' + "\n";
+		temp += 'https://hallandparket.dk/restpartier' + "\n";
+		temp += 'https://hallandparket.dk/kontakt' + "\n";
+		temp += 'https://hallandparket.dk/referencer' + "\n";
+		temp += 'https://hallandparket.dk/om-gulve-online' + "\n";
+		temp += 'https://hallandparket.dk/produkt-oversigt' + "\n";
 
 		ESPBA.get('kategori', { aktiv: 1 }).then(function(kategorier) {
 			kategorier.data.forEach(function(k) {

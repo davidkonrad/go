@@ -5,11 +5,11 @@
  * @license     Licensed under the MIT License; see LICENSE.md
  */
 
-header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Origin: *');
 //header('Access-Control-Allow-Origin	: "*"');
 
-error_reporting(E_ALL & ~E_NOTICE); 
-ini_set('display_errors', '1');
+//error_reporting(E_ALL & ~E_NOTICE); 
+//ini_set('display_errors', '1');
 
 //session_start();
 

@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('AdminOverfladeCtrl', ['$scope', '$window', '$q', 'AdminDataModal', 'Login', 'Utils', 'ESPBA', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTDefaultOptions', 
 	function($scope, $window, $q, AdminDataModal, Login, Utils, ESPBA, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions) {
 

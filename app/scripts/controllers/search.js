@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('SearchCtrl', ['$scope', '$http', '$timeout', 'ESPBA', 'Lookup', 'Meta',
 	function($scope, $http, $timeout, ESPBA, Lookup, Meta) {
 
@@ -16,7 +16,7 @@ angular.module('gulveonlineApp')
 		];
 
 		Meta.setTitle('Søgning');
-		Meta.setDescription('Søg på gulve.online. Foretag en mere kompleks søgning ved at skrive flere søgeord adskilt af mellemrum.');
+		Meta.setDescription('Søg på hallandparket.dk. Foretag en mere kompleks søgning ved at skrive flere søgeord adskilt af mellemrum.');
 
 		$scope.produkter = [];
 

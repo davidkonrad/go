@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gulveonlineApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', function($q, ESPBA, Utils) {
+angular.module('hallandparketApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', function($q, ESPBA, Utils) {
 
 	//pass data between pages
 	var passData = undefined;

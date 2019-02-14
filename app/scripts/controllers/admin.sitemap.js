@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('SitemapCtrl', ['$scope', '$window', '$timeout', 'Login', 'Utils', 'ESPBA', 'Lookup',
 	function($scope, $window, $timeout, Login, Utils, ESPBA, Lookup) {
 
@@ -17,7 +17,7 @@ angular.module('gulveonlineApp')
 		temp += 'https://hallandparket.dk/restpartier' + "\n";
 		temp += 'https://hallandparket.dk/kontakt' + "\n";
 		temp += 'https://hallandparket.dk/referencer' + "\n";
-		temp += 'https://hallandparket.dk/om-gulve-online' + "\n";
+		temp += 'https://hallandparket.dk/om' + "\n";
 		temp += 'https://hallandparket.dk/produkt-oversigt' + "\n";
 
 		ESPBA.get('kategori', { aktiv: 1 }).then(function(kategorier) {

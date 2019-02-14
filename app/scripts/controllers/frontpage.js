@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('FrontpageCtrl', ['$scope', '$q', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta', 'Utils',
 	function($scope, $q, $routeParams, $timeout, ESPBA, Lookup, Meta, Utils) {
 

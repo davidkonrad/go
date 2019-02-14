@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('OversigtCtrl', ['$scope', '$routeParams', '$window', 'ESPBA', 'Lookup', 'Meta', 'Utils',
 	function($scope, $routeParams, $window, ESPBA, Lookup, Meta, Utils) {
 

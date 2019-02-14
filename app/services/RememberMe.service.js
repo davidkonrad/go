@@ -1,5 +1,5 @@
 
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .factory('RememberMe', ['$cookies', function($cookies) {
 
 		var cookieName = 'rememberme';

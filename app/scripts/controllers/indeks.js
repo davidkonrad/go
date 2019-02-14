@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('IndeksCtrl', ['$scope', 'ESPBA', 'Utils', 'Meta', function($scope, ESPBA, Utils, Meta) {
 
 		Meta.setTitle('Produktoversigt, samtlige kategorier og produkter');

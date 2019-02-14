@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('TilbudCtrl', ['$scope', '$http', '$timeout', 'ESPBA', 'Lookup', 'Meta', 'Utils',
 	function($scope, $http, $timeout, ESPBA, Lookup, Meta, Utils) {
 

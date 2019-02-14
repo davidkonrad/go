@@ -2,7 +2,7 @@
 
 var isLocalHost = (location.hostname === "localhost" || location.hostname === "127.0.0.1");
 
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
 	.directive('debugLink', function($timeout) {
 	return {
 		restrict: 'A',

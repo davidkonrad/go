@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('LoginCtrl', ['$scope', '$location', '$window', 'ESPBA', 'Login', 'RememberMe', 
 	function($scope, $location, $window, ESPBA, Login, RememberMe) {
 

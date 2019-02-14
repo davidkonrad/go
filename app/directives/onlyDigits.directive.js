@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gulveonlineApp').
+angular.module('hallandparketApp').
 	directive('onlyDigits', function () {
     return {
       require: 'ngModel',

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gulveonlineApp').directive('readMore', function($timeout) {
+angular.module('hallandparketApp').directive('readMore', function($timeout) {
 
 	return {
 		restrict: 'AE',

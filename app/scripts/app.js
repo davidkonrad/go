@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc overview
- * @name gulveonlineApp
+ * @name hallandparketApp
  * @description
- * #gulveonlineApp
+ * #hallandparketApp
  *
  * Main module of the application.
  */
-angular.module('gulveonlineApp', [
+angular.module('hallandparketApp', [
 	'ngAnimate',
 	'ngCookies',
 	'ngResource',
@@ -33,7 +33,7 @@ angular.module('gulveonlineApp', [
   ])
   .config(function ($locationProvider, $routeProvider, cfpLoadingBarProvider, $httpProvider) {
 
-		console.log($httpProvider.defaults);
+		//console.log($httpProvider.defaults);
 
     cfpLoadingBarProvider.includeSpinner = false;
 
@@ -102,7 +102,7 @@ angular.module('gulveonlineApp', [
         controller: 'UndersideCtrl',
         controllerAs: 'underside'
       })
-      .when('/om-hallandparket-dk', {
+      .when('/om', {
         templateUrl: 'views/underside.html',
         controller: 'UndersideCtrl',
         controllerAs: 'underside'
@@ -193,17 +193,16 @@ angular.module('gulveonlineApp', [
 			event.preventDefault();
 		});
 
-		console.log('host', $location.host());
 		if ($location.host() === 'localhost') {
-			ESPBA.setHost('http://localhost/html/gulveonline/app/');
+			ESPBA.setHost('http://localhost/html/hallandparket/app/');
 		} else {
-			//ESPBA.setHost('https://gulve.online/');
-			ESPBA.setHost('//hallandparket.dk/');
+			ESPBA.setHost('https//hallandparket.dk/');
 		}
 		ESPBA.setApiPath('api/espba.php');
 		ESPBA.init().then(function() {
 			Lookup.init();
 		});
+
 
 });
 

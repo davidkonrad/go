@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name gulveonlineApp.controller:MainCtrl
+ * @name hallandparketApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the gulveonlineApp
+ * Controller of the hallandparketApp
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('NavbarCtrl', ['$scope', '$window', '$location', '$timeout', 'Login', 'ESPBA', 
 	function($scope, $window, $location, $timeout, Login, ESPBA) {
 	

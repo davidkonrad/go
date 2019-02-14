@@ -4,7 +4,7 @@
  * 
  * 
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('AdminProdukterCtrl', ['$scope', '$window', '$q', '$timeout', 'Lookup', 'Login', 'Utils', 'ProduktModal', 'ESPBA', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTDefaultOptions', 
 	function($scope, $window, $q, $timeout, Lookup, Login, Utils, ProduktModal, ESPBA, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions) {
 
@@ -204,7 +204,7 @@ angular.module('gulveonlineApp')
 				},
 				{ extend : 'excelHtml5',
 					text: '<span title="Download filtrerede produkter som Excel-regneark"><i class="glyphicon glyphicon-download-alt"></i>&nbsp;Excel</span>',
-					filename: 'gulveonline_'+Utils.todayStr(),
+					filename: 'hallandparket_'+Utils.todayStr(),
 					className: 'btn btn-default btn-xs',
 					exportOptions: {
 						columns: "#table-produkter thead th:not(.no-export)"
@@ -212,7 +212,7 @@ angular.module('gulveonlineApp')
 				},
 				{ extend : 'pdfHtml5',
 					text: '<span title="Download filtrerede produkter som PDF-regneark"><i class="glyphicon glyphicon-download-alt"></i>&nbsp;PDF</span>',
-					filename: 'gulveonline_'+Utils.todayStr(),
+					filename: 'hallandparket_'+Utils.todayStr(),
 					className: 'btn btn-default btn-xs',
 					exportOptions: {
 						columns: "#table-produkter thead th:not(.no-export)"

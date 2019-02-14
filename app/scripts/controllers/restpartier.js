@@ -4,17 +4,17 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('RestpartiCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Lookup', 'Meta', 'Utils',
 	function($scope, $routeParams, $timeout, ESPBA, Lookup, Meta, Utils) {
 
 		//produktList properties
 		$scope.produktList = {};
 		$scope.produktList.title = 'Restpartier';
-		$scope.produktList.desc = 'gulve.online råder over +1.000 m² restpartier. Det er gulve i perfekt stand fra især storordrer, special-produktioner, udgåede gulve, særlige træsorter mv. Restpartier sælges til lav pris, helst i samlet mængde.';
+		$scope.produktList.desc = 'Hallandparket råder over +1.000 m² restpartier. Det er gulve i perfekt stand fra især storordrer, special-produktioner, udgåede gulve, særlige træsorter mv. Restpartier sælges til lav pris, helst i samlet mængde.';
 
 		Meta.setTitle('Restpartier');
-		Meta.setDescription('gulve.online råder over +1.000 m² restpartier. Det er gulve i perfekt stand fra især special-produktioner, udgåede gulve, specielle træsorter mv.');
+		Meta.setDescription('Hallandparket råder over +1.000 m² restpartier. Det er gulve i perfekt stand fra især special-produktioner, udgåede gulve, specielle træsorter mv.');
 
 		$scope.sortering = false;
 		$scope.sorteringItems = [

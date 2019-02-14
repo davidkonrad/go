@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp').factory('ProduktModal', ['$modal', '$q',	function($modal, $q) {
+angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	function($modal, $q) {
 
 	var modal;
 	var deferred;

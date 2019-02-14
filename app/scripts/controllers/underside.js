@@ -4,7 +4,7 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('UndersideCtrl', ['$scope', '$location', 'ESPBA', 'Lookup', 'Meta',
 	function($scope, $location, ESPBA, Lookup, Meta) {
 

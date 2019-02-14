@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gulveonlineApp').
+angular.module('hallandparketApp').
 	directive('inputEnter', function() {
 		return function(scope, element, attrs) {
 			element.bind("keydown keypress", function(event) {

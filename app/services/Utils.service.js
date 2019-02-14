@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('gulveonlineApp').factory('Utils', function() {
+angular.module('hallandparketApp').factory('Utils', function() {
 
 	var isLocalHost = (location.hostname === "localhost" || location.hostname === "127.0.0.1");
-	var urlLinkBase = isLocalHost ? 'http://localhost:9000/#/' : 'https://hallandparket.dk/'; // 'https://gulve.online/';
+	var urlLinkBase = isLocalHost ? 'http://localhost:9000/#/' : 'https://hallandparket.dk/'; 
 
 	String.prototype.quote = function() {
 		return '"' + this + '"';

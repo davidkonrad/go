@@ -4,7 +4,7 @@
  *
  * 
  */
-angular.module('gulveonlineApp').controller('ProduktCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Utils', 'Lookup', 'Meta', 'DTOptionsBuilder', 'DTColumnBuilder',
+angular.module('hallandparketApp').controller('ProduktCtrl', ['$scope', '$routeParams', '$timeout', 'ESPBA', 'Utils', 'Lookup', 'Meta', 'DTOptionsBuilder', 'DTColumnBuilder',
 	function($scope, $routeParams, $timeout, ESPBA, Utils, Lookup, Meta, DTOptionsBuilder, DTColumnBuilder) {
 
 		var id = $routeParams.id;
@@ -14,7 +14,6 @@ angular.module('gulveonlineApp').controller('ProduktCtrl', ['$scope', '$routePar
 		//create hidden datatable for PDF download
 		function insertDataTable() {
 			if ($('#pdf').length == 0) {
-				console.log('appending ...');
 				$('body').append('<table id="pdf" class="display" style="width:700px; display:none;"></table>');
 			}
 			var data = [];

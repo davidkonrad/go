@@ -6,7 +6,7 @@
  * 
  */
 
-angular.module('gulveonlineApp').factory('AdminDataModal', function($modal, $q, ESPBA, Lookup) {
+angular.module('hallandparketApp').factory('AdminDataModal', function($modal, $q, ESPBA, Lookup) {
 
 	var deferred = null,
 			modal = null;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .directive('priceRender', function($compile, $filter, $timeout) {
 
 	var defaultPrice = 'Ring og spørg efter pris';

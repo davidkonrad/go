@@ -1,5 +1,5 @@
 //http://stackoverflow.com/a/25886951/1407478
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
 	.directive('onlyNumbers', function () {
     return {
       require: 'ngModel',

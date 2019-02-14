@@ -4,23 +4,20 @@
  *
  *
  */
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .controller('KontaktCtrl', ['$scope', '$routeParams', '$timeout', '$http', 'ESPBA', 'Lookup', 'Meta',
 	function($scope, $routeParams, $timeout, $http, ESPBA, Lookup, Meta) {
 
 		$scope.formular = {};
 		
 		Meta.setTitle('Kontakt os');
-		Meta.setDescription('Kontakt gulve.online. Du kan udfylde vores kontaktformular, ringe eller selv skrive email til os.');
+		Meta.setDescription('Kontakt Hallandparket.dk. Du kan udfylde vores kontaktformular, ringe eller selv skrive email til os.');
 
 		//set stored produkt navn, passed from produkt
 		var p = Lookup.getPassData();
 		if (p && p.produkt_navn) {
 			$scope.formular.emne = p.produkt_navn;
 		}
-
-		//test
-		//$scope.success = true;
 
 		$scope.canSend = function() {
 			var ok = $scope.formular.emne > '' &&

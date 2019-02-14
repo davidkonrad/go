@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gulveonlineApp').directive('autoFocus', function($timeout) {
+angular.module('hallandparketApp').directive('autoFocus', function($timeout) {
 	return {
 		restrict: 'AC',
 		link: function(scope, element) {

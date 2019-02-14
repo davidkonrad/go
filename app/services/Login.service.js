@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .factory('Login', ['$cookies', '$timeout', '$q', 'ESPBA', 'RememberMe', 
 	function($cookies, $timeout, $q, ESPBA, RememberMe) {
     
-	var cookieName = 'hallandparket.dk'; //'gulve.online';
+	var cookieName = 'hallandparket.dk'; 
 	var	currentUser = null;
 
 	function setCookie(user) {

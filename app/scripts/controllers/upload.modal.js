@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
   .factory('UploadModal', ['$modal', '$location', '$compile', '$http', '$q', '$timeout', 'Upload', 
 		function($modal, $location, $compile, $http, $q, $timeout, Upload) {
 

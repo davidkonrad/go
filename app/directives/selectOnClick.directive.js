@@ -1,7 +1,7 @@
 'use strict';
 
 //from http://stackoverflow.com/questions/14995884/select-text-on-input-focus
-angular.module('gulveonlineApp')
+angular.module('hallandparketApp')
 	.directive('selectOnClick', ['$window', function ($window) {
     return {
         restrict: 'A',

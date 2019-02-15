@@ -58,7 +58,6 @@ module.exports = function(config) {
       'bower_components/angular-strap/dist/angular-strap.tpl.js',
       'bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js',
       'bower_components/angular-bootstrap3-typeahead/angular-bootstrap3-typeahead.js',
-      'bower_components/ng-tags-input/ng-tags-input.js',
       'bower_components/rangy/rangy-core.js',
       'bower_components/rangy/rangy-classapplier.js',
       'bower_components/rangy/rangy-highlighter.js',

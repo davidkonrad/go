@@ -10,7 +10,7 @@ angular.module('hallandparketApp')
 
 		$scope.produkter = [];
 		
-		Meta.setTitle('gulve.online - import og produktion af kvalitets trægulve');
+		Meta.setTitle('Hallandparket.dk - import og produktion af kvalitets trægulve');
 		Meta.setDescription('Førende importør af massive plankegulve, parketstave, sildeben og mosaik. Vores leverandører er baseret på FSC-certificeret skovdrift.');
 
 		function init() {

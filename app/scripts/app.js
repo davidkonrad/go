@@ -21,7 +21,7 @@ angular.module('hallandparketApp', [
 	'datatables.bootstrap',
 	'datatables.select',
 	'datatables.options',
-	'ngTagsInput',
+	//'ngTagsInput',
 	'bootstrap3-typeahead',
 	'textAngular',
 	'textAngularSetup',
@@ -196,7 +196,7 @@ angular.module('hallandparketApp', [
 		if ($location.host() === 'localhost') {
 			ESPBA.setHost('http://localhost/html/hallandparket/app/');
 		} else {
-			ESPBA.setHost('https//hallandparket.dk/');
+			ESPBA.setHost('https://hallandparket.dk/');
 		}
 		ESPBA.setApiPath('api/espba.php');
 		ESPBA.init().then(function() {

@@ -10,7 +10,7 @@ var defaultHTML =  `
 `;
 
 
-angular.module('gulveonlineApp').directive('blockWithHtml', function($http, $compile) {
+angular.module('hallandparketApp').directive('blockWithHtml', function($http, $compile) {
 
 	return {
     restrict: 'E',

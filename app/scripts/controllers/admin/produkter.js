@@ -12,6 +12,7 @@ angular.module('hallandparketApp')
 			$window.location.href = '/';
 		}
 
+		//
 		$scope.dtColumns = [
 
       DTColumnBuilder.newColumn(null)
@@ -118,8 +119,11 @@ angular.module('hallandparketApp')
 				.withTitle('Pk.str.')
 				.withClass('text-right'),
 
-      DTColumnBuilder.newColumn('lagerplads')
-				.withTitle('Lagerplads'),
+      DTColumnBuilder.newColumn('lagerplads_id')
+				.withTitle('Lagerplads')
+				.renderWith(function(data) {
+					return Lookup.lagerpladsNavn(data)
+				}),
 
       DTColumnBuilder.newColumn('nyhed')
 				.withOption('width', '40px')

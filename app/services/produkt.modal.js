@@ -28,6 +28,8 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 			})
 		};
 
+		$scope.lagerpladsItems = Lookup.lagerpladsItems();
+
 		$scope.$watch('edit.enhed_id', function() {
 			$scope.enhedFlertal = Lookup.enhedNavnFlertal($scope.edit.enhed_id);
 			$scope.enhedEntal = Lookup.enhedNavn($scope.edit.enhed_id);

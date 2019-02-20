@@ -32,7 +32,7 @@ angular.module('hallandparketApp').factory('AdminDataModal', function($modal, $q
 
 			$scope.canSave = function() {
 				for (var i=0, l=required.length; i<l; i++) {
-					if (!$scope.edit[required[i]]) return false
+					if (!$scope.edit[required[i]] || $scope.edit[required[i]].length<=0) return false
 				}
 				return true
 			}

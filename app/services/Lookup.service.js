@@ -15,6 +15,7 @@ angular.module('hallandparketApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', fu
 	var profilItems = undefined;
 	var produktItems = undefined;
 	var slidgruppeItems = undefined;
+	var lagerpladsItems = undefined;
 
 	function idToNavn(table, id, field) {
 		if (!field) field = 'navn';
@@ -128,6 +129,10 @@ angular.module('hallandparketApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', fu
 				produktItems = r.data;
 			});
 
+			ESPBA.get('lagerplads', {}).then(function(r) {
+				lagerpladsItems = r.data;
+			});
+
       return deferred.promise;
 		},
 
@@ -165,6 +170,27 @@ angular.module('hallandparketApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', fu
 		produktNavn: function(id) {
 			return idToNavn(produkter, id)
 		},
+
+		//lagerplads
+		lagerpladsNavn: function(id) {
+			return idToNavn(lagerpladsItems, id)
+		},
+		lagerpladsNavnFull: function(id) {
+			var n = '';
+			var l = idToItem(lagerpladsItems, id);
+			while (l) {
+				if (n!='') n = '<br>' + n;
+				n = l.navn + n;
+				l = idToItem(lagerpladsItems, l.parent_id);
+			}
+			return n
+		},
+		lagerpladsByParentId: function(id) {
+			return lagerpladsItems.filter(function(l) {
+				if (l.parent_id == id) return l
+			})
+		},
+
 		//return the kategori object
 		getKategori: function(id) {
 			for (var i=0, l=kategoriItems.length; i<l; i++) {
@@ -174,7 +200,6 @@ angular.module('hallandparketApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', fu
 			}
 			return false;
 		},
-
 
 		//return tables
 		sortItems: function() {
@@ -203,6 +228,9 @@ angular.module('hallandparketApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', fu
 		},
 		produktItems: function() {
 			return produktItems
+		},
+		lagerpladsItems: function() {
+			return lagerpladsItems
 		},
 
 		//construct a filter array of literals for ng-repeats in produktList.html

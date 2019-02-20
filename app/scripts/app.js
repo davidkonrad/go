@@ -21,7 +21,6 @@ angular.module('hallandparketApp', [
 	'datatables.bootstrap',
 	'datatables.select',
 	'datatables.options',
-	//'ngTagsInput',
 	'bootstrap3-typeahead',
 	'textAngular',
 	'textAngularSetup',
@@ -32,9 +31,6 @@ angular.module('hallandparketApp', [
 	'angular-loading-bar'
   ])
   .config(function ($locationProvider, $routeProvider, cfpLoadingBarProvider, $httpProvider) {
-
-		//console.log($httpProvider.defaults);
-
     cfpLoadingBarProvider.includeSpinner = false;
 
 		if (window.location.host == 'localhost:9000') {
@@ -165,6 +161,11 @@ angular.module('hallandparketApp', [
         controller: 'AdminSlidgruppeCtrl',
         controllerAs: 'admin'
       })
+	   .when('/admin-lager-plads', {
+        templateUrl: 'views/admin/lagerplads.html',
+        controller: 'AdminLagerpladsCtrl',
+        controllerAs: 'admin'
+      })
 
 			//general pages
 	   .when('/admin-profil', {
@@ -183,7 +184,10 @@ angular.module('hallandparketApp', [
       });
 
   })
-	.run(function($rootScope, $location, Lookup, ESPBA, Meta) {
+	.run(function($rootScope, $location, Lookup, ESPBA, Meta, DTDefaultOptions) {
+
+		//datatables
+		DTDefaultOptions.setLoadingTemplate('<img src="images/ajax-loader.gif">');
 
 		//moment
 		moment.tz.setDefault("Europe/Copenhagen"); 

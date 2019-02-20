@@ -167,9 +167,16 @@
 							    <div class="form-group">
 							      <label class="col-md-3 control-label">Lagerplads</label>
 										<div class="col-md-9">
-									    <input class="form-control" 
-												select-on-click
-												ng-model="edit.lagerplads">
+											<button type="button" 
+												class="btn btn-default" 
+												ng-model="edit.lagerplads_id" 
+												bs-select
+												placeholder="Vælg"
+												data-html="true"
+												data-placement="bottom auto"
+												bs-options="l.id as l.navn for l in lagerpladsItems">
+													<span class="caret"></span>
+											</button>
 										</div>
 									</div>
 

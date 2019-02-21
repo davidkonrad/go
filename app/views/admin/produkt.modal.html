@@ -299,9 +299,11 @@
 							    <div class="form-group">
 							      <label class="col-md-2 control-label">Dimension</label>
 										<div class="col-md-8">
-									    <input class="form-control" 
-												select-on-click
-												ng-model="edit.dimension">
+											<div class="input-group">
+												<input class="form-control" select-on-click placeholder="H" ng-model="edit.dim_h" style="width:60px;">
+												<input class="form-control" select-on-click placeholder="B" ng-model="edit.dim_b" style="width:60px;">
+												<input class="form-control" select-on-click placeholder="L" ng-model="edit.dim_l" style="width:60px;">
+											</div>
 										</div>
 									</div>
 

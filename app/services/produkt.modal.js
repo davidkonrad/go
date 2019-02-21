@@ -187,7 +187,7 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 			deferred = $q.defer();
 			modal = $modal({
 				controller: local.modalInstance,
-				templateUrl: 'views/produkt.modal.html',
+				templateUrl: 'views/admin/produkt.modal.html',
 				backdrop: 'static',
 				locals: { 
 					produkt_id: produkt_id 

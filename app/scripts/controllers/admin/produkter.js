@@ -72,6 +72,15 @@ angular.module('hallandparketApp')
       DTColumnBuilder.newColumn('dimension')
 				.withTitle('Dimension'),
 
+      DTColumnBuilder.newColumn('dim_h')
+				.withTitle('H').withClass('text-right'),
+
+      DTColumnBuilder.newColumn('dim_b')
+				.withTitle('B').withClass('text-right'),
+
+      DTColumnBuilder.newColumn('dim_l')
+				.withTitle('L').withClass('text-right'),
+
       DTColumnBuilder.newColumn('sort_id').withTitle('Træsort')
 				.renderWith(function(data /*, type, full, meta*/) {
 					return Lookup.sortNavn(data);
@@ -203,6 +212,7 @@ angular.module('hallandparketApp')
 			.withOption('language', Utils.dataTables_daDk)
 			.withButtons([ 
 				{ extend : 'colvis',
+					columns: ':not(.no-export)',
 					text: 'Vis kolonner &nbsp;<i class="caret" style="position:relative;top:-3px;"></i>',
 					className: 'btn btn-default btn-xs colvis-btn'
 				},

@@ -83,9 +83,16 @@
 						</a>
 					</td>
 				</tr>
-				<tr ng-if="produkt.dimension != '' ">
+				<tr ng-if="produkt.dimension != '' && produkt.dim_h == null">
 					<td>{{ produkt.enhed_spec }}</td>
 					<td>{{ produkt.dimension }}</td>
+				</tr>
+				<tr ng-if="produkt.dim_h != null ">
+					<td>{{ produkt.enhed_spec }}</td>
+					<td>
+						<em title="højde">{{ produkt.dim_h }}</em><small>&nbsp;&times;</small><em title="bredde">{{ produkt.dim_b }}</em><small>&nbsp;&times;</small><em title="længde">{{ produkt.dim_l }}</em>
+						<span>mm.</span>
+					</td>
 				</tr>
 				<tr>
 					<td>Lagerkapacitet</td>

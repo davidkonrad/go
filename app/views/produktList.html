@@ -99,7 +99,8 @@
 				<span ng-if="p.vare_nr != '' "><strong title="Hallandparket.dk varenr: {{ p.vare_nr }}">{{ p.vare_nr }}</strong>.</span>
 				<span ng-if="p.kategori != '' ">{{ p.kategori }}. </span>
 				<span ng-if="p.sort != '' ">{{ p.sort }}. </span>
-				<span ng-if="p.dimension != '' ">{{ p.dimension }}. </span>
+				<span ng-if="p.dimension != '' && p.dim_h == null">{{ p.dimension }}. </span>
+				<span ng-if="p.dim_h != null"><span title="højde">{{ p.dim_h }}</span><small>&times;</small><span title="bredde">{{ p.dim_b }}</span><small>&times;</small><span title="længde">{{ p.dim_l }}</span>&nbsp;mm.</span>
 				<span ng-if="p.overflade != '' ">{{ p.overflade }}. </span>  
 				<span ng-if="p.kvalitet != '' ">{{ p.kvalitet }} sortering. </span>
 				<span ng-if="p.profil != '' ">{{ p.profil }} profil. </span>

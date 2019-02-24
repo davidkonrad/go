@@ -3,18 +3,19 @@
 		<div class="modal-content">
 			
 			<div class="modal-header">
-				<h4 class="modal-title"> {{ __produktModal.title }}</h4>
+				<h4 class="modal-title" ng-bind-html="__produktModal.title"></h4>
 			</div>
 
 			<div class="modal-body">
 				<div bs-tabs>
 					<div bs-pane data-title="Produkt oplysninger">
 
-						<div class="row" style="margin-top:20px;">
+						<div class="row" style="margin-top:25px;">
 
 							<form role="form" class="form-horizontal" autocomplete="off">
 
-								<div class="col-md-1">&nbsp;</div>
+								<div class="col-md-1 no-margin-left no-padding" style="width: 20px !important;">&nbsp;</div>
+
 <!---p1 -->
 								<div class="col-md-2">
 
@@ -88,7 +89,7 @@
 
 								</div>
 <!---p2 -->
-								<div class="col-md-3">
+								<div class="col-md-4">
 							    <div class="form-group">
 							      <label class="col-md-3 control-label" for="vare_nr">VareNr.</label>
 										<div class="col-md-8">

@@ -258,7 +258,7 @@ angular.module('hallandparketApp')
 
 		angular.element('#table-produkter').on('click', 'tbody button.btn-clone', function(e) {
 			var id=$(this).attr('produkt-id');
-			if (confirm('Kopier produkt?')) {
+			if (confirm('Klon produkt?')) {
 				ESPBA.get('produkter', { id: id }).then(function(p) {
 					var data = p.data[0];
 					delete data.id;
@@ -272,15 +272,20 @@ angular.module('hallandparketApp')
 					} else {
 						data.navn = 'produkt #'+id+' (kopi)';
 					}
+					data.created_timestamp = 'CURRENT_TIMESTAMP';
+					data.edited_timestamp = 'CURRENT_TIMESTAMP';
 
 					ESPBA.insert('produkter', data).then(function(p) {
 						$scope.dtInstance.reloadData();
-						id = p.data[0].id;
-						ProduktModal.show($scope, id).then(function() {
-							$scope.dtInstance.reloadData();
-						});
-					});
-				});
+						$timeout(function() {
+							$scope.dtInstance.DataTable.search(p.data[0].vare_nr).draw();
+							id = p.data[0].id;
+							ProduktModal.show(id).then(function() {
+								$scope.dtInstance.reloadData();
+							})
+						})
+					})
+				})
 			}
 		});
 

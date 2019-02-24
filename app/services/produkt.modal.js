@@ -14,18 +14,19 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 	function($scope, ESPBA, Utils, UploadModal, Lookup, ProduktEkstraModal, DTOptionsBuilder, DTColumnBuilder, LagerpladsModal, produkt_id) {
 
 		$scope.produkt_id = produkt_id || false;
-		
+
 		$scope.__produktModal = {
 			title: produkt_id ? 'Rediger produkt' : 'Opret nyt Produkt',
 			btnOk: produkt_id ? 'Gem og luk' : 'Opret produkt og luk'
 		};
-
+		
 		$scope.edit = {};
 		if (produkt_id) {
 			ESPBA.get('produkter', { id: produkt_id }).then(function(r) {
 				$scope.edit = r.data[0];
 				$scope.current_lagerplads = Lookup.lagerpladsNavnFull($scope.edit.lagerplads_id);
 				$scope.reloadImages();
+				$scope.__produktModal.title = 'Rediger <strong>'+$scope.edit.vare_nr+'</strong>'
 			})
 		};
 

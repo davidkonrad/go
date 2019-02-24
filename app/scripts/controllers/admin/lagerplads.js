@@ -13,12 +13,22 @@ angular.module('hallandparketApp')
 		}
 
 		$scope.dtColumns = [
-      DTColumnBuilder.newColumn('id').withTitle('#id'),
+      DTColumnBuilder.newColumn('id').withClass('td40').withTitle('#'),
+      DTColumnBuilder.newColumn('navn').withTitle('Sted (navn)'),
       DTColumnBuilder.newColumn('parent_id').withTitle('Tilhører').renderWith(function(data) {
 				return (data>0) ? $scope.lookup[data] : ''
 			}),
-      DTColumnBuilder.newColumn('navn').withTitle('Sted (navn)'),
-      DTColumnBuilder.newColumn('note').withTitle('Noter')
+      DTColumnBuilder.newColumn('note').withTitle('Noter'),
+      DTColumnBuilder.newColumn('id')
+				.withClass('td20 exclude-from-click')
+				.notSortable().withTitle('')
+				.renderWith(function(data, type, row) {
+					if (!row.parent_id) {
+						return '<i class="fa fa-remove text-danger btn-delete-lagerplads" lagerplads-id="'+row.id+'" lagerplads-navn="'+row.navn+'" title="Slet sted"></i>'
+					} else {
+						return '<i class="fa fa-remove text-muted"></i>'
+					}
+				}),
 		];
 
 		$scope.dtOptions = DTOptionsBuilder
@@ -58,7 +68,7 @@ angular.module('hallandparketApp')
 			$scope.dtInstance = instance;
     };
 
-		$('#table-lagerplads').on('click', 'tbody td', function(e) {
+		$('#table-lagerplads').on('click', 'tbody td:not(.exclude-from-click)', function(e) {
 			var id=$(this).parent().attr('lagerplads-id');
 			$scope.parents = $scope.data.filter(function(d) {
 				if (d.id != id) return d
@@ -71,5 +81,20 @@ angular.module('hallandparketApp')
 			});
 		});
 
+		$('#table-lagerplads').on('click', '.btn-delete-lagerplads', function(e) {
+			var navn = $(this).attr('lagerplads-navn');
+			var id = $(this).attr('lagerplads-id');
+			var $tr = $(this).closest('tr');
+			$tr.addClass('danger');
+			setTimeout(function() {
+				if (confirm('Virkelig, slet '+navn+'?')) {
+					ESPBA.delete('lagerplads', { id: id }).then(function(r) {
+						$scope.dtInstance.reloadData();
+					})
+				} else {
+					$tr.removeClass('danger');
+				}
+			}, 10)
+		})
 
 }]);

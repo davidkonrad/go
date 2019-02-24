@@ -167,15 +167,9 @@
 							    <div class="form-group">
 							      <label class="col-md-3 control-label">Lagerplads</label>
 										<div class="col-md-9">
-											<button type="button" 
-												class="btn btn-default" 
-												ng-model="edit.lagerplads_id" 
-												bs-select
-												placeholder="Vælg"
-												data-html="true"
-												data-placement="bottom auto"
-												bs-options="l.id as l.navn for l in lagerpladsItems">
-													<span class="caret"></span>
+											{{ current_lagerplads }}
+											<button type="button" class="btn btn-default btn-xs" ng-click="changeLagerplads()">
+												<i class="fa fa-home"></i>
 											</button>
 										</div>
 									</div>
@@ -382,17 +376,17 @@
 			
 			<div class="modal-footer">
 				<button type="button" 
+					class="btn btn-default" 
+					ng-click="produktModalClose(false)" 
+					ng-show="!alertParams.okOnly" >
+						Fortryd
+				</button> 
+				<button type="button" 
 					class="btn" 
 					ng-click="produktModalClose(true)" 
 					ng-class="{ 'btn-success' : canSave() }"
 					ng-enabled="canSave()">
 						{{ __produktModal.btnOk }}
-				</button> 
-				<button type="button" 
-					class="btn btn-default" 
-					ng-click="produktModalClose(false)" 
-					ng-show="!alertParams.okOnly" >
-						Fortryd
 				</button> 
 			</div>
 

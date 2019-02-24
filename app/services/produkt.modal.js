@@ -10,8 +10,8 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 	var deferred;
 	var local = this;
 
-	local.modalInstance = ['$scope', 'ESPBA', 'Utils', 'UploadModal', 'Lookup', 'ProduktEkstraModal', 'DTOptionsBuilder', 'DTColumnBuilder', 'produkt_id', 
-	function($scope, ESPBA, Utils, UploadModal, Lookup, ProduktEkstraModal, DTOptionsBuilder, DTColumnBuilder, produkt_id) {
+	local.modalInstance = ['$scope', 'ESPBA', 'Utils', 'UploadModal', 'Lookup', 'ProduktEkstraModal', 'DTOptionsBuilder', 'DTColumnBuilder', 'LagerpladsModal', 'produkt_id', 
+	function($scope, ESPBA, Utils, UploadModal, Lookup, ProduktEkstraModal, DTOptionsBuilder, DTColumnBuilder, LagerpladsModal, produkt_id) {
 
 		$scope.produkt_id = produkt_id || false;
 		
@@ -24,11 +24,10 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 		if (produkt_id) {
 			ESPBA.get('produkter', { id: produkt_id }).then(function(r) {
 				$scope.edit = r.data[0];
+				$scope.current_lagerplads = Lookup.lagerpladsNavnFull($scope.edit.lagerplads_id);
 				$scope.reloadImages();
 			})
 		};
-
-		$scope.lagerpladsItems = Lookup.lagerpladsItems();
 
 		$scope.$watch('edit.enhed_id', function() {
 			$scope.enhedFlertal = Lookup.enhedNavnFlertal($scope.edit.enhed_id);
@@ -63,6 +62,15 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 		$scope.produktTypeItems = [{ id: 0, navn: '--'}].concat(Lookup.produktTypeItems());
 		$scope.profilItems = [{ id: 0, navn: '--'}].concat(Lookup.profilItems());
 		$scope.slidgruppeItems = [{ id: 0, navn: '--'}].concat(Lookup.slidgruppeItems());
+
+		$scope.changeLagerplads = function() {
+			LagerpladsModal.show($scope.edit.lagerplads_id).then(function(l) {
+				if (l) {
+					$scope.edit.lagerplads_id = l;
+					$scope.current_lagerplads = Lookup.lagerpladsNavnFull(l);
+				}
+			})
+		}
 
 		$scope.reloadImages = function() {
 			$scope.billeder = [];
@@ -124,7 +132,7 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 			}
 		};
 
-		//produkt ekstra
+//produkt ekstra
 		$scope.dtEkstraColumns = [
       DTColumnBuilder.newColumn('id')
 				.withTitle('#')

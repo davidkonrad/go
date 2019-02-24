@@ -179,7 +179,7 @@ angular.module('hallandparketApp').factory('Lookup', ['$q', 'ESPBA', 'Utils', fu
 			var n = '';
 			var l = idToItem(lagerpladsItems, id);
 			while (l) {
-				if (n!='') n = '<br>' + n;
+				if (n!='') n = ', ' + n;
 				n = l.navn + n;
 				l = idToItem(lagerpladsItems, l.parent_id);
 			}

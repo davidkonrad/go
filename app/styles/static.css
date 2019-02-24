@@ -74,16 +74,6 @@ span.no-padding {
 	max-width: 1070px !important;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-	padding : 0px;
-	margin-left: 0px;
-	display: inline;
-	border: 0px;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-	border: 0px;
-}
-
 .modal-open {
 	overflow: scroll;
 }
@@ -200,3 +190,40 @@ code.go-navbar-logo {
 	padding-left:10px;
 	padding-right:10px;
 }
+
+/* dataTables fixes */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+	padding : 0px;
+	margin-left: 0px;
+	display: inline;
+	border: 0px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+	border: 0px;
+}
+
+.td20,
+table.dataTable tbody th.td20, 
+table.dataTable tbody td.td20,
+tbody td .td20 {
+	text-align: right;
+	width: 20px;
+	max-width: 20px;
+	margin-left: 1px !important;
+	padding-left: 4px !important;
+	margin-right: 1px !important;
+	padding-right: 4px !important;
+}
+
+.td40,
+table.dataTable tbody th.td40, 
+table.dataTable tbody td.td40,
+tbody td .td40 {
+	width: 40px;
+	max-width: 40px;
+	margin-left: 1px !important;
+	padding-left: 4px !important;
+	margin-right: 1px !important;
+	padding-right: 4px !important;
+}
+

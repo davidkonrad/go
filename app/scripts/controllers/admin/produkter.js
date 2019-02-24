@@ -191,20 +191,10 @@ angular.module('hallandparketApp')
 					$(row).tooltip({
 						title: err,
 						trigger: 'hover',
-						container: 'html',
+						container: 'table',
 						XXplacement: 'left',
 						html: true
 					});
-/*
-					$(row).addClass('warning');
-					$(row).attr('data-original-title', err);
-					$(row).attr('data-container', 'body');
-					$(row).attr('data-html', 'true');
-					$(row).attr('data-placement', 'top');
-					$(row).attr('data-toggle', 'tooltip');
-					$(row).tooltip()
-*/
-
 				}
 			})
 			.withOption('dom', 'Blfrtip')
@@ -249,6 +239,11 @@ angular.module('hallandparketApp')
 			$scope.dtInstance = instance;
     };
 
+		//autoselect filter
+		$('body').on('focus', '.dataTables_filter input', function() {
+			this.select()
+		})
+
 		angular.element('#table-produkter').on('click', 'tbody td:not(.no-click)', function(e) {
 			var id=$(this).parent().attr('produkt-id');
 			ProduktModal.show(id).then(function() {
@@ -262,6 +257,8 @@ angular.module('hallandparketApp')
 				ESPBA.get('produkter', { id: id }).then(function(p) {
 					var data = p.data[0];
 					delete data.id;
+					delete data.created_timestamp;
+
 					if (data.vare_nr != '') {
 						data.vare_nr+=' (kopi)';
 					} else {
@@ -272,18 +269,31 @@ angular.module('hallandparketApp')
 					} else {
 						data.navn = 'produkt #'+id+' (kopi)';
 					}
-					data.created_timestamp = 'CURRENT_TIMESTAMP';
+					data.aktiv = false;
 					data.edited_timestamp = 'CURRENT_TIMESTAMP';
 
 					ESPBA.insert('produkter', data).then(function(p) {
-						$scope.dtInstance.reloadData();
-						$timeout(function() {
-							$scope.dtInstance.DataTable.search(p.data[0].vare_nr).draw();
-							id = p.data[0].id;
-							ProduktModal.show(id).then(function() {
-								$scope.dtInstance.reloadData();
+						p = p.data[0];
+
+						ESPBA.get('billeder', { produkt_id: id }).then(function(res) {
+							res.data.forEach(function(r) {
+								ESPBA.insert('billeder', { produkt_id: p.id, path: r.path })
 							})
 						})
+						ESPBA.get('produkt_ekstra', { produkt_id: id }).then(function(res) {
+							res.data.forEach(function(r) {
+								ESPBA.insert('produkt_ekstra', { produkt_id: p.id, key: r.key, value: r.value, sort_order: r.sort_order })
+							})
+						})
+
+						$scope.dtInstance.reloadData();
+						$timeout(function() {
+							$scope.dtInstance.DataTable.search(p.vare_nr).draw();
+							ProduktModal.show(p.id).then(function() {
+								$scope.dtInstance.reloadData();
+							})
+						}, 500)
+
 					})
 				})
 			}

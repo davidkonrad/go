@@ -175,27 +175,26 @@ angular.module('hallandparketApp')
 				return defer.promise;
 	    })
 			.withOption('drawCallback', function() {
+				$('tr.danger').tooltip()	
 			})
 			.withOption('rowCallback', function(row, data /*, index*/) {
 				$(row).attr('produkt-id', data.id);
 
 				var err = '';
-				if (data.navn == '') err+='Produktet har ikke noget <strong>Navn</strong>. ';
-				if (data.kategori_id <= 0) err+='Produktet ikke knyttet til en <strong>Kategori</strong>. ';
-				if (data.vare_nr == '') err+='Der mangler <strong>VareNr</strong>. ';
-				if (data.pris_enhed <= 0) err+='Der mangler <strong>Pris</strong>. ';
-				if (data.dimension == '') err+='Der mangler <strong>Dimension</strong>. ';
+				if (data.navn == '') err+='<span style="white-space: nowrap;">Produktet har ikke noget <strong>Navn</strong>.</span> ';
+				if (data.kategori_id <= 0) err+='<span style="white-space: nowrap;">Produktet ikke knyttet til en <strong>Kategori</strong>. </span> ';
+				if (data.vare_nr == '') err+='<span style="white-space: nowrap;">Der mangler <strong>VareNr</strong>. </span> ';
+				if (data.pris_enhed <= 0) err+='<span style="white-space: nowrap;">Der mangler <strong>Pris</strong>. </span> ';
+				//if (data.dimension == '') err+='Der mangler <strong>Dimension</strong>. ';
 				
 				if (err != '') {
-					$(row).addClass('warning');
-					$(row).tooltip({
-						title: err,
-						trigger: 'hover',
-						container: 'table',
-						XXplacement: 'left',
-						html: true
-					});
+					$(row).addClass('danger');
+					$(row).attr('data-toggle', "tooltip");
+					$(row).attr('data-title', err);
+					$(row).attr('data-placement', 'top');
+					$(row).attr('data-html', 'true');
 				}
+
 			})
 			.withOption('dom', 'Blfrtip')
 			.withOption('stateSave', true)

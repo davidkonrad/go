@@ -1,7 +1,36 @@
 
 <div class="container">
 
-	<h1>{{ produkt.navn }}</h1>
+	<div class="row" ng-if="produkt.billeder.length == 0">
+		<h1>{{ produkt.navn }}</h1>
+	</div>
+
+	<div class="row xxrow-no-gutters" ng-if="produkt.billeder.length > 0">
+		
+			<h1 class="pull-left col-md-6"">{{ produkt.navn }}</h1>
+		<div class="xcol-md-5 produkt-image pull-left" XXstyle="overflow-y: hidden;">
+			<produkt-image path="{{ produkt.billeder[0].path }}" size="md"></produkt-image>
+<!--
+			<img class="thumbnail" 
+				ng-src="/media-uploads/{{ produkt.billeder[0].path }}" 
+				style="cursor:pointer;margin-bottom:0px;" 
+				fancyboxable="{centerOnScroll:true,margin:20}">
+-->
+		</div>
+
+
+<!--
+		<div class="col-md-6 pull-left">
+			<h1>{{ produkt.navn }}</h1>
+		</div>
+		<div class="col-md-5 produkt-image pull-left" XXstyle="overflow-y: hidden;">
+			<img class="thumbnail" 
+				ng-src="/media-uploads/{{ produkt.billeder[0].path }}" 
+				style="cursor:pointer;margin-bottom:0px;" 
+				fancyboxable="{centerOnScroll:true,margin:20}">
+		</div>
+-->
+	</div>
 
 	<div class="col-md-12 col-xs-12">
 		<p ng-bind-html="produkt.beskrivelse"></p>

@@ -62,6 +62,9 @@
 }
 
 /** reset some styles **/
+.cursor-pointer {
+	cursor: pointer;
+}
 .no-margin {
 	margin: 0px !important;
 }

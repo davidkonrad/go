@@ -186,6 +186,11 @@ angular.module('hallandparketApp', [
   })
 	.run(function($rootScope, $location, Lookup, ESPBA, Meta, DTDefaultOptions) {
 
+		//images
+		$.fn.fancyboxPlus.defaults.overlayOpacity = 0.09;
+		$.fn.fancyboxPlus.defaults.speedIn = 200;
+		$.fn.fancyboxPlus.defaults.speedOut = 150;
+
 		//datatables
 		DTDefaultOptions.setLoadingTemplate('<img src="images/ajax-loader.gif">');
 

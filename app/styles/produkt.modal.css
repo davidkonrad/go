@@ -9,6 +9,10 @@
 	font-size: 90%;
 }
 
+#produkt-dialog .modal-header {
+	padding-bottom: 5px;
+}
+
 .ta-editor.form-control.produkt-beskrivelse, 
 .ta-scroll-window.form-control.produkt-beskrivelse {
 	height: 97%; /*180px;*/

@@ -10,8 +10,8 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 	var deferred;
 	var local = this;
 
-	local.modalInstance = ['$scope', 'ESPBA', 'Utils', 'UploadModal', 'Lookup', 'ProduktEkstraModal', 'DTOptionsBuilder', 'DTColumnBuilder', 'LagerpladsModal', 'produkt_id', 
-	function($scope, ESPBA, Utils, UploadModal, Lookup, ProduktEkstraModal, DTOptionsBuilder, DTColumnBuilder, LagerpladsModal, produkt_id) {
+	local.modalInstance = ['$scope', 'ESPBA', 'Utils', 'UploadModal', 'InputModal', 'Lookup', 'ProduktEkstraModal', 'DTOptionsBuilder', 'DTColumnBuilder', 'LagerpladsModal', 'produkt_id', 
+	function($scope, ESPBA, Utils, UploadModal, InputModal, Lookup, ProduktEkstraModal, DTOptionsBuilder, DTColumnBuilder, LagerpladsModal, produkt_id) {
 
 		$scope.produkt_id = produkt_id || false;
 
@@ -107,32 +107,84 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 				})
 			}
 		};			
-			
+
+		var _modalClose = function(value) {
+			modal.hide();
+			modal.destroy();
+			modal = null;
+      deferred.resolve(value)
+		}
+
 		$scope.produktModalClose = function(value) {
-
-			function close() {
-				modal.hide();
-				modal.destroy();
-				modal = null;
-	      deferred.resolve(value)
-			}
-
 			if (value) {
 				if (produkt_id) {
 					$scope.edit.edited_timestamp = 'CURRENT_TIMESTAMP';
 					ESPBA.update('produkter', $scope.edit).then(function(r) {
-						close()
+						_modalClose(true)
 					})
 				} else {
 					ESPBA.insert('produkter', $scope.edit).then(function(r) {
-						close()
+						_modalClose(true)
 					})
 				}
 			} else {
-				close()
+				_modalClose()
 			}
 		};
 
+//lager opdatering
+		$scope.lagerAdd = function() {
+			var p = {
+				title: 'Tilføj til lager',
+				placeholder: "0.0",
+				desc: 'Skriv antal pakker der skal <strong>tilføjes</strong> lagerbeholdning',
+				type: 'float'
+			}
+			InputModal.show(p).then(function(val) {
+				if (val) {
+					var pakker = parseFloat($scope.edit.pakker) + parseFloat(val);
+					var paa_lager = parseFloat($scope.edit.pakke_str) * pakker;
+					paa_lager = Math.round(paa_lager * 100) / 100;
+					var update = {
+						id: $scope.edit.id,
+						edited_timestamp: 'CURRENT_TIMESTAMP',
+						pakker: pakker,
+						paa_lager: paa_lager
+					}
+					ESPBA.update('produkter', update).then(function(r) {
+						_modalClose(true)
+					})
+				}
+			})
+		}
+
+		$scope.lagerRemove = function() {
+			var p = {
+				value: "",
+				title: 'Fjern fra lager',
+				placeholder: '0.0',
+				desc: 'Skriv antal pakker der skal <strong>fjernes</strong> lagerbeholdning',
+				type: 'float'
+			}
+			InputModal.show(p).then(function(val) {
+				if (val) {
+					var pakker = parseFloat($scope.edit.pakker) - parseFloat(val);
+					var paa_lager = parseFloat($scope.edit.pakke_str) * pakker;
+					paa_lager = Math.round(paa_lager * 100) / 100;
+					var update = {
+						id: $scope.edit.id,
+						edited_timestamp: 'CURRENT_TIMESTAMP',
+						pakker: pakker,
+						paa_lager: paa_lager
+					}
+					ESPBA.update('produkter', update).then(function(r) {
+						_modalClose(true)
+					})
+				}
+			})
+		}
+
+		
 //produkt ekstra
 		$scope.dtEkstraColumns = [
       DTColumnBuilder.newColumn('id')

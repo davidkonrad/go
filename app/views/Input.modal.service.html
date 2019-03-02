@@ -1,0 +1,38 @@
+<div class="modal ng-scope top am-fade-and-slide-top center col-md-12" tabindex="-1" role="dialog" style="display: block;" id="input-modal-dialog">
+	<div class="modal-dialog modal-small">
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<h4 class="modal-title"> {{ options.title }}</h4>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="row">
+					<form role="form" class="form-horizontal col-md-12">
+				    <div class="form-group">
+							<div class="col-md-12">
+								<p ng-bind-html="options.desc"></p>
+								<input class="form-control" 
+									select-on-click
+									auto-focus
+									ng-attr-only-digits="options.type == 'float'"
+									XXng-attr-only-numbers="options.type == 'int'"
+									ng-model="options.value"
+									placeholder="{{ options.placeholder }}">
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" ng-click="modalClose(false)">Fortryd</button> 
+				<button type="button" class="btn" ng-click="modalClose(options.value)" ng-class="{ 'btn-success' : canSave() }"	ng-disabled="!canSave()">
+					OK
+				</button> 
+			</div>
+		</div>
+	</div>
+</div>

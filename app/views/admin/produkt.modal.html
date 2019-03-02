@@ -3,7 +3,16 @@
 		<div class="modal-content">
 			
 			<div class="modal-header">
-				<h4 class="modal-title" ng-bind-html="__produktModal.title"></h4>
+				<span class="h4 modal-title" ng-bind-html="__produktModal.title"></span>
+				<span class="pull-right">
+					<span style="position:relative;top:-0px;">Opdater lager&nbsp;</span>
+					<button class="btn btn-default btn-xs btn-primary" title="Læg til lager" ng-click="lagerAdd()">
+						<i class="fa fa-home fa-2x"></i>
+					</button>
+					<button class="btn btn-default btn-xs btn-success" title="Fjern fra lager" ng-click="lagerRemove()">
+						<i class="fa fa-shopping-cart fa-2x"></i>
+					</button>
+				</span>
 			</div>
 
 			<div class="modal-body">

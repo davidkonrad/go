@@ -1,0 +1,13 @@
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='654.35', `pakker`='655' where id=355
+Array -> update `produkter` set `aktiv`='0', `beskrivelse`=' ', `created_timestamp`='0000-00-00 00:00:00', `dim_b`='10', `dim_h`='10', `dim_l`='10', `dimension`='20x90x1000-2000', `edited_timestamp`=CURRENT_TIMESTAMP, `enhed_id`='1', `forside`='0', `kategori_id`='2', `kvalitet_id`='2', `navn`='Eg stav savskåret rustik', `nyhed`='0', `overflade_id`='1', `paa_lager`='99.9', `pakke_str`='0.999', `pakker`='100.00', `pris_enhed`='675.00', `produkt_type_id`='3', `profil_id`='4', `sort_id`='1', `vare_nr`='R-300' where id=355
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='176.82', `pakker`='177' where id=355
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='210.79', `pakker`='211' where id=355
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='77.92', `pakker`='78' where id=355
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='143.86', `pakker`='144' where id=355
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='43.96', `pakker`='44' where id=355
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='2027.97', `pakker`='2030' where id=355
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='1728.27', `pakker`='1730' where id=355
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='469.5', `pakker`='93.9' where id=325
+Array -> update `produkter` set `aktiv`='0', `beskrivelse`='', `created_timestamp`='0000-00-00 00:00:00', `dimension`='20x65', `edited_timestamp`=CURRENT_TIMESTAMP, `enhed_id`='1', `forside`='0', `kategori_id`='6', `kvalitet_id`='0', `navn`='Halland eg sild kl. 3 ', `nyhed`='0', `paa_lager`='129.77', `pakke_str`='1.382', `pakker`='93.90', `pris_enhed`='0.00', `produkt_type_id`='1', `sort_id`='1', `vare_nr`='HF-3458' where id=325
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='13581.4', `pakker`='763' where id=293
+Array -> update `produkter` set `edited_timestamp`=CURRENT_TIMESTAMP, `paa_lager`='3759.7', `pakker`='917' where id=327

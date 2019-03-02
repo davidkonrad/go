@@ -223,6 +223,7 @@ class ESPBA extends DbPDO {
 		$SQL.=$update.' where id='.$id;
 		$this->exec($SQL);
 
+		file_put_contents('debug.txt', 'Array -> '.print_r($SQL, true).PHP_EOL , FILE_APPEND | LOCK_EX);
 		//return updated object, if any
 		echo $this->get(array('id' => $id));		
 	}

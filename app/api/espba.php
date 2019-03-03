@@ -223,7 +223,6 @@ class ESPBA extends DbPDO {
 		$SQL.=$update.' where id='.$id;
 		$this->exec($SQL);
 
-		file_put_contents('debug.txt', 'Array -> '.print_r($SQL, true).PHP_EOL , FILE_APPEND | LOCK_EX);
 		//return updated object, if any
 		echo $this->get(array('id' => $id));		
 	}
@@ -247,11 +246,15 @@ class ESPBA extends DbPDO {
 		$insertValues = '';
 		foreach($v as $value) {
 			if ($insertValues != '') $insertValues.=', ';
-			$insertValues .= $this->s($value);
+			$insertValues .= in_array($value, array('CURRENT_TIMESTAMP', 'CURRENT_TIMESTAMP()', 'NOW', 'NOW()'))
+				? $value
+				: $this->s($value);
 		}
 		$insertValues = ' values ('. $insertValues. ')';
 
 		$SQL = 'insert into '.$this->table.$keys.$insertValues;
+
+		//file_put_contents('debug.txt', 'Array -> '.print_r($SQL, true).PHP_EOL , FILE_APPEND | LOCK_EX);
 
 		$error = $this->exec($SQL);
 		if ($error) echo json_encode($error);

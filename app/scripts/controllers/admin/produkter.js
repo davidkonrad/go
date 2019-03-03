@@ -268,8 +268,10 @@ angular.module('hallandparketApp')
 					} else {
 						data.navn = 'produkt #'+id+' (kopi)';
 					}
-					data.aktiv = false;
+					data.aktiv = 0;
 					data.edited_timestamp = 'CURRENT_TIMESTAMP';
+
+					//console.log('klon', data);
 
 					ESPBA.insert('produkter', data).then(function(p) {
 						p = p.data[0];

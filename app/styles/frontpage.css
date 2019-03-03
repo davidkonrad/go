@@ -126,3 +126,19 @@
 	border-radius: 6px;
 }
 
+/* produkt kategori menu */
+#produkt-kategorier a:first-child {
+	color: #005a94;
+	font-size: 180%;
+	font-family: 'Alegreya Sans SC', sans-serif;
+	text-transform: lowercase;
+}
+#produkt-kategorier a:only-child {
+	color: inherit;
+	font-family: inherit;
+	font-size: 100%;
+}
+#produkt-kategorier h3 {
+	font-family: 'Alegreya Sans SC', sans-serif;
+	text-transform: lowercase;
+}

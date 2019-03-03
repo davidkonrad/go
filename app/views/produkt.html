@@ -5,31 +5,11 @@
 		<h1>{{ produkt.navn }}</h1>
 	</div>
 
-	<div class="row xxrow-no-gutters" ng-if="produkt.billeder.length > 0">
-		
-			<h1 class="pull-left col-md-6"">{{ produkt.navn }}</h1>
-		<div class="xcol-md-5 produkt-image pull-left" XXstyle="overflow-y: hidden;">
+	<div class="row" ng-if="produkt.billeder.length > 0">
+		<h1 class="pull-left col-md-6">{{ produkt.navn }}</h1>
+		<div class="pull-left">
 			<produkt-image path="{{ produkt.billeder[0].path }}" size="md"></produkt-image>
-<!--
-			<img class="thumbnail" 
-				ng-src="/media-uploads/{{ produkt.billeder[0].path }}" 
-				style="cursor:pointer;margin-bottom:0px;" 
-				fancyboxable="{centerOnScroll:true,margin:20}">
--->
 		</div>
-
-
-<!--
-		<div class="col-md-6 pull-left">
-			<h1>{{ produkt.navn }}</h1>
-		</div>
-		<div class="col-md-5 produkt-image pull-left" XXstyle="overflow-y: hidden;">
-			<img class="thumbnail" 
-				ng-src="/media-uploads/{{ produkt.billeder[0].path }}" 
-				style="cursor:pointer;margin-bottom:0px;" 
-				fancyboxable="{centerOnScroll:true,margin:20}">
-		</div>
--->
 	</div>
 
 	<div class="col-md-12 col-xs-12">
@@ -152,7 +132,7 @@
 				<span ng-if="produkt.tilbud_pris_enhed">
 					<strike class="text-muted">
 						<span ng-if="produkt.pris_enhed == 0">
-							Ring og spørg efter pris
+							(<i class="fa fa-phone" title="Ring og spørg efter pris"></i>)
 						</span>
 						<span ng-if="produkt.pris_enhed != 0">
 							{{ produkt.pris_enhed | currency }}
@@ -172,16 +152,16 @@
 				<span class="clearfix visible-xs"><br></span>
 
 				<!-- for normal devices -->
-				<button class="btn btn-primary btn-lg pull-right visible-sm visible-md visible-lg" 
+				<button class="btn btn-primary btn-md pull-right visible-sm visible-md visible-lg" 
 					ng-click="downloadPDF()"
-					style="position:relative; top:-10px; margin-left: 5px;" 
+					style="position:relative; top:-7px; margin-left: 5px;" 
 					title="Download som datablad / PDF">
 					<i class="fa fa-download"></i>
 				</button>
 
-				<a class="btn btn-primary btn-lg pull-right visible-sm visible-md visible-lg" 
+				<a class="btn btn-primary btn-md pull-right visible-sm visible-md visible-lg" 
 					href='/kontakt'
-					style="position:relative; top:-10px;" 
+					style="position:relative; top:-7px;" 
 					title="Klik for at høre mere om {{ produkt.navn }}">
 					Få mere at vide ...
 				</a>
@@ -212,7 +192,4 @@
 	</div>
 	
 </div>
-
-
-
 

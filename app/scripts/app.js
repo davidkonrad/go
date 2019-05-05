@@ -203,7 +203,7 @@ angular.module('hallandparketApp', [
 		});
 
 		if ($location.host() === 'localhost') {
-			ESPBA.setHost('http://localhost/html/hallandparket/app/');
+			ESPBA.setHost('http://localhost/hallandparket/app/');
 		} else {
 			ESPBA.setHost('https://hallandparket.dk/');
 		}

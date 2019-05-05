@@ -1,17 +1,12 @@
-<?
+<?php
 /**
  * espba.php		Database driver for the ESPBA angular 1.x service
  * @copyright   Copyright (C) 2017-2018 david konrad, davidkonrad at gmail com
  * @license     Licensed under the MIT License; see LICENSE.md
  */
 
-//header('Access-Control-Allow-Origin: *');
-//header('Access-Control-Allow-Origin	: "*"');
-
 //error_reporting(E_ALL & ~E_NOTICE); 
 //ini_set('display_errors', '1');
-
-//session_start();
 
 include('Db.php');
 
@@ -33,9 +28,8 @@ class ESPBA extends DbPDO {
 		parent::__construct();
 		
 		//file_put_contents('test.txt', json_encode($_SERVER, JSON_PRETTY_PRINT));
-		//header('Access-Control-Allow-Origin	: "*"');
 		if ($this->isLocalhost()) {
-			//header('Access-Control-Allow-Origin	: "*"');
+			header('Access-Control-Allow-Origin: *');
 		}
 
 		if ($_SERVER['HTTP_ACCEPT'] != 'application/json, text/plain, */*') {

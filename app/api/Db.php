@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Db.php				PDO wrapper for ESPBA
  * @copyright   Copyright (C) 2017 david konrad, davidkonrad at gmail com

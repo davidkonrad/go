@@ -27,6 +27,13 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 				$scope.current_lagerplads = Lookup.lagerpladsNavnFull($scope.edit.lagerplads_id);
 				$scope.reloadImages();
 				$scope.__produktModal.title = 'Rediger <strong>'+$scope.edit.vare_nr+'</strong>'
+
+				//set flag so pakke_log can be updated
+				$scope.$watch('edit.pakker', function(newVal, oldVal) {
+					if (newVal && newVal != oldVal) {
+						$scope.PAKKER_UPDATE = true
+					}
+				});
 			})
 		};
 
@@ -120,10 +127,18 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 				if (produkt_id) {
 					$scope.edit.edited_timestamp = 'CURRENT_TIMESTAMP';
 					ESPBA.update('produkter', $scope.edit).then(function(r) {
+						if ($scope.PAKKER_UPDATE) {
+							delete $scope.PAKKER_UPDATE
+							ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '=', antal: $scope.edit.pakker })
+						}
 						_modalClose(true)
 					})
 				} else {
 					ESPBA.insert('produkter', $scope.edit).then(function(r) {
+						if ($scope.PAKKER_UPDATE) {
+							delete $scope.PAKKER_UPDATE
+							ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '=', antal: $scope.edit.pakker })
+						}
 						_modalClose(true)
 					})
 				}
@@ -152,6 +167,7 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 						paa_lager: paa_lager
 					}
 					ESPBA.update('produkter', update).then(function(r) {
+						ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '+', antal: val })
 						_modalClose(true)
 					})
 				}
@@ -178,6 +194,7 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 						paa_lager: paa_lager
 					}
 					ESPBA.update('produkter', update).then(function(r) {
+						ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '-', antal: val })
 						_modalClose(true)
 					})
 				}

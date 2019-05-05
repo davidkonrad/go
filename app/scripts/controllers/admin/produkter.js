@@ -146,6 +146,18 @@ angular.module('hallandparketApp')
 					}
 				}),
 
+      DTColumnBuilder.newColumn('beskrivelse')
+				.withTitle('Beskrivelse')
+				.renderWith(function(data /*, type, full, meta*/) {
+					return '<span>'+data+'</span>';
+					//return '<span title=&quot;'+data+'&quot;></span>'
+
+						var span = document.createElement("span");
+						span.innerText = data
+						console.log(span.outerHTML)
+						return span.outerHTML
+				}),
+
 			DTColumnBuilder.newColumn('meta_title')
 				.withTitle('Meta title')
 				.withClass('td-beskrivelse no-export'),

@@ -1,4 +1,4 @@
-<?
+<?php
 	header('Access-Control-Allow-Origin: *');	
 
 	$filename = $_FILES['file']['name'];

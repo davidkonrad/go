@@ -1,0 +1,16 @@
+@media screen and (max-width: 991px){
+    .columns{
+        height: 230px;
+        overflow-y:scroll;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .columns{
+        -moz-column-count:2; /* Firefox */
+        -webkit-column-count:2; /* Safari and Chrome */
+        column-count:2;
+        width: 440px;
+        height:220px;
+    }
+}

@@ -7,8 +7,7 @@
  * # MainCtrl
  * Controller of the hallandparketApp
  */
-angular.module('hallandparketApp')
-  .controller('NavbarCtrl', ['$scope', '$window', '$location', '$timeout', 'Login', 'ESPBA', 
+angular.module('hallandparketApp').controller('NavbarCtrl', ['$scope', '$window', '$location', '$timeout', 'Login', 'ESPBA', 
 	function($scope, $window, $location, $timeout, Login, ESPBA) {
 	
 		$scope.isLoggedIn = Login.isLoggedIn();

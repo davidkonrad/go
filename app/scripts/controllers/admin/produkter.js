@@ -214,7 +214,7 @@ angular.module('hallandparketApp')
 			.withButtons([ 
 				{ extend : 'colvis',
 					columns: ':not(.no-export)',
-					text: 'Vis kolonner &nbsp;<i class="caret" style="position:relative;top:-3px;"></i>',
+					text: 'Vis kolonner &nbsp;<i class="caret" xxstyle="position:relative;top:-3px;"></i>',
 					className: 'btn btn-default btn-xs colvis-btn'
 				},
 				{ extend : 'excelHtml5',

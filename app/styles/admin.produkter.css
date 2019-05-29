@@ -67,8 +67,8 @@ div.dt-button-collection a.dt-button:not(.active) {
 /* undersider modal */
 #admin-underside-dialog .modal-dialog {
 	min-width: 900px !important;
-
 }
+
 #admin-underside-dialog .modal-body {
 	height: 500px !important;
 	min-height: 500px !important;
@@ -111,13 +111,5 @@ table.dataTable tbody td.no-padding {
 	background-color: #000;
 	opacity: 0.2;
 }
-
-/*	
-.dt-button-collection .dt-button:active:not(.disabled):hover:not(.disabled), 
-.dt-button-collection .dt-button.active:not(.disabled):hover:not(.disabled) {
-	background-image: none;
-	background-color: red !important;
-}
-*/
 
 

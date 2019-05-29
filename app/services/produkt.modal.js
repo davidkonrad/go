@@ -167,7 +167,7 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 						paa_lager: paa_lager
 					}
 					ESPBA.update('produkter', update).then(function(r) {
-						ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '+', antal: val })
+						ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '+', antal: val, total: pakker })
 						_modalClose(true)
 					})
 				}
@@ -194,14 +194,14 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 						paa_lager: paa_lager
 					}
 					ESPBA.update('produkter', update).then(function(r) {
-						ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '-', antal: val })
+						ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '-', antal: val, total: pakker })
 						_modalClose(true)
 					})
 				}
 			})
 		}
 
-		
+//---------------------
 //produkt ekstra
 		$scope.dtEkstraColumns = [
       DTColumnBuilder.newColumn('id')
@@ -250,6 +250,41 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 			$scope.dtEkstraInstance = instance;
     };
 
+//---------------------
+//produkt log
+		$scope.dtLogColumns = [
+      DTColumnBuilder.newColumn('created_timestamp')
+				.withTitle('Tidspunkt')
+				.renderWith(function(data) {
+					return moment(data).format('lll')
+				}),
+
+      DTColumnBuilder.newColumn('action')
+				.withTitle('Aktion')
+				.renderWith(function(data) {
+					if (data == '+') return '<i class="fa fa-home fa-2x text-success"></i>&nbsp;Ind'
+					if (data == '-') return '<i class="fa fa-shopping-cart fa-2x text-primary"></i>&nbsp;Ud'
+					return '<i class="fa fa-check fa-2x"></i>&nbsp;Optælling'
+				}),
+
+      DTColumnBuilder.newColumn('antal').withTitle('Antal'),
+
+      DTColumnBuilder.newColumn('total').withTitle('Ny total'),
+		];
+
+		$scope.dtLogOptions = DTOptionsBuilder
+			.fromFnPromise(function() {
+				var defer = $q.defer();
+				ESPBA.get('pakke_log', { produkt_id: produkt_id }).then(function(res) {
+					defer.resolve(res.data);
+				});
+				return defer.promise;
+	    })
+			.withOption('dom', 'lfrtip')
+			.withOption('language', Utils.dataTables_daDk);
+
+//---------------------
+//body click
 		angular.element('body').on('click', '#table-ekstra tbody td:not(.no-click)', function(e) {
 			var produkt_ekstra_id = $(this).parent().attr('produkt-ekstra-id');
 			ProduktEkstraModal.show(produkt_id, produkt_ekstra_id).then(function() {

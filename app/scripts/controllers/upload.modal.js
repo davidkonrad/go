@@ -9,9 +9,9 @@ angular.module('hallandparketApp')
 
 		var path;
 		if ($location.host() === 'localhost') {
-			path = 'http://localhost/html/hallandparket.dkonline/app/api/';
+			path = 'http://localhost/hallandparket/app/api/';
 		} else {
-			path = 'https://hallandparket.dk.online/api/';
+			path = 'https://hallandparket.dk/api/';
 		}
 
 		return {

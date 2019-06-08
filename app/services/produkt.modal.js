@@ -204,19 +204,13 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 //---------------------
 //produkt ekstra
 		$scope.dtEkstraColumns = [
-      DTColumnBuilder.newColumn('id')
-				.withTitle('#')
-				.withOption('orderable', false),
-
-      DTColumnBuilder.newColumn('key')
-				.withTitle('Egenskab'),
-
-      DTColumnBuilder.newColumn('value')
-				.withTitle('Værdi'),
-
-      DTColumnBuilder.newColumn('sort_order')
-				.withTitle('Sortering')
-
+      DTColumnBuilder.newColumn('id').withTitle('#').withOption('orderable', false),
+      DTColumnBuilder.newColumn('key').withTitle('Egenskab'),
+			DTColumnBuilder.newColumn('value').withTitle('Værdi'),
+      DTColumnBuilder.newColumn('sort_order').withTitle('Sortering'),
+      DTColumnBuilder.newColumn('id').withTitle('').withClass('no-click').renderWith(function(data) {
+				return '<button class="btn btn-xs btn-danger produkt-ekstra-delete" produkt-ekstra-id="'+data+'" title="Slet ekstra egenskab"><i class="fa fa-times"></button>'
+			})
 		];
 
 		$scope.dtEkstraOptions = DTOptionsBuilder
@@ -231,8 +225,10 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 			.withOption('rowCallback', function(row, data , index) {
 				$(row).attr('produkt-ekstra-id', data.id);
 			})
-			.withOption('dom', 'Blfrtip')
-			.withOption('stateSave', true)
+			.withOption('dom', 'Bfrtip') 
+			.withOption('lengthChange', false)
+			.withOption('pageLength', 7)
+			.withOption('stateSave', false)
 			.withOption('language', Utils.dataTables_daDk)
 			.withButtons([ 
 				{ text: '<span><i class="glyphicon glyphicon-plus text-success"></i>&nbsp;Ny ekstra egenskab</span>',
@@ -249,6 +245,23 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 		$scope.dtEkstraInstanceCallback = function(instance) {
 			$scope.dtEkstraInstance = instance;
     };
+
+		angular.element('body').on('click', '#table-ekstra tbody td:not(.no-click)', function(e) {
+			var produkt_ekstra_id = $(this).parent().attr('produkt-ekstra-id');
+			ProduktEkstraModal.show(produkt_id, produkt_ekstra_id).then(function() {
+				$scope.dtEkstraInstance.reloadData();
+			});	
+		});
+
+		angular.element('body').on('click', '#table-ekstra tbody .produkt-ekstra-delete', function(e) {
+			var peid = $(this).attr('produkt-ekstra-id');
+			var ok = confirm('Slet ekstra egenskab?');
+			if (ok) {
+				ESPBA.delete('produkt_ekstra', { id: peid }).then(function() {
+					$scope.dtEkstraInstance.reloadData();
+				})
+			}
+		});
 
 //---------------------
 //produkt log
@@ -283,15 +296,6 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 			.withOption('dom', 'lfrtip')
 			.withOption('language', Utils.dataTables_daDk);
 
-//---------------------
-//body click
-		angular.element('body').on('click', '#table-ekstra tbody td:not(.no-click)', function(e) {
-			var produkt_ekstra_id = $(this).parent().attr('produkt-ekstra-id');
-			ProduktEkstraModal.show(produkt_id, produkt_ekstra_id).then(function() {
-				$scope.dtEkstraInstance.reloadData();
-			});	
-		});
-		
 
 	}];
 

@@ -69,8 +69,18 @@ angular.module('hallandparketApp')
 				.withTitle('Navn')
 				.withClass('td-produkter-navn'),
 
+      DTColumnBuilder.newColumn('pris_enhed')
+				.withTitle('Pris/enh.')
+				.withClass('text-right'),
+
+      DTColumnBuilder.newColumn('pris_grossist')
+				.withTitle('Grospris/enh.')
+				.withClass('text-right'),
+
+/*
       DTColumnBuilder.newColumn('dimension')
 				.withTitle('Dimension'),
+*/
 
       DTColumnBuilder.newColumn('dim_h')
 				.withTitle('H').withClass('text-right'),
@@ -116,10 +126,6 @@ angular.module('hallandparketApp')
 				.withTitle('Lager')
 				.withClass('text-right'),
 
-      DTColumnBuilder.newColumn('pris_enhed')
-				.withTitle('Pris/enhed')
-				.withClass('text-right'),
-
       DTColumnBuilder.newColumn('pakker')
 				.withTitle('Pakker')
 				.withClass('text-right'),
@@ -146,9 +152,10 @@ angular.module('hallandparketApp')
 					}
 				}),
 
+/*
       DTColumnBuilder.newColumn('beskrivelse')
 				.withTitle('Beskrivelse')
-				.renderWith(function(data /*, type, full, meta*/) {
+				.renderWith(function(data) {
 					return '<span>'+data+'</span>';
 					//return '<span title=&quot;'+data+'&quot;></span>'
 
@@ -157,7 +164,9 @@ angular.module('hallandparketApp')
 						console.log(span.outerHTML)
 						return span.outerHTML
 				}),
+*/
 
+/*
 			DTColumnBuilder.newColumn('meta_title')
 				.withTitle('Meta title')
 				.withClass('td-beskrivelse no-export'),
@@ -165,6 +174,7 @@ angular.module('hallandparketApp')
       DTColumnBuilder.newColumn('meta_desc')
 				.withTitle('Meta desc.')
 				.withClass('td-beskrivelse no-export'),
+*/
 
       DTColumnBuilder.newColumn(null)
 				.withOption('width', '20px')

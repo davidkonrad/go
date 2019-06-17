@@ -1,10 +1,5 @@
 <?php
 
-/*
-ini_set('display_errors', '1');
-error_reporting(E_ALL);
-*/
-
 $host = $_SERVER["SERVER_ADDR"]; 
 $localHost = ($host=='127.0.0.1' || $host=='::1');
 if ($localHost) {
@@ -18,8 +13,8 @@ $telefon = $_GET["telefon"];
 $navn = $_GET["navn"];
 
 //send
-ini_set('SMTP', 'asmtp.unoeuro.com');
-ini_set('SMTP_PORT', '587');
+ini_set('SMTP','send.one.com');
+ini_set('SMTP_PORT', '465');
 
 $body='<html><body>'.
       'Ny Kontaktformular - '.date(DATE_RFC822).'<br>'.
@@ -32,20 +27,22 @@ $body='<html><body>'.
 
 $headers ='';
 $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-$headers .= 'From: Kontaktformular<kontaktformular@gulve.online>';
+$headers .= 'From: Kontaktformular<kontaktformular@hallandparket.dk>'. "\r\n";
+$headers .= 'ReplyTo: Kontaktformular<kontaktformular@hallandparket.dk>'. "\r\n";
+$headers .= 'subject: "Kontaktformular"'. "\r\n";
 
 //also send mail to me, test!
-$result=mail('davidkonrad@gmail.com','Kontaktformular', $body, $headers);
+//$send1 = mail('info@4horizons.com', 'Kontaktformular', $body, $headers);
+$send = mail('info@hallandparket.dk', 'Kontaktformular', $body, $headers);
 
-$result=mail('info@gulve.online','Kontaktformular', $body, $headers);
+echo json_encode(array('stat' => $send ));
 
-//send reminder to info@hallandparket.dk
-$result=mail('info@hallandparket.dk','Kontaktformular', $body, $headers);
-
+/*
 if ($result) {
 	echo json_encode(array('message' => true ));
 } else {
 	echo json_encode(array('message' => false ));
 }
+*/
 
 ?>

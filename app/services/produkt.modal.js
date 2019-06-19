@@ -129,16 +129,18 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 					ESPBA.update('produkter', $scope.edit).then(function(r) {
 						if ($scope.PAKKER_UPDATE) {
 							delete $scope.PAKKER_UPDATE
-							ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '=', antal: $scope.edit.pakker })
+							var obj = {
+								produkt_id: $scope.edit.id, 
+								action: '=', 
+								antal: $scope.edit.pakker,
+								total: $scope.edit.pakker
+							}
+							ESPBA.insert('pakke_log', obj )
 						}
 						_modalClose(true)
 					})
 				} else {
 					ESPBA.insert('produkter', $scope.edit).then(function(r) {
-						if ($scope.PAKKER_UPDATE) {
-							delete $scope.PAKKER_UPDATE
-							ESPBA.insert('pakke_log', { produkt_id: $scope.edit.id, action: '=', antal: $scope.edit.pakker })
-						}
 						_modalClose(true)
 					})
 				}
@@ -268,8 +270,8 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 		$scope.dtLogColumns = [
       DTColumnBuilder.newColumn('created_timestamp')
 				.withTitle('Tidspunkt')
-				.renderWith(function(data) {
-					return moment(data).format('lll')
+				.renderWith(function(data, type) {
+					return type == 'display' ? moment(data).format('lll') : data
 				}),
 
       DTColumnBuilder.newColumn('action')
@@ -281,7 +283,6 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 				}),
 
       DTColumnBuilder.newColumn('antal').withTitle('Antal'),
-
       DTColumnBuilder.newColumn('total').withTitle('Ny total'),
 		];
 
@@ -293,7 +294,10 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 				});
 				return defer.promise;
 	    })
-			.withOption('dom', 'lfrtip')
+			.withOption('dom', 'tip') 
+			.withOption('lengthChange', false)
+			.withOption('pageLength', 7)
+			.withOption('stateSave', false)
 			.withOption('language', Utils.dataTables_daDk);
 
 

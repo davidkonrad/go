@@ -34,6 +34,12 @@ angular.module('hallandparketApp').factory('Utils', function() {
 	    }
 		},
 
+		apiPath: function() {
+			return isLocalHost 
+				? 'http://localhost/hallandparket/app/api/'
+				: 'https://hallandparket.dk/api/'
+		},
+
 		//fix name with spaces and æøå for url use
 		urlName: function(s) {
 			s = s.replace(/ /g, '-');

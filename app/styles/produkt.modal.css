@@ -34,10 +34,9 @@ div.image {
 	max-width: 200px !important;
 	clear: none;
 	margin-top: 5px;
-	margin-right: 5px;
+	margin-right: 10px;
 	display: inline-block;
 	position: relative;
-	margin-left: 20px;
 	margin-bottom: 10px;
 }
 
@@ -83,5 +82,7 @@ a[role=tab] {
 .tab-pane {
 	margin-top: 5px;
 }
+
+
 
 

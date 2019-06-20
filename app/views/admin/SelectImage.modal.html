@@ -1,0 +1,30 @@
+<div class="modal ng-scope top am-fade-and-slide-top center" tabindex="-1" role="dialog" style="display: block;" id="modal-select-image">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<h4 class="modal-title pull-left">Vælg billede</h4>
+				<div class="dataTables_paginate paging_simple_numbers">
+					<ul class="pagination">
+						<li ng-repeat="p in pages" class="paginate_button" ng-class="{ 'active': p.page == 1 }" page-index="{{ p.page }}">
+							<a href="" page-index="{{ p.page }}" tabindex="{{ p.page }}">{{ p.text }}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="modal-body">
+				<div class="image-container">
+					<span ng-repeat="i in pageImages" class="image">
+						<img src="media-uploads/{{ i }}" XXXfancyboxable="{centerOnScroll:true,margin:20}">
+					</span>
+				</div>
+			</div>
+
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-default" ng-click="modalClose(false)">Fortryd</button> 
+			</div>
+
+		</div>
+	</div>
+</div>

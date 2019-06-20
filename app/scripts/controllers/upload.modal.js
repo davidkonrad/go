@@ -71,13 +71,17 @@ angular.module('hallandparketApp').factory('UploadModal', ['$modal', '$location'
 					scope: $scope,
 					templateUrl: 'views/admin/upload.modal.html',
 					backdrop: 'static',
-					show: true
+					keyboard: true,
+					show: false
 				});
 
 				modal.$promise.then(modal.show).then(function() {
+					console.log('ok')
 					delete $scope.selectedFile;
 					$compile(angular.element('#upload-image-modal').contents())($scope);
-					//
+					$timeout(function() {
+						$('#image-upload-cancel').focus()
+					},1)
 				});
 
 				$scope.modalClose = function(value) {

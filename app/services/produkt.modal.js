@@ -10,8 +10,8 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 	var deferred;
 	var local = this;
 
-	local.modalInstance = ['$scope', 'ESPBA', 'Utils', 'UploadModal', 'InputModal', 'Lookup', 'ProduktEkstraModal', 'DTOptionsBuilder', 'DTColumnBuilder', 'LagerpladsModal', 'produkt_id', 
-	function($scope, ESPBA, Utils, UploadModal, InputModal, Lookup, ProduktEkstraModal, DTOptionsBuilder, DTColumnBuilder, LagerpladsModal, produkt_id) {
+	local.modalInstance = ['$scope', 'ESPBA', 'Utils', 'UploadModal', 'InputModal', 'Lookup', 'ProduktEkstraModal', 'DTOptionsBuilder', 'DTColumnBuilder', 'LagerpladsModal', 'SelectImageModal', 'produkt_id', 
+	function($scope, ESPBA, Utils, UploadModal, InputModal, Lookup, ProduktEkstraModal, DTOptionsBuilder, DTColumnBuilder, LagerpladsModal, SelectImageModal, produkt_id) {
 
 		$scope.produkt_id = produkt_id || false;
 
@@ -79,40 +79,6 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 				}
 			})
 		}
-
-		$scope.reloadImages = function() {
-			$scope.billeder = [];
-			if (!$scope.edit.id) {
-				$scope.$apply();
-				return
-			}
-			ESPBA.get('billeder', { produkt_id: $scope.edit.id }).then(function(r) {
-				$scope.billeder = r.data;
-			})
-		};
-
-		$scope.addImage = function() {
-			UploadModal.show($scope).then(function(r) {	
-				if (r) {
-					var data = {
-						path: r.filename,
-						produkt_id: $scope.edit.id
-					};
-					ESPBA.insert('billeder', data).then(function(r) {
-						$scope.reloadImages();
-					})
-				}
-			})
-		};
-				
-		$scope.removeImage = function(image) {
-			if (confirm('Er du sikker på du vil slette billedet?')) {
-				ESPBA.delete('billeder', { id: image.id }).then(function(r) {
-					//UploadModal.delete(image.path).then(function(r) {	});
-					$scope.reloadImages();
-				})
-			}
-		};			
 
 		var _modalClose = function(value) {
 			modal.hide();
@@ -263,6 +229,56 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 				})
 			}
 		});
+
+//---------------------
+//images
+		$scope.reloadImages = function() {
+			$scope.billeder = [];
+			if (!$scope.edit.id) {
+				$scope.$apply();
+				return
+			}
+			ESPBA.get('billeder', { produkt_id: $scope.edit.id }).then(function(r) {
+				$scope.billeder = r.data;
+			})
+		};
+
+		$scope.addImage = function() {
+			UploadModal.show($scope).then(function(r) {	
+				if (r) {
+					var data = {
+						path: r.filename,
+						produkt_id: $scope.edit.id
+					};
+					ESPBA.insert('billeder', data).then(function(r) {
+						$scope.reloadImages();
+					})
+				}
+			})
+		};
+
+		$scope.selectImage = function() {
+			SelectImageModal.show().then(function(r) {	
+				if (r) {
+					var data = {
+						path: r,
+						produkt_id: $scope.edit.id
+					};
+					ESPBA.insert('billeder', data).then(function(r) {
+						$scope.reloadImages();
+					})
+				}
+			})
+		};
+				
+		$scope.removeImage = function(image) {
+			if (confirm('Er du sikker på du vil slette billedet?')) {
+				ESPBA.delete('billeder', { id: image.id }).then(function(r) {
+					//UploadModal.delete(image.path).then(function(r) {	});
+					$scope.reloadImages();
+				})
+			}
+		};			
 
 //---------------------
 //produkt log

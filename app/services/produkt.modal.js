@@ -108,8 +108,7 @@ angular.module('hallandparketApp').factory('ProduktModal', ['$modal', '$q',	func
 		$scope.removeImage = function(image) {
 			if (confirm('Er du sikker på du vil slette billedet?')) {
 				ESPBA.delete('billeder', { id: image.id }).then(function(r) {
-					UploadModal.delete(image.path).then(function(r) {
-					});
+					//UploadModal.delete(image.path).then(function(r) {	});
 					$scope.reloadImages();
 				})
 			}

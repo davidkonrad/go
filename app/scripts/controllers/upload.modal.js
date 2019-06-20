@@ -1,8 +1,7 @@
 'use strict';
 
-angular.module('hallandparketApp')
-  .factory('UploadModal', ['$modal', '$location', '$compile', '$http', '$q', '$timeout', 'Upload', 
-		function($modal, $location, $compile, $http, $q, $timeout, Upload) {
+angular.module('hallandparketApp').factory('UploadModal', ['$modal', '$location', '$compile', '$http', '$q', '$timeout', 'Upload', 
+	function($modal, $location, $compile, $http, $q, $timeout, Upload) {
 
 		var deferred = null;
 		var modal = null;
@@ -70,7 +69,7 @@ angular.module('hallandparketApp')
 				deferred = $q.defer();
 				modal = $modal({
 					scope: $scope,
-					templateUrl: 'views/upload.modal.html',
+					templateUrl: 'views/admin/upload.modal.html',
 					backdrop: 'static',
 					show: true
 				});

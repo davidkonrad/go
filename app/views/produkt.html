@@ -3,18 +3,29 @@
 
 	<div class="row" ng-if="produkt.billeder.length == 0">
 		<h1>{{ produkt.navn }}</h1>
+		<p ng-bind-html="produkt.beskrivelse"></p>
 	</div>
 
-	<div class="row" ng-if="produkt.billeder.length > 0">
-		<h1 class="pull-left col-md-6">{{ produkt.navn }}</h1>
-		<div class="pull-left">
-			<produkt-image path="{{ produkt.billeder[0].path }}" size="md"></produkt-image>
+	<div ng-if="produkt.billeder.length > 0">
+
+		<div class="col-md-12" ng-if="produkt.beskrivelse != ''">
+			<h1>{{ produkt.navn }}</h1>
+			<produkt-image class="pull-right" style="margin-left:20px; margin-top:1px !important;" path="{{ produkt.billeder[0].path }}" size="md"></produkt-image>
+			<span ng-bind-html="produkt.beskrivelse" style="ehite-space: wrap;"></span>
 		</div>
+
+		<div class="col-md-12" ng-if="produkt.beskrivelse == ''">
+			<div class="pull-left col-md-6">
+				<h1>{{ produkt.navn }}</h1>
+			</div>
+			<div class="pull-right col-md-6">
+				<produkt-image path="{{ produkt.billeder[0].path }}" size="md"></produkt-image>
+			</div>
+		</div>
+
 	</div>
 
 	<div class="col-md-12 col-xs-12">
-		<p ng-bind-html="produkt.beskrivelse"></p>
-
 		<table class="table">
 	    <thead>
 				<tr>

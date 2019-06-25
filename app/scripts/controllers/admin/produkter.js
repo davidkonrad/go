@@ -18,9 +18,9 @@ angular.module('hallandparketApp')
       DTColumnBuilder.newColumn(null)
 				.withOption('width', '20px')
 				.withTitle('')
-				.withClass('no-click no-padding no-export')
+				.withClass('no-click no-padding-left no-export')
 				.withOption('orderable', false)
-				.renderWith(function(data, type, full /*, meta*/) {
+				.renderWith(function(data, type, full) {
 					return '<button class="btn btn-primary btn-xs btn-clone" produkt-id="'+full.id+'" title="Klon dette produkt"><i class="fa fa-clone"></i></button>';
 				}),
 
@@ -180,8 +180,8 @@ angular.module('hallandparketApp')
 				.withOption('width', '20px')
 				.withTitle('')
 				.withClass('no-click no-export')
-				.renderWith(function(data, type, full /*, meta*/) {
-					return '<a href="' + Utils.getProduktLink(full) +'"><i class="glyphicon glyphicon-share-alt text-primary"></i></a>';
+				.renderWith(function(data, type, full) {
+					return '<a href="' + Utils.getProduktLink(full) +'" target=_blank title="Vis produktet, åbner i nyt faneblad"><i class="glyphicon glyphicon-share-alt text-primary"></i></a>';
 				})
 		];
 

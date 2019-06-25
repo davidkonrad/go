@@ -49,10 +49,6 @@ angular.module('hallandparketApp').factory('SelectImageModal', ['$modal', '$q', 
 
 		$scope.modalClose = function(value) {
 			if (modal) modal.hide();
-			/*
-			modal.destroy();
-			modal = null;
-			*/
       deferred.resolve(value)
 		};
 	

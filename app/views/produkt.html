@@ -1,6 +1,17 @@
 
 <div class="container">
 
+	<div>--------------{{ produkt.billeder.length }}, {{ produkt.beskrivelse }}</div>
+
+	<script>setTimeout(function() {
+	console.log($scope.produkt.billeder, 1000)
+})
+</script>
+	<div class="row" ng-if="produkt.billeder.length == '' && produkt.beskrivelse == ''">
+		<h2>test</h2>
+		<h1 class="pull-left">{{ produkt.navn }}</h1>
+	</div
+
 	<div class="row" ng-if="produkt.billeder.length == 0">
 		<h1>{{ produkt.navn }}</h1>
 		<p ng-bind-html="produkt.beskrivelse"></p>

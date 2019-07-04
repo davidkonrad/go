@@ -236,3 +236,10 @@ tbody td .td40 {
 	color: #005a94;
 }
 
+/* search header */
+img.search {
+	position: relative;
+	top: 8px;
+	height:5px;
+}
+

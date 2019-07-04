@@ -2,13 +2,15 @@
 
 include('Db.php');
 
+//header('Access-Control-Allow-Origin	: *');
+
 class Search extends DbPDO {
 
 	public function __construct() {
 		parent::__construct();
 		
 		if ($this->isLocalhost()) {
-			header('Access-Control-Allow-Origin	: *');
+			header('Access-Control-Allow-Origin:*');
 		}
 
 		if ( !$_GET || !isset($_GET['term']) || empty($_GET['term']) ) {
@@ -32,13 +34,16 @@ class Search extends DbPDO {
 				$w = ' (';
 				$w.= '(p.aktiv = 1) and ';
 				$w.= '(p.navn like "%'.$t.'%") or ';
-				$w.= '(p.vare_nr like "%'.$t.'%") or ';
+				$w.= '(p.vare_nr = "'.$t.'") or ';
 				$w.= '(p.profil_id = r.id and r.navn like "%'.$t.'%") or ';
 				$w.= '(p.kategori_id = k.id and k.navn like "%'.$t.'%") or ';
 				$w.= '(p.sort_id = s.id and s.navn like "%'.$t.'%") or ';
 				$w.= '(p.overflade_id = o.id and o.navn like "%'.$t.'%") or ';
 				$w.= '(p.kvalitet_id = v.id and v.navn like "%'.$t.'%") or ';
-				$w.= '(p.dimension like "%'.$t.'%") ';
+				//$w.= '(p.dimension like "%'.$t.'%") ';
+				$w.= '(p.dim_h = "'.$t.'") or ';
+				$w.= '(p.dim_b = "'.$t.'") or ';
+				$w.= '(p.dim_l = "'.$t.'") ';
 
 				$w.= ')';
 			}
@@ -47,6 +52,8 @@ class Search extends DbPDO {
 		}
 
 		$SQL.=' where '.$where;
+
+		//echo $SQL;
 
 		$result = $this->queryJSON($SQL);
 		echo $result;

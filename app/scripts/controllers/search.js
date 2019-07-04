@@ -22,9 +22,10 @@ angular.module('hallandparketApp')
 
 		//produktList properties
 		$scope.produktList = {};
-		$scope.produktList.title = 'Søger ..';
+		$scope.produktList.title = 'Søgning' //er <img src="images/search.gif" class="search">';
 
 		var doSearch = function(term) {
+			$scope.produktList.title = 'Søger <img src="images/search.gif" class="search">';
 			//just reuse ESPBA settings
 			var url = ESPBA.getHost() + 'api/search.php';
 			$http({
@@ -32,20 +33,23 @@ angular.module('hallandparketApp')
 				method: 'GET',
 				params: { term: term }
 			}).then(function(res) {
+				//console.log(res)
 				$scope.produkter = res.data;
 				$scope.produkter.forEach(function(p) {
 					Lookup.formatProdukt(p);
 				});
 				$timeout(function() {
-					$scope.produktList.title = 'Søgning';
+					$scope.produktList.title = 'Søgning, '+ $($scope.produktList.desc).text()
+					$scope.produktList.desc = ''
 					$scope.gulvtypeItems = Lookup.filterByProduktList($scope.produkter);
 				});
 			});
 		}
 
 		var searchInit = function() {
-			var term = angular.element('#search-input').val().trim();
-			angular.element('#search-input').val(term);
+			if (!angular.element('#search-input').val()) return
+			var term = angular.element('#search-input').val().trim()
+			angular.element('#search-input').val(term)
 			if (term) {
 				doSearch(term);
 				var terms = term.split(' ');

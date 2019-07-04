@@ -112,4 +112,23 @@ table.dataTable tbody td.no-padding {
 	opacity: 0.2;
 }
 
+/* only-active */
+#only-active {
+	margin-left: 20px;
+	clear: none;
+	display: inline-block;
+	margin-top: 4px;
+}
+#only-active label {
+	font-weight: normal;
+	clear: none;
+	display: inline-block;
+	cursor: pointer;
+}
+#only-active input {
+	position: relative;
+	top: 2px;
+}
+
+
 

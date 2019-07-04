@@ -199,6 +199,23 @@ angular.module('hallandparketApp')
 			.withOption('drawCallback', function() {
 				$('tr.danger').tooltip()	
 			})
+			.withOption('initComplete', function() {
+				$('#only-active').append('<label class="normal"><input type="checkbox" id="only-active-checkbox">&nbsp;Vis kun aktive</label>')	
+
+				$('#only-active-checkbox').change(function() {
+					var checked = $(this).is(':checked');
+					if (checked) {
+						$.fn.dataTable.ext.search.push(function( settings, data, dataIndex ) {
+							var row = $scope.dtInstance.DataTable.row( dataIndex).data()
+							return row.aktiv == 1
+						})
+						$scope.dtInstance.DataTable.draw()
+					} else {
+						$.fn.dataTable.ext.search.pop()
+						$scope.dtInstance.DataTable.draw()
+					}
+				})
+			})
 			.withOption('rowCallback', function(row, data /*, index*/) {
 				$(row).attr('produkt-id', data.id);
 
@@ -218,7 +235,7 @@ angular.module('hallandparketApp')
 				}
 
 			})
-			.withOption('dom', 'Blfrtip')
+			.withOption('dom', 'Bl<"#only-active">frtip')
 			.withOption('stateSave', true)
 			.withOption('language', Utils.dataTables_daDk)
 			.withButtons([ 
